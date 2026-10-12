@@ -70,6 +70,12 @@ p { margin: 0; }
 .hero > * { min-width: 0; }
 .hero h1 { font-size: var(--step-3); font-weight: 800; }
 .hero h1 em { font-style: normal; color: var(--accent); }
+.hero .motto { margin-top: 10px; font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; color: var(--lamp); }
+.hero .points { list-style: none; margin: 18px 0 0; padding: 0; display: grid; gap: 6px; font-size: .97rem; color: var(--muted); }
+.hero .points li { position: relative; padding-left: 1.4em; }
+.hero .points li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+.hero .points b { color: var(--ink); font-weight: 600; }
+.hero .points a { color: inherit; }
 .hero .lead { margin-top: 18px; color: var(--muted); font-size: 1.06rem; max-width: 34em; }
 .when {
   margin-top: 26px; display: inline-flex; gap: 14px; align-items: baseline;
