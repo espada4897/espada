@@ -122,6 +122,13 @@ p { margin: 0; }
 .stat span { color: var(--muted); font-size: .88rem; }
 .stats-note { margin-top: 8px; font-size: .82rem; color: var(--muted); text-align: right; }
 
+/* 방장 인사 (홈, 책미사 이야기) */
+.host { margin: 40px 0 0; padding: 24px 28px; border-left: 4px solid var(--lamp); background: var(--surface); border-radius: 0 12px 12px 0; }
+.host blockquote { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 1.12rem; line-height: 1.8; }
+.host figcaption { margin-top: 10px; font-size: .88rem; color: var(--muted); }
+.host figcaption b { color: var(--ink); }
+#story .host { margin: 0 0 24px; }
+
 /* 섹션 */
 section { padding-block: 72px 0; }
 .page { padding-top: 48px; }
