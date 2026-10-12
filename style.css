@@ -238,6 +238,29 @@ section { padding-block: 72px 0; }
 .months .sched-month { max-width: none; }
 .months figcaption { font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--ink); }
 
+/* 함께 읽은 책 (pages/03_함께 읽은 책) */
+.book-gen { padding-block: 0; }
+.book-gen + .book-gen { margin-top: 48px; }
+.book-gen h2 { font-size: var(--step-1); margin-bottom: 16px; }
+.books { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 28px 20px; }
+.book { min-width: 0; display: grid; gap: 4px; align-content: start; }
+.book-cover { position: relative; aspect-ratio: 2 / 3; margin-bottom: 8px; }
+.book-cover img { width: 100%; height: 100%; object-fit: cover; border-radius: 3px 6px 6px 3px; box-shadow: 0 3px 10px rgb(0 0 0 / .3), inset 0 0 0 1px rgb(255 255 255 / .08); }
+.book-cover-art {
+  width: 100%; height: 100%; border-radius: 3px 6px 6px 3px; padding: 18% 12%;
+  background: var(--c, var(--accent)); color: var(--spine-fg); display: grid; align-content: start; gap: 10px;
+  box-shadow: inset 8px 0 0 rgb(0 0 0 / .15), 0 3px 10px rgb(0 0 0 / .3);
+}
+.book-cover-art b { font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; line-height: 1.4; }
+.book-cover-art span { font-size: .75rem; opacity: .85; }
+.book-badge { position: absolute; top: 8px; right: 8px; font-size: .75rem; font-weight: 600; padding: 2px 9px; border-radius: 99px; background: var(--lamp); color: var(--bg); }
+.book.soon .book-cover { outline: 2px dashed var(--muted); outline-offset: 4px; border-radius: 6px; }
+.book h3 { font-size: 1rem; line-height: 1.4; }
+.book-author { font-size: .85rem; color: var(--muted); }
+.book-meta { font-size: .8rem; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+.book-meta::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--accent)); flex: none; }
+.book-links { display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: .82rem; margin-top: 2px; }
+
 /* 홈: 둘러보기 */
 .explore { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .explore a {
