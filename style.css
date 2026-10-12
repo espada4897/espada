@@ -88,7 +88,7 @@ p { margin: 0; }
 /* 책장 */
 .shelf { display: flex; align-items: flex-end; gap: 5px; padding-inline: 6px; overflow-x: auto; }
 .spine {
-  flex: 0 0 auto; writing-mode: vertical-rl; color: var(--spine-fg);
+  flex: 0 0 auto; writing-mode: vertical-rl; color: var(--spine-fg); position: relative;
   font-family: var(--font-display); font-weight: 700; font-size: .92rem; letter-spacing: .04em;
   padding: 14px 0; width: 39px; display: flex; align-items: center; justify-content: flex-start;
   border-radius: 3px 3px 0 0; box-shadow: inset -4px 0 0 rgb(0 0 0 / .14), inset 2px 0 0 rgb(255 255 255 / .12);
@@ -96,13 +96,27 @@ p { margin: 0; }
 }
 .spine small { font-family: var(--font-body); font-weight: 500; font-size: .66rem; opacity: .85; margin-top: 10px; }
 .spine:hover { transform: translateY(-8px); }
-.spine.lean { transform: rotate(5deg); margin-left: 8px; }
-.spine.lean:hover { transform: rotate(5deg) translateY(-8px); }
+.spine.upcoming { transform: rotate(5deg); margin-left: 8px; }
+.spine.upcoming:hover { transform: rotate(5deg) translateY(-8px); }
 .spine.lit { background: var(--s-lit); }
 .spine.pick { background: var(--s-pick); }
 .spine.eco { background: var(--s-eco); }
 .spine.wed { background: var(--s-wed); }
-.spine.next { background: transparent; color: var(--muted); border: 1.5px dashed var(--muted); box-shadow: none; }
+.spine.meet { background: var(--s-meet); }
+.spine.upcoming:not(.cover) { background: var(--bg); color: var(--muted); border: 1.5px dashed var(--muted); box-shadow: none; }
+/* 표지가 있는 책(data/책표지): 표지가 앞을 보게 놓는다. 자리가 모자라면 표지 상자가 줄어들어
+   다음 표지가 위에 겹친다(책을 비스듬히 펼쳐 놓은 모양). 마지막 책은 줄이지 않는다. */
+.spine.cover {
+  writing-mode: horizontal-tb; padding: 0; background: none; box-shadow: none; position: relative;
+  flex: 0 1 var(--w); width: auto; min-width: 26px; height: 220px; align-self: flex-end;
+}
+.spine.cover:last-child { flex-shrink: 0; }
+.spine.cover img {
+  position: absolute; left: 0; bottom: 0; height: 220px; width: var(--w); max-width: none; object-fit: cover;
+  border-radius: 2px 4px 4px 2px; box-shadow: -3px 2px 8px rgb(0 0 0 / .35), inset 0 0 0 1px rgb(255 255 255 / .1);
+}
+.spine.cover:hover { z-index: 1; }
+.spine.cover.upcoming img { outline: 2px dashed var(--muted); outline-offset: 3px; opacity: .85; }
 .board { height: 12px; background: var(--ink); opacity: .85; border-radius: 2px; }
 .shelf-note { margin-top: 10px; font-size: .82rem; color: var(--muted); text-align: right; }
 
