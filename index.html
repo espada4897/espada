@@ -127,7 +127,8 @@ p { margin: 0; }
 .shelf-note { margin-top: 10px; font-size: .82rem; color: var(--muted); text-align: right; }
 
 /* 요즘 책미사: build_site.py가 최근 분석 결과로 채운다 */
-.stats { margin-top: 48px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.stats-title { margin-top: 48px; font-size: var(--step-1); font-weight: 800; }
+.stats { margin-top: 12px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
 .stat { background: var(--surface); padding: 18px 20px; display: grid; gap: 2px; align-content: start; min-width: 0; }
 .stat b { font-family: var(--font-display); font-size: 2rem; font-weight: 800; line-height: 1.2; color: var(--accent); font-variant-numeric: tabular-nums; }
 .stat b small { font-size: 1rem; margin-left: 2px; }
@@ -267,7 +268,8 @@ footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
     </div>
   </div>
 
-  <div class="wrap" aria-label="요즘 책미사">
+  <div class="wrap">
+    <h2 class="stats-title">요즘 책미사</h2>
     <div class="stats">
       <div class="stat"><b>21<small>명</small></b><span>최근 30일 톡방에서 이야기한 멤버</span></div>
       <div class="stat"><b>27<small>건</small></b><span>하루 평균 대화</span></div>
