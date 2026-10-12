@@ -260,6 +260,7 @@ section { padding-block: 72px 0; }
 .book-cover-art b { font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; line-height: 1.4; }
 .book-cover-art span { font-size: .75rem; opacity: .85; }
 .book-badge { position: absolute; top: 8px; right: 8px; font-size: .75rem; font-weight: 600; padding: 2px 9px; border-radius: 99px; background: var(--lamp); color: var(--bg); }
+.book-badge.doing { background: var(--accent); }
 .book.soon .book-cover { outline: 2px dashed var(--muted); outline-offset: 4px; border-radius: 6px; }
 .book-open {
   all: unset; display: grid; gap: 4px; cursor: pointer; color: var(--ink); min-width: 0;
