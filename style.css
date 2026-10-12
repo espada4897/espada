@@ -239,7 +239,13 @@ section { padding-block: 72px 0; }
 .months figcaption { font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--ink); }
 
 /* 함께 읽은 책 (pages/03_함께 읽은 책) */
-.book-gen { padding-block: 0; }
+.book-gen { padding-block: 0; scroll-margin-top: 80px; }
+.gen-jump { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+.gen-jump a {
+  font-weight: 600; font-size: .9rem; padding: 5px 14px; border-radius: 99px; text-decoration: none;
+  border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+}
+.gen-jump a:hover { border-color: var(--accent); color: var(--accent); }
 .book-gen + .book-gen { margin-top: 48px; }
 .book-gen h2 { font-size: var(--step-1); margin-bottom: 16px; }
 .books { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 28px 20px; }
