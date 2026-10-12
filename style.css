@@ -217,6 +217,7 @@ section { padding-block: 72px 0; }
 .next-body { padding: 28px 32px; display: grid; gap: 8px; align-content: center; min-width: 0; }
 .next-eyebrow { font-size: .85rem; font-weight: 600; letter-spacing: .08em; color: var(--muted); display: flex; align-items: center; gap: 10px; }
 .next-eyebrow .dday:not(:empty) { color: var(--bg); background: var(--lamp); border-radius: 99px; padding: 1px 10px; letter-spacing: 0; }
+.next-eyebrow .doing { color: var(--bg); background: var(--accent); border-radius: 99px; padding: 1px 10px; letter-spacing: 0; }
 .next-body h2 { font-size: clamp(1.7rem, 4vw, 2.3rem); }
 .next-author { color: var(--muted); font-size: .95rem; margin-top: -4px; }
 .next-meta { font-weight: 600; display: flex; align-items: center; gap: 8px; }
