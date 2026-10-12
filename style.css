@@ -90,7 +90,7 @@ p { margin: 0; }
 .spine {
   flex: 0 0 auto; writing-mode: vertical-rl; color: var(--spine-fg);
   font-family: var(--font-display); font-weight: 700; font-size: .92rem; letter-spacing: .04em;
-  padding: 14px 0; width: 42px; display: flex; align-items: center; justify-content: flex-start;
+  padding: 14px 0; width: 39px; display: flex; align-items: center; justify-content: flex-start;
   border-radius: 3px 3px 0 0; box-shadow: inset -4px 0 0 rgb(0 0 0 / .14), inset 2px 0 0 rgb(255 255 255 / .12);
   transform-origin: bottom center; transition: transform .25s ease;
 }
