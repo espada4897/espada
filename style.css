@@ -103,22 +103,7 @@ p { margin: 0; }
 .spine.eco { background: var(--s-eco); }
 .spine.wed { background: var(--s-wed); }
 .spine.meet { background: var(--s-meet); }
-.spine.upcoming:not(.cover) { background: var(--bg); color: var(--muted); border: 1.5px dashed var(--muted); box-shadow: none; }
-/* 표지가 있는 책(data/책표지): 표지가 앞을 보게 놓는다. 책장이 넘치면 오른쪽 끝(최근 책)부터 보이고
-   왼쪽으로 밀어 지난 책을 본다(홈 page.html의 스크립트). */
-.spine.cover {
-  writing-mode: horizontal-tb; padding: 0; background: none; box-shadow: none;
-  flex: 0 0 var(--w); width: var(--w); height: 170px; align-self: flex-end;
-}
-.spine.cover img {
-  display: block; width: 100%; height: 100%; object-fit: cover;
-  border-radius: 2px 4px 4px 2px; box-shadow: 0 2px 8px rgb(0 0 0 / .35), inset 0 0 0 1px rgb(255 255 255 / .1);
-}
-.spine.cover.upcoming, .spine.cover.upcoming:hover { transform: none; margin-left: 4px; }
-.spine.cover.upcoming img { outline: 2px dashed var(--muted); outline-offset: 3px; }
-.shelf { scrollbar-width: none; padding-top: 12px; }
-.shelf::-webkit-scrollbar { display: none; }
-.shelf.overflow { mask-image: linear-gradient(to right, transparent 0, #000 40px); -webkit-mask-image: linear-gradient(to right, transparent 0, #000 40px); }
+.spine.upcoming { background: var(--bg); color: var(--muted); border: 1.5px dashed var(--muted); box-shadow: none; }
 .board { height: 12px; background: var(--ink); opacity: .85; border-radius: 2px; }
 .shelf-note { margin-top: 10px; font-size: .82rem; color: var(--muted); text-align: right; }
 
