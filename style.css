@@ -181,8 +181,33 @@ section { padding-block: 72px 0; }
 .era.now h3 { color: var(--accent); }
 
 /* 홈: 다음 모임 (pages/00_홈/다음모임.csv) */
-.next { padding-top: 32px; display: grid; gap: 16px; }
+.next { padding-top: 32px; position: relative; }
+.next-track { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+.next-track::-webkit-scrollbar { display: none; }
+.next-arrow, .next-count { display: none; }
+.next.many .next-arrow { display: grid; }
+.next.many .next-count { display: block; }
+.next-arrow {
+  position: absolute; top: calc(32px + 200px); transform: translateY(-50%); z-index: 2;
+  width: 46px; height: 46px; border-radius: 50%; place-items: center; cursor: pointer;
+  padding: 0; color: var(--ink);
+  background: color-mix(in srgb, var(--surface) 88%, transparent); border: 1px solid var(--line);
+  box-shadow: 0 2px 10px rgb(0 0 0 / .25); backdrop-filter: blur(4px);
+}
+.arrow-prev { left: 6px; }
+.arrow-next { right: 6px; }
+.next-arrow:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.next-arrow:disabled { opacity: .35; cursor: default; }
+.next-count { margin-top: 10px; text-align: center; font-size: .85rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.next-cover {
+  aspect-ratio: 1; background: var(--c, var(--accent)); color: var(--spine-fg);
+  display: grid; align-content: center; justify-items: start; gap: 14px; padding: 12%;
+  box-shadow: inset -10px 0 0 rgb(0 0 0 / .15);
+}
+.next-cover b { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.6rem, 4vw, 2.3rem); line-height: 1.35; }
+.next-cover span { font-size: .9rem; opacity: .85; letter-spacing: .08em; }
 .next-card {
+  flex: 0 0 100%; scroll-snap-align: start;
   display: grid; grid-template-columns: minmax(0, 400px) minmax(0, 1fr); align-items: center;
   background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--c, var(--accent));
   border-radius: 14px; overflow: hidden;
@@ -239,7 +264,8 @@ footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
   .eras { grid-template-columns: 1fr; }
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .explore { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .next-card { grid-template-columns: 1fr; }
+  .next-card { grid-template-columns: 1fr; align-items: start; }
+  .next-arrow { top: calc(32px + (100vw - 40px) / 2); }
   .next-body { padding: 22px 20px 24px; }
   .era + .era { border-left: 0; border-top: 1px solid var(--line); }
 }
