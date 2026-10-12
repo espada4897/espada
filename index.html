@@ -168,27 +168,22 @@ html { scroll-behavior: smooth; }
 
   <section class="sched">
     <div class="wrap">
-      <div class="sec-head"><h2 class="sched-title">10월 일정</h2><div class="sched-tabs" role="tablist" aria-label="달 고르기"><button type="button" role="tab" data-month="2026-09">9월</button><button type="button" role="tab" data-month="2026-10">10월</button></div></div>
+      <div class="sec-head"><h2 class="sched-title">10월 일정</h2></div>
       <figure class="sched-month" data-month="2026-09"><a href="images/schedule/2026%EB%85%849%EC%9B%94.jpg" target="_blank" rel="noopener"><img src="images/schedule/2026%EB%85%849%EC%9B%94.jpg" alt="책미사 2026년 9월 일정 안내 이미지" width="1254" height="1254" loading="lazy"></a><figcaption>이미지를 누르면 크게 볼 수 있습니다</figcaption></figure>
       <figure class="sched-month" data-month="2026-10"><a href="images/schedule/2026%EB%85%8410%EC%9B%94.jpg" target="_blank" rel="noopener"><img src="images/schedule/2026%EB%85%8410%EC%9B%94.jpg" alt="책미사 2026년 10월 일정 안내 이미지" width="2048" height="2048" loading="lazy"></a><figcaption>이미지를 누르면 크게 볼 수 있습니다</figcaption></figure>
+      <p class="more"><a href="log.html#months">지난 달 일정 보기 →</a></p>
     </div>
   </section>
   <script>
 (() => {
   const box = document.querySelector(".sched");
   if (!box) return;
-  const figs = [...box.querySelectorAll(".sched-month")], tabs = [...box.querySelectorAll("[role=tab]")];
-  const title = box.querySelector(".sched-title");
-  const show = key => {
-    figs.forEach(f => f.hidden = f.dataset.month !== key);
-    tabs.forEach(t => t.setAttribute("aria-selected", t.dataset.month === key));
-    title.textContent = (+key.slice(5)) + "월 일정";
-  };
+  const figs = [...box.querySelectorAll(".sched-month")];
   const now = new Date(), cur = now.getFullYear() + "-" + String(now.getMonth() + 1).padStart(2, "0");
   const keys = figs.map(f => f.dataset.month);
-  show(keys.filter(k => k <= cur).pop() || keys[0]);
-  tabs.forEach(t => t.onclick = () => show(t.dataset.month));
-  if (tabs.length < 2) box.querySelector(".sched-tabs").hidden = true;
+  const key = keys.filter(k => k <= cur).pop() || keys[0];
+  figs.forEach(f => f.hidden = f.dataset.month !== key);
+  box.querySelector(".sched-title").textContent = (+key.slice(5)) + "월 일정";
 })();
 </script>
 

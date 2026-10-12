@@ -228,16 +228,14 @@ section { padding-block: 72px 0; }
 .next-card.past .when-past { display: inline; }
 .next-card.past > img, .next-card.past > .next-cover { filter: saturate(.6) brightness(.85); }
 
-/* 홈: 이달의 일정 (data/월일정) */
-.sched-tabs { display: flex; gap: 6px; flex-wrap: wrap; }
-.sched-tabs button {
-  font: 600 .88rem var(--font-body); padding: 5px 14px; border-radius: 99px; cursor: pointer;
-  border: 1px solid var(--line); background: var(--surface); color: var(--muted);
-}
-.sched-tabs button[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--bg); }
-.sched-month { margin: 0 auto; max-width: 640px; }
+/* 이달의 일정(홈)과 월별 일정(지난 모임) — data/월일정 */
+.sched-month { margin: 0 auto; max-width: 640px; min-width: 0; }
 .sched-month img { display: block; width: 100%; height: auto; border-radius: 12px; border: 1px solid var(--line); }
 .sched-month figcaption { margin-top: 8px; text-align: center; font-size: .82rem; color: var(--muted); }
+.sched .more { max-width: 640px; margin-inline: auto; }
+.months { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 20px; }
+.months .sched-month { max-width: none; }
+.months figcaption { font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--ink); }
 
 /* 홈: 둘러보기 */
 .explore { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
@@ -288,6 +286,7 @@ footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
   .top .wrap { flex-wrap: wrap; row-gap: 6px; padding-block: 10px 8px; }
   .nav { width: 100%; margin-left: 0; gap: 16px; }
   .explore { grid-template-columns: 1fr; }
+  .months { grid-template-columns: 1fr; }
   .page { padding-top: 32px; }
   .log li { grid-template-columns: 5.2em 1fr; row-gap: 2px; }
   .log .book { grid-column: 2; }
