@@ -180,6 +180,26 @@ section { padding-block: 72px 0; }
 .era p { color: var(--muted); font-size: .93rem; }
 .era.now h3 { color: var(--accent); }
 
+/* 홈: 다음 모임 (pages/00_홈/다음모임.csv) */
+.next { padding-top: 32px; display: grid; gap: 16px; }
+.next-card {
+  display: grid; grid-template-columns: minmax(0, 400px) minmax(0, 1fr); align-items: center;
+  background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--c, var(--accent));
+  border-radius: 14px; overflow: hidden;
+}
+.next-card img { display: block; width: 100%; height: auto; }
+.next-body { padding: 28px 32px; display: grid; gap: 8px; align-content: center; min-width: 0; }
+.next-eyebrow { font-size: .85rem; font-weight: 600; letter-spacing: .08em; color: var(--muted); display: flex; align-items: center; gap: 10px; }
+.next-eyebrow .dday:not(:empty) { color: var(--bg); background: var(--lamp); border-radius: 99px; padding: 1px 10px; letter-spacing: 0; }
+.next-body h2 { font-size: clamp(1.7rem, 4vw, 2.3rem); }
+.next-author { color: var(--muted); font-size: .95rem; margin-top: -4px; }
+.next-meta { font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.next-meta::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--c, var(--accent)); flex: none; }
+.next-line { font-family: var(--font-display); font-weight: 700; font-size: 1.08rem; }
+.chips { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.chips li { font-size: .8rem; padding: 3px 10px; border-radius: 99px; border: 1px solid var(--line); color: var(--muted); background: var(--bg); }
+.next-body .cta { margin-top: 10px; }
+
 /* 홈: 둘러보기 */
 .explore { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .explore a {
@@ -219,6 +239,8 @@ footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
   .eras { grid-template-columns: 1fr; }
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .explore { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .next-card { grid-template-columns: 1fr; }
+  .next-body { padding: 22px 20px 24px; }
   .era + .era { border-left: 0; border-top: 1px solid var(--line); }
 }
 @media (max-width: 560px) {
