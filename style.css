@@ -200,6 +200,11 @@ section { padding-block: 72px 0; }
 .quote-list li { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--c, var(--accent)); border-radius: 8px; padding: 18px 20px; }
 .quote-list blockquote { margin: 0; font-family: var(--font-display); font-size: 1.12rem; font-weight: 700; line-height: 1.75; }
 .quote-list .meta { margin-top: 8px; font-size: .84rem; color: var(--muted); }
+.quote-cards { margin-top: 14px; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
+.quote-card { margin: 0; min-width: 0; }
+.quote-card img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); }
+.quote-card .meta { margin-top: 6px; font-size: .84rem; color: var(--muted); }
+.quote-cards + .quote-list { margin-top: 16px; }
 .empty { padding: 40px 20px; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: 12px; }
 .more { margin-top: 16px; text-align: right; }
 
