@@ -292,7 +292,22 @@ section { padding-block: 72px 0; }
 .bd-line { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; margin-top: 6px; }
 .bd-dates { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 6px; font-size: .9rem; border-top: 1px solid var(--line); padding-top: 12px; }
 .bd-dates .book-badge { position: static; margin-left: 4px; }
-@media (max-width: 680px) { .bd-content { grid-template-columns: 1fr; } .bd-body { padding: 20px; } }
+/* 창 안의 진행 자료 슬라이드 (data/진행자료/<책이름>/) */
+.bd-slides { grid-column: 1 / -1; padding: 20px 28px 28px; border-top: 1px solid var(--line); display: grid; gap: 12px; min-width: 0; }
+.bd-slides-head { display: flex; align-items: center; gap: 10px; }
+.bd-slides-head h3 { font-size: var(--step-1); margin-right: auto; }
+.bd-slides-count { font-size: .85rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.bd-slide-prev, .bd-slide-next {
+  width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; padding: 0; cursor: pointer;
+  border: 1px solid var(--line); background: var(--bg); color: var(--ink);
+}
+.bd-slide-prev:hover, .bd-slide-next:hover { border-color: var(--accent); color: var(--accent); }
+.bd-slide-prev svg, .bd-slide-next svg { width: 18px; height: 18px; }
+.bd-slide-track { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; border-radius: 8px; background: var(--bg); }
+.bd-slide-track::-webkit-scrollbar { display: none; }
+.bd-slide-track img { flex: 0 0 100%; width: 100%; height: auto; max-height: 60vh; object-fit: contain; scroll-snap-align: start; }
+.bd-slides-more { font-size: .85rem; color: var(--muted); display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+@media (max-width: 680px) { .bd-content { grid-template-columns: 1fr; } .bd-body { padding: 20px; } .bd-slides { padding: 16px 20px 20px; } }
 .book-author { font-size: .85rem; color: var(--muted); }
 .book-meta { font-size: .8rem; color: var(--muted); display: flex; align-items: center; gap: 6px; }
 .book-meta::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--accent)); flex: none; }
