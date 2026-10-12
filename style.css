@@ -224,6 +224,9 @@ section { padding-block: 72px 0; }
 .chips { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
 .chips li { font-size: .8rem; padding: 3px 10px; border-radius: 99px; border: 1px solid var(--line); color: var(--muted); background: var(--bg); }
 .next-body .cta { margin-top: 10px; }
+.next-card .when-past, .next-card.past .when-next, .next-card.past .cal, .next-card.past .chips { display: none; }
+.next-card.past .when-past { display: inline; }
+.next-card.past > img, .next-card.past > .next-cover { filter: saturate(.6) brightness(.85); }
 
 /* 홈: 둘러보기 */
 .explore { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
