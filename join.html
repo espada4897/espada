@@ -173,6 +173,27 @@ document.querySelectorAll(".cal-copy").forEach(b => b.onclick = async () => {
   });
   zones.forEach(z => io.observe(z));
   addEventListener("scroll", () => bar.classList.toggle("on", scrollY > 500 && seen.size === 0), { passive: true });
+  // 공유하기: 휴대폰은 공유 창(카톡·인스타 등), 안 되면 주소 복사
+  document.addEventListener("click", ev => {
+    const s = ev.target.closest(".bd-share");
+    if (s) {
+      const url = s.dataset.url, title = s.dataset.title;
+      if (navigator.share) { navigator.share({ title, url }).catch(() => {}); return; }
+      const done = () => { const t = s.textContent; s.textContent = "주소를 복사했습니다"; setTimeout(() => s.textContent = t, 2000); };
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(url).then(done, () => prompt("이 주소를 복사하세요", url));
+      else prompt("이 주소를 복사하세요", url);
+      return;
+    }
+    // 책 페이지의 '같은 질문을 던지는 다른 책'은 그 책 페이지로(함께 읽은 책 페이지에서는 창 안에서 바뀐다)
+    const j = ev.target.closest(".bd-jump");
+    if (j && !document.querySelector(".book-dialog") && j.dataset.href) location.href = j.dataset.href;
+    // 책 페이지의 진행 자료 슬라이드 화살표(함께 읽은 책 페이지에서는 창 스크립트가 맡는다)
+    const sl = ev.target.closest(".bd-slide-prev, .bd-slide-next");
+    if (sl && !document.querySelector(".book-dialog")) {
+      const tr = sl.closest(".bd-slides").querySelector(".bd-slide-track");
+      tr.scrollBy({ left: (sl.classList.contains("bd-slide-next") ? 1 : -1) * tr.clientWidth, behavior: "smooth" });
+    }
+  });
   // 머리: 내리면 아래에 옅은 그림자
   const top = document.querySelector(".top");
   addEventListener("scroll", () => top.classList.toggle("scrolled", scrollY > 8), { passive: true });
