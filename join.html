@@ -63,6 +63,51 @@ html { scroll-behavior: smooth; }
         <h1>참여하기</h1>
         <p>오픈카톡방에 들어와 간단히 인사하면 시작입니다.</p>
       </div>
+      <div class="pick" id="pick" data-fee="5000" data-kakao="https://open.kakao.com/o/gfiuxgRh">
+        <div class="pick-head"><h3>이달의 책 고르기</h3><p>관심 가는 책만 골라 신청하세요. 한 권이면 충분합니다.</p></div>
+        <ul class="pick-list"><li style="--c:var(--s-lit)"><label><input type="checkbox" data-date="2026-10-17" data-msg="10/17(토) 21:00 문학산책 《죄와 벌 1·2》"><span class="pick-when">10월 17일(토) 21:00</span><span class="pick-book"><small>문학산책</small>죄와 벌 1·2</span><span class="pick-fee">5,000원</span></label></li><li style="--c:var(--s-pick)"><label><input type="checkbox" data-date="2026-10-24" data-msg="10/24(토) 21:00 지정독서 《리더는 언제 차이를 만들어내는가》"><span class="pick-when">10월 24일(토) 21:00</span><span class="pick-book"><small>지정독서</small>리더는 언제 차이를 만들어내는가</span><span class="pick-fee">5,000원</span></label></li><li style="--c:var(--s-wed)"><label><input type="checkbox" data-date="2026-10-28" data-msg="10/28(수) 21:00 수요독서 《리스크테이커 #2》"><span class="pick-when">10월 28일(수) 21:00</span><span class="pick-book"><small>수요독서</small>리스크테이커 #2</span><span class="pick-fee">5,000원</span></label></li><li style="--c:var(--s-eco)"><label><input type="checkbox" data-date="2026-10-31" data-msg="10/31(토) 21:00 경제독서 《경제학자는 결코 손해 보지 않는다》"><span class="pick-when">10월 31일(토) 21:00</span><span class="pick-book"><small>경제독서</small>경제학자는 결코 손해 보지 않는다</span><span class="pick-fee">5,000원</span></label></li></ul>
+        <div class="pick-foot">
+          <p class="pick-total" aria-live="polite">고른 책 <b class="pick-n">0</b>권 · 예상 참가비 <b class="pick-sum">0</b>원</p>
+          <button type="button" class="btn primary pick-go" disabled>신청 문구 복사하고 오픈카톡 열기</button>
+        </div>
+        <p class="pick-note">톡방에 붙여 넣으면 신청 끝입니다. 바꾸거나 취소할 때도 톡방에 남겨 주세요. 참가비는 모임 전에 계좌이체로 보내 주세요.</p>
+        <div class="pick-done" hidden>
+          <p><b>신청 문구를 복사했습니다.</b> 톡방에 붙여 넣어 주세요.</p>
+          <textarea class="pick-text" readonly rows="5" aria-label="신청 문구"></textarea>
+          <p class="pick-help">붙여 넣기가 안 되면 위 글을 길게 눌러 복사하세요. 톡방이 열리지 않았다면 <a href="https://open.kakao.com/o/gfiuxgRh" target="_blank" rel="noopener">여기를 눌러 톡방 열기</a></p>
+        </div>
+      </div>
+      <script>
+(() => {
+  const box = document.querySelector(".pick");
+  if (!box) return;
+  const fee = +box.dataset.fee, checks = [...box.querySelectorAll("input[type=checkbox]")];
+  const go = box.querySelector(".pick-go"), done = box.querySelector(".pick-done");
+  const update = () => {
+    const n = checks.filter(c => c.checked).length;
+    box.querySelector(".pick-n").textContent = n;
+    box.querySelector(".pick-sum").textContent = (n * fee).toLocaleString("ko-KR");
+    go.disabled = !n;
+  };
+  checks.forEach(c => c.addEventListener("change", update));
+  const want = (new URLSearchParams(location.search).get("pick") || "").split(",");
+  checks.forEach(c => { if (want.includes(c.dataset.date)) c.checked = true; });
+  // 누르는 순간 바로 복사하고 톡방을 연다(복사가 끝난 뒤에 열면 팝업으로 막힌다).
+  // 카톡 안 브라우저처럼 복사가 막히는 곳을 위해 문구를 화면에도 보여 준다.
+  go.addEventListener("click", () => {
+    const picked = checks.filter(c => c.checked);
+    const text = "[책미사 참가 신청]\n" + picked.map(c => "· " + c.dataset.msg).join("\n")
+      + "\n참가비 " + (picked.length * fee).toLocaleString("ko-KR") + "원은 모임 전에 보내겠습니다.";
+    const area = box.querySelector(".pick-text");
+    area.value = text; done.hidden = false;
+    area.focus(); area.select();
+    try { document.execCommand("copy"); } catch (err) {}
+    if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).catch(() => {});
+    window.open(box.dataset.kakao, "_blank", "noopener");
+  });
+  update();
+})();
+</script>
       <div class="join">
         <div>
           <h3>닉네임 규칙</h3>
@@ -84,7 +129,8 @@ html { scroll-behavior: smooth; }
       </div>
       <div class="faq" id="faq">
         <h2>자주 묻는 질문</h2>
-        <details><summary>책을 다 못 읽어도 되나요?</summary><p>네. 완독이 원칙이지만 다 못 읽어도 참여할 수 있습니다. 진행자가 내용을 정리하며 흐름을 잡아 줍니다.</p></details>
+        <details><summary>매달 모든 책을 읽어야 하나요?</summary><p>아니요. 한 달에 3~4권을 함께 읽지만, 관심 가는 책 한 권만 골라 참여해도 충분합니다. 참가비는 참여한 모임만큼, 모임당 5,000원입니다.</p></details>
+        <details><summary>책을 다 못 읽어도 되나요?</summary><p>완독을 목표로 합니다. 다 못 읽은 날은 읽은 데까지 이야기하면 되고, 그 이야기가 남은 부분을 읽게 하는 힘이 됩니다.</p></details>
         <details><summary>발언을 꼭 해야 하나요?</summary><p>아니요. 듣기만 해도 됩니다. 처음이라면 청강으로 분위기를 먼저 보셔도 좋습니다.</p></details>
         <details><summary>카메라를 켜야 하나요?</summary><p>네. 줌 모임에서는 카메라를 켜 주세요. 서로 얼굴을 보며 이야기합니다.</p></details>
         <details><summary>참가비는 언제, 어떻게 내나요?</summary><p>모임마다 5,000원을 모임 전에 계좌이체로 냅니다. 청강도 같습니다. 계좌는 톡방 공지에서 확인해 주세요. 월회비나 가입비는 없습니다.</p></details>
