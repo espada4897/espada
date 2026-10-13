@@ -79,8 +79,26 @@ html { scroll-behavior: smooth; }
           </ul>
         </div>
       </div>
+      <div class="cal-sub" id="calendar">
+        <div>
+          <h3>모임 일정을 캘린더로 받기</h3>
+          <p>한 번만 구독해 두면 새 모임이 생길 때마다 휴대폰 캘린더에 자동으로 들어옵니다. 모임 30분 전에 알림도 옵니다.</p>
+        </div>
+        <div class="cal-btns">
+          <a class="btn primary" href="https://calendar.google.com/calendar/render?cid=webcal%3A%2F%2Fespada4897.github.io%2Fespada%2Fcalendar.ics" target="_blank" rel="noopener">구글 캘린더에 구독</a>
+          <a class="btn ghost" href="webcal://espada4897.github.io/espada/calendar.ics">아이폰 캘린더에 구독</a>
+          <button type="button" class="btn ghost cal-copy" data-url="https://espada4897.github.io/espada/calendar.ics">구독 주소 복사</button>
+        </div>
+        <p class="cal-note">안드로이드는 '구글 캘린더에 구독'을 쓰세요. 다른 캘린더 앱은 '구독 주소 복사' 후 'URL로 캘린더 추가'에 붙여 넣으면 됩니다. 구글 캘린더는 새 일정이 들어오기까지 반나절쯤 걸릴 수 있습니다.</p>
+      </div>
     </div>
   </section>
+  <script>
+document.querySelectorAll(".cal-copy").forEach(b => b.onclick = async () => {
+  try { await navigator.clipboard.writeText(b.dataset.url); b.textContent = "복사했습니다"; }
+  catch (e) { prompt("아래 주소를 복사해 주세요", b.dataset.url); }
+});
+  </script>
 </main>
 
 <footer>
