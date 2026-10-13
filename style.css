@@ -728,3 +728,99 @@ footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
   .spine { width: 36px; font-size: .84rem; }
 }
 @media (prefers-reduced-motion: reduce) { .spine { transition: none; } }
+
+/* 지난 모임: [달력][목록] 탭 (build_site.py calendar_html) */
+.viewtabs { display: flex; gap: 4px; border-bottom: 1px solid var(--line); margin-bottom: 8px; }
+.viewtabs button { appearance: none; border: 0; background: none; font: inherit; font-weight: 600; color: var(--muted);
+  padding: 10px 16px 12px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.viewtabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+.viewtabs button:hover { color: var(--ink); }
+#view-list .log { margin-top: 16px; }
+/* 달 고르기: ‹ 2026 5월 6월 … › */
+.mnav { display: flex; align-items: center; gap: 8px; margin-top: 22px; }
+.mchips { display: flex; align-items: center; gap: 4px; overflow-x: auto; scrollbar-width: none; flex: 0 1 auto; min-width: 0; padding-block: 2px; }
+.mchips::-webkit-scrollbar { display: none; }
+.mnav-year { font-size: .8rem; color: var(--muted); font-variant-numeric: tabular-nums; margin: 0 6px 0 10px; }
+.mnav-year:first-child { margin-left: 0; }
+.mchip { appearance: none; border: 0; background: none; font: inherit; font-size: .92rem; color: var(--muted); padding: 6px 12px; border-radius: 99px; cursor: pointer; white-space: nowrap; }
+.mchip:hover { color: var(--ink); background: var(--accent-soft); }
+.mchip[aria-pressed="true"] { background: var(--accent); color: #fff; font-weight: 700; }
+.mstep { appearance: none; flex: none; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface);
+  font-size: 1.3rem; line-height: 1; color: var(--ink); cursor: pointer; }
+.mstep:disabled { opacity: .35; cursor: default; }
+/* 한 달 */
+.cal-month { padding-block: 28px 8px; }
+.cal-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.cal-head h2 { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; color: var(--muted); }
+.cal-head h2 strong { font-weight: 800; font-size: 2rem; color: var(--ink); margin-left: 4px; }
+.cal-head p { color: var(--muted); font-size: .92rem; }
+.sum-soon { display: inline-flex; align-items: center; gap: 6px; color: var(--ink); font-weight: 600; }
+.sum-soon i { width: 8px; height: 8px; border-radius: 1px; background: var(--ink); transform: rotate(45deg); }
+.cal-poster-link { appearance: none; border: 0; background: none; padding: 0; font: inherit; color: var(--accent); font-weight: 600; cursor: pointer; }
+.cal-poster-link:hover { text-decoration: underline; }
+.cal { margin-top: 20px; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.wd { padding: 8px 10px; font-size: .78rem; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--line); }
+.wd.sun, .day b.sun { color: #b0493f; }
+.wd.sat, .day b.sat { color: #3c5d8a; }
+.day { min-height: 84px; padding: 6px 6px 8px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.day:nth-child(7n) { border-right: 0; }
+.day.out { background: color-mix(in srgb, var(--bg) 60%, transparent); }
+.day b { font-size: .8rem; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+.day.today b { background: var(--accent); color: #fff; border-radius: 99px; padding: 0 7px; align-self: flex-start; }
+/* 달력 칸의 모임: 끝난 모임 ●+옅은 바탕, 남은 모임 ◆+굵은 모임 색 글자, 연기는 줄 긋기 */
+.ev { appearance: none; border: 0; font-family: inherit; text-align: left; cursor: pointer; width: 100%;
+  display: flex; gap: 5px; align-items: flex-start; color: var(--ink); font-size: .76rem; line-height: 1.35;
+  padding: 4px 6px; border-radius: 4px; background: color-mix(in srgb, var(--c) 13%, transparent); }
+.ev i { flex: none; width: 7px; height: 7px; margin-top: 4px; border-radius: 50%; background: var(--c); }
+.ev span { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font-weight: 600; }
+.ev.soon { background: transparent; padding-inline: 0; }
+.ev.soon span { font-weight: 800; color: var(--c); font-size: .84rem; }
+.ev.soon i { width: 8px; height: 8px; border-radius: 1px; transform: rotate(45deg); }
+.ev.moved { background: transparent; color: var(--muted); }
+.ev.moved span { text-decoration: line-through; font-weight: 400; }
+.ev.moved i { opacity: .4; }
+.ev:hover span { text-decoration: underline; }
+/* 휴대폰에서 달력 아래 그달 모임 */
+.cal-list { display: none; list-style: none; margin: 14px 0 0; padding: 0; }
+.cal-list li { border-bottom: 1px solid var(--line); }
+.cal-list button { appearance: none; border: 0; background: none; font: inherit; color: var(--ink); text-align: left; cursor: pointer; width: 100%;
+  display: grid; grid-template-columns: 4.4em 5.6em minmax(0, 1fr); gap: 8px; align-items: baseline; padding: 10px 0; font-size: .9rem; }
+.cal-list time { color: var(--muted); font-variant-numeric: tabular-nums; }
+.cal-list .s { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: .84rem; }
+.cal-list .s i { width: 7px; height: 7px; border-radius: 50%; background: var(--c); }
+.cal-list b { font-weight: 600; }
+.cal-list .soon .s i { border-radius: 1px; transform: rotate(45deg); }
+.cal-list .soon b { color: var(--c); font-weight: 800; }
+.cal-list .moved b { text-decoration: line-through; color: var(--muted); font-weight: 400; }
+@media (max-width: 760px) {
+  .day { min-height: 46px; padding: 4px; align-items: center; }
+  .wd { text-align: center; padding: 6px 0; }
+  .ev { padding: 0; background: none; justify-content: center; }
+  .ev span { display: none; }
+  .ev i { width: 8px; height: 8px; margin: 0; }
+  .ev.soon i { width: 9px; height: 9px; }
+  .cal-list { display: block; }
+}
+/* 모임 정보 창, 포스터 창 */
+.ev-view { border: 0; padding: 0; border-radius: 10px; width: min(92vw, 640px); background: var(--surface); color: var(--ink); box-shadow: 0 30px 60px -20px rgb(0 0 0 / .4); }
+.ev-view::backdrop { background: rgb(20 22 24 / .55); }
+.ev-card { display: grid; grid-template-columns: minmax(0, 200px) minmax(0, 1fr); gap: 24px; padding: 24px; }
+.ev-card img, .ev-noimg { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 6px; display: block; }
+.ev-noimg { background: var(--c); opacity: .85; }
+.ev-text { min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.ev-when { font-size: .88rem; color: var(--muted); padding-right: 30px; }
+.ev-series { display: inline-flex; align-items: center; gap: 5px; }
+.ev-series i { width: 7px; height: 7px; border-radius: 50%; background: var(--c); }
+.ev-text h2 { font-family: var(--font-display); font-weight: 800; font-size: 1.4rem; line-height: 1.4; margin-top: 4px; }
+.ev-author { color: var(--muted); font-size: .92rem; }
+.ev-line { font-family: var(--font-display); font-weight: 700; line-height: 1.7; margin-top: 6px; }
+.ev-state { font-size: .85rem; color: var(--muted); margin-top: 6px; }
+.ev-state.soon { color: var(--c); font-weight: 700; }
+.ev-actions { margin-top: auto; padding-top: 14px; }
+.ev-view form, .poster-view form { position: absolute; top: 8px; right: 8px; margin: 0; }
+.ev-view form button, .poster-view form button { appearance: none; border: 0; border-radius: 99px; width: 34px; height: 34px; font-size: 1.15rem; line-height: 1;
+  background: var(--bg); color: var(--ink); cursor: pointer; }
+.poster-view { border: 0; padding: 0; background: transparent; max-width: min(92vw, 720px); }
+.poster-view::backdrop { background: rgb(20 22 24 / .78); }
+.poster-view img { display: block; width: 100%; height: auto; max-height: 86vh; object-fit: contain; border-radius: 6px; }
+@media (max-width: 560px) { .ev-card { grid-template-columns: 1fr; } .ev-card img, .ev-noimg { max-width: 200px; } }
