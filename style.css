@@ -65,6 +65,10 @@ p { margin: 0; }
 .nb-item:hover .nb-go { text-decoration-thickness: 2px; }
 @media (max-width: 560px) { .nb-label { display: none; } .nb-item { justify-content: flex-start; font-size: .85rem; gap: 8px; } }
 
+/* 인스타그램 앱 안에서만 보이는 안내(layout.html 스크립트가 넣는다) */
+.insta-hint { display: block; margin-top: 8px; font-size: .8rem; line-height: 1.5; color: var(--muted); }
+.insta-hint::before { content: "ⓘ "; color: var(--lamp); font-weight: 700; }
+
 /* 홈 첫 화면 */
 .hero { padding-block: 72px 80px; display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
 .hero > * { min-width: 0; }

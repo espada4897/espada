@@ -151,6 +151,14 @@ html { scroll-behavior: smooth; }
       tr.scrollBy({ left: (sl.classList.contains("bd-slide-next") ? 1 : -1) * tr.clientWidth, behavior: "smooth" });
     }
   });
+  // 인스타그램 앱 안에서 열렸으면: 카카오톡으로 넘어갈 때 인스타가 '앱을 나갑니다' 창을 띄우므로, 오픈카톡·신청 버튼 아래에 미리 알려 준다
+  if (/Instagram/i.test(navigator.userAgent)) {
+    const hint = "인스타그램에서는 '앱을 나갑니다' 창이 뜰 수 있어요. [계속]을 누르면 카카오톡으로 이동합니다.";
+    document.querySelectorAll('main a.btn[href^="https://open.kakao.com"], .pick-go').forEach(b => {
+      const p = document.createElement("small"); p.className = "insta-hint"; p.textContent = hint;
+      (b.closest("p, .cta, .pick-foot") || b).after(p);
+    });
+  }
   // 머리: 내리면 아래에 옅은 그림자
   const top = document.querySelector(".top");
   addEventListener("scroll", () => top.classList.toggle("scrolled", scrollY > 8), { passive: true });
