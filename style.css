@@ -226,6 +226,8 @@ p { margin: 0; }
 
 /* 홈: 멤버들의 한마디 (data/멤버 한마디/) */
 .voices { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+/* 4장이면 3+1로 남지 않게 2장씩 두 줄 */
+@media (min-width: 820px) { .voices:has(> .voice:nth-child(4):last-child) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .voice { margin: 0; padding: 28px 28px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; display: grid; gap: 18px; align-content: space-between; }
 .voice blockquote { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; line-height: 1.85; }
 .voice blockquote::before { content: "“"; display: block; font-size: 2.6rem; line-height: .8; height: .55em; color: var(--lamp); }
