@@ -57,7 +57,8 @@ p { margin: 0; }
 .hero { padding-block: 72px 80px; display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
 .hero > * { min-width: 0; }
 .hero h1.motto { margin-top: 14px; font-family: var(--font-display); font-size: var(--step-3); line-height: 1.22; letter-spacing: -.01em; }
-.hero .lead { margin-top: 20px; color: var(--muted); font-size: 1.12rem; }
+.hero .why { margin-top: 22px; font-size: 1.12rem; line-height: 1.75; color: var(--ink); }
+.hero .lead { margin-top: 14px; color: var(--muted); font-size: 1.02rem; }
 .facts { list-style: none; padding: 0; margin: 28px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .facts li { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; font-size: .92rem; }
 .facts a { color: inherit; text-decoration: none; }
@@ -88,6 +89,17 @@ p { margin: 0; }
 .more { font-weight: 700; color: var(--accent); text-decoration: none; white-space: nowrap; }
 
 .head-links { display: flex; gap: 18px; flex-wrap: wrap; }
+
+/* 참여하기: 자주 묻는 질문 */
+.faq { margin-top: 40px; display: grid; gap: 8px; scroll-margin-top: 90px; }
+.faq h2 { margin-bottom: 8px; }
+.faq details { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 0 20px; }
+.faq summary { cursor: pointer; padding: 16px 0; font-weight: 700; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; color: var(--accent); font-size: 1.3rem; line-height: 1; }
+.faq details[open] summary::after { content: "−"; }
+.faq details p { padding: 0 0 18px; color: var(--muted); }
+.cal-sub { margin-top: 24px !important; }
 
 /* 참여하기: 캘린더 구독 */
 .cal-sub { margin-top: 16px; background: var(--accent-soft); border-radius: 16px; padding: 24px 26px; display: grid; gap: 14px; scroll-margin-top: 90px; }
