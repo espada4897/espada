@@ -55,6 +55,7 @@ html { scroll-behavior: smooth; }
     <a class="btn primary small top-cta" href="https://open.kakao.com/o/gfiuxgRh" target="_blank" rel="noopener">오픈카톡</a>
   </div>
 </header>
+<div class="nextbar" hidden><div class="wrap"><a class="nb-item" href="join.html?pick=2026-10-17#pick" data-at="2026-10-17T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">10/17(토) 21:00 · 문학산책 《죄와 벌 1·2》</span><span class="nb-go">신청하기 →</span></a><a class="nb-item" href="join.html?pick=2026-10-24#pick" data-at="2026-10-24T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">10/24(토) 21:00 · 지정독서 《리더는 언제 차이를 만들어내는가》</span><span class="nb-go">신청하기 →</span></a><a class="nb-item" href="join.html?pick=2026-10-28#pick" data-at="2026-10-28T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">10/28(수) 21:00 · 수요독서 《리스크테이커 #2》</span><span class="nb-go">신청하기 →</span></a><a class="nb-item" href="join.html?pick=2026-10-31#pick" data-at="2026-10-31T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">10/31(토) 21:00 · 경제독서 《경제학자는 결코 손해 보지 않는다》</span><span class="nb-go">신청하기 →</span></a></div></div>
 
 <main>
   <section class="page" id="log">
@@ -106,6 +107,20 @@ html { scroll-behavior: smooth; }
   });
   zones.forEach(z => io.observe(z));
   addEventListener("scroll", () => bar.classList.toggle("on", scrollY > 500 && seen.size === 0), { passive: true });
+  // 머리: 내리면 아래에 옅은 그림자
+  const top = document.querySelector(".top");
+  addEventListener("scroll", () => top.classList.toggle("scrolled", scrollY > 8), { passive: true });
+  // 다음 모임 띠: 아직 끝나지 않은 가장 가까운 모임 하나만(모임 시작 3시간 뒤까지)
+  const nb = document.querySelector(".nextbar");
+  if (nb) {
+    const now = new Date(), day = 864e5, today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+    const item = [...nb.querySelectorAll("[data-at]")].find(a => now - new Date(a.dataset.at) <= 3 * 36e5);
+    if (item) {
+      const at = new Date(item.dataset.at), d = Math.round((Date.UTC(at.getFullYear(), at.getMonth(), at.getDate()) - today) / day);
+      item.querySelector(".nb-d").textContent = d > 0 ? "D-" + d : "오늘";
+      item.hidden = false; nb.hidden = false;
+    }
+  }
 })();
 </script>
 
