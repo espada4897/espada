@@ -316,11 +316,13 @@ html { scroll-behavior: smooth; }
   </section>
 </main>
 
-<a class="float-cta" href="https://open.kakao.com/o/gfiuxgRh" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">오픈카톡 들어오기 · 청강 환영</a>
+<a class="float-cta" href="join.html#pick" aria-hidden="true" tabindex="-1">이달의 책 신청하기 · 청강 환영</a>
 <script>
 (() => {
   const bar = document.querySelector(".float-cta");
-  const zones = [...document.querySelectorAll(".join-band, footer, .hero .cta, .cal-btns")];
+  // 휴대폰 하단 버튼은 '이달의 책 신청하기'(참여하기의 고르기 칸으로). 고르기 칸이 있는 참여하기 페이지에서는 띄우지 않는다.
+  if (document.querySelector(".pick")) bar.remove();
+  const zones = [...document.querySelectorAll(".join-band, footer, .hero .cta, .cal-btns, .meet-cta, .bp-about")];
   const seen = new Set();
   const io = new IntersectionObserver(es => {
     es.forEach(e => e.isIntersecting ? seen.add(e.target) : seen.delete(e.target));
