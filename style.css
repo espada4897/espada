@@ -275,6 +275,7 @@ section { padding-block: 72px 0; }
 .era.now h3 { color: var(--accent); }
 .era .era-when { font-size: .88rem; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; margin-top: -4px; }
 .era-link { font-size: .88rem; margin-top: 4px; }
+.era-pending { color: var(--muted); }
 
 /* 홈: 다음 모임 (pages/00_홈/다음모임.csv) */
 .next { padding-top: 32px; position: relative; }
@@ -358,6 +359,7 @@ section { padding-block: 72px 0; }
 .gen-jump a:hover { border-color: var(--accent); color: var(--accent); }
 .book-gen + .book-gen { margin-top: 48px; }
 .book-gen h2 { font-size: var(--step-1); margin-bottom: 16px; }
+.gen-pending { padding: 28px; border: 1.5px dashed var(--line); border-radius: 14px; color: var(--muted); text-align: center; }
 .books { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 28px 20px; }
 .book { min-width: 0; display: grid; gap: 4px; align-content: start; }
 .book-cover { position: relative; aspect-ratio: 1; margin-bottom: 8px; }
