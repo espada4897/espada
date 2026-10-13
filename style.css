@@ -642,18 +642,45 @@ section { padding-block: 72px 0; }
 .explore p { color: var(--muted); font-size: .92rem; }
 
 /* 책속의 한줄 */
-.quotes { display: grid; gap: 40px; }
-.quote-book h2 { font-size: var(--step-1); display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
-.quote-book h2 small { font-family: var(--font-body); font-weight: 400; font-size: .85rem; color: var(--muted); }
+/* 책속의 한줄 (잡지형): 펼침면(카드·색 판 + 옆 문장)과 글자 문장 묶음이 번갈아 */
+.qhead { padding-block: 24px 8px; }
+.qhead h1 { margin-top: 10px; font-family: var(--font-display); font-weight: 800; font-size: var(--step-3); line-height: 1.25; }
+.qhead > p:last-child { margin-top: 14px; color: var(--muted); }
+.qmag { padding-bottom: 40px; }
+.qs { margin: 0; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; align-items: center;
+  padding-block: 64px; border-top: 1px solid var(--line); scroll-margin-top: 120px; }
+.qs.flip { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+.qs.flip > :first-child { order: 2; }
+.qs img, .qpanel { width: 100%; max-width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; display: block; border-radius: 4px;
+  box-shadow: 0 24px 48px -28px rgb(27 31 34 / .45); }
+.qpanel { background: var(--c); color: var(--spine-fg); display: flex; align-items: center; padding: clamp(24px, 8%, 64px); }
+.qpanel p { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.35rem, 1rem + 1.6vw, 2.1rem); line-height: 1.55; }
+.qpanel p::before { content: "“"; display: block; font-size: 3em; line-height: .6; height: .5em; opacity: .5; }
+.qs figcaption { min-width: 0; }
+.qs-no { font-family: var(--font-display); color: var(--lamp); letter-spacing: .06em; font-size: .95rem; }
+.qs blockquote { margin: 16px 0 0; max-width: 28em; font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(1.12rem, 1rem + .6vw, 1.4rem); line-height: 1.85; }
+.qs h2 { margin-top: 18px; font-size: 1rem; font-weight: 700; }
+.qs blockquote + h2::before { content: "— "; color: var(--muted); font-weight: 400; }
+.qs-meta { margin-top: 4px; color: var(--muted); font-size: .92rem; }
+.qs-links { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.qs-links a { text-decoration: none; font-weight: 600; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+.pqs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 40px 56px; padding-block: 8px 64px; }
+.pq { margin: 0; min-width: 0; border-top: 2px solid var(--c); padding-top: 18px; scroll-margin-top: 120px; }
+.pq > p:first-child { font-family: var(--font-display); font-weight: 700; font-size: 1.08rem; line-height: 1.85; }
+.pq-src { margin-top: 12px; font-size: .86rem; color: var(--muted); }
+.pq-src b { color: var(--ink); font-weight: 600; }
+.pq-src a { color: inherit; }
+@media (max-width: 720px) {
+  .qs, .qs.flip { grid-template-columns: 1fr; gap: 22px; padding-block: 40px; }
+  .qs.flip > :first-child { order: 0; }
+  .qs img, .qpanel { max-width: 340px; }
+  .pqs { grid-template-columns: 1fr; gap: 32px; padding-bottom: 40px; }
+}
 .quote-list { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 12px; }
 .quote-list li { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--c, var(--accent)); border-radius: 8px; padding: 18px 20px; }
 .quote-list blockquote { margin: 0; font-family: var(--font-display); font-size: 1.12rem; font-weight: 700; line-height: 1.75; }
 .quote-list .meta { margin-top: 8px; font-size: .84rem; color: var(--muted); }
-.quote-cards { margin-top: 14px; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; }
-.quote-card { margin: 0; min-width: 0; }
-.quote-card img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); }
-.quote-card .meta { margin-top: 6px; font-size: .84rem; color: var(--muted); }
-.quote-cards + .quote-list { margin-top: 16px; }
 .empty { padding: 40px 20px; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: 12px; }
 .more { margin-top: 16px; text-align: right; }
 
