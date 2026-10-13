@@ -237,9 +237,19 @@ p { margin: 0; }
 }
 
 /* 홈: 멤버들의 한마디 (data/멤버 한마디/) */
-.voices { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
-/* 4장이면 3+1로 남지 않게 2장씩 두 줄 */
-@media (min-width: 820px) { .voices:has(> .voice:nth-child(4):last-child) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* 옆으로 넘겨 보는 줄: PC 2장 + 다음 카드 살짝, 휴대폰 1장 + 살짝. 자동으로 넘기지 않는다 */
+.voices { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 4px; }
+.voices::-webkit-scrollbar { display: none; }
+.voices:focus-visible { outline: 2px solid var(--lamp); outline-offset: 4px; border-radius: 14px; }
+.voices .voice { flex: 0 0 calc((100% - 16px) / 2.15); scroll-snap-align: start; }
+@media (max-width: 680px) { .voices .voice { flex-basis: 86%; } }
+.voice-nav { display: flex; align-items: center; gap: 8px; }
+.voice-count { font-size: .85rem; color: var(--muted); font-variant-numeric: tabular-nums; margin-right: 4px; }
+.voice-prev, .voice-next { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; padding: 0; cursor: pointer;
+  border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
+.voice-prev:hover:not(:disabled), .voice-next:hover:not(:disabled) { border-color: var(--accent); color: var(--accent); }
+.voice-prev:disabled, .voice-next:disabled { opacity: .35; cursor: default; }
+.voice-prev svg, .voice-next svg { width: 18px; height: 18px; }
 .voice { margin: 0; padding: 28px 28px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 14px; display: grid; gap: 18px; align-content: space-between; }
 .voice blockquote { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; line-height: 1.85; }
 .voice blockquote::before { content: "“"; display: block; font-size: 2.6rem; line-height: .8; height: .55em; color: var(--lamp); }
