@@ -21,6 +21,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#1f5560">
 <meta name="google-site-verification" content="JMm3vT-Zy7GRzEEkO93D0116lHOYJOcwZOT7IhPU0y8">
+<script data-goatcounter="https://espada.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
 <style>
 :root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
@@ -327,6 +328,19 @@ html { scroll-behavior: smooth; }
   });
   zones.forEach(z => io.observe(z));
   addEventListener("scroll", () => bar.classList.toggle("on", scrollY > 500 && seen.size === 0), { passive: true });
+  // 방문 통계(GoatCounter가 켜져 있을 때만): 주요 버튼 클릭을 '어느 페이지에서 무엇을 눌렀나'로만 센다(누가 눌렀는지는 남지 않는다)
+  const CLICKS = [[".pick-go", "신청 문구 복사"], [".bd-share", "공유하기"], [".nb-item", "다음 모임 띠"],
+                  ['a[href*="#pick"]', "신청 칸으로"], ['a[href^="https://open.kakao.com"]', "오픈카톡"]];
+  document.addEventListener("click", ev => {
+    if (!window.goatcounter || !window.goatcounter.count) return;
+    for (const [sel, name] of CLICKS) {
+      if (ev.target.closest(sel)) {
+        const page = location.pathname.split("/").pop().replace(".html", "") || "index";
+        window.goatcounter.count({ path: "클릭/" + name + "/" + page, title: name, event: true });
+        return;
+      }
+    }
+  });
   // 공유하기: 휴대폰은 공유 창(카톡·인스타 등), 안 되면 주소 복사
   document.addEventListener("click", ev => {
     const s = ev.target.closest(".bd-share");
