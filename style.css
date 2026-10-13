@@ -427,6 +427,41 @@ section { padding-block: 72px 0; }
 .book-meta::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--accent)); flex: none; }
 .book-links { display: flex; flex-wrap: wrap; gap: 4px 10px; font-size: .82rem; margin-top: 2px; }
 
+/* 숫자로 보는 책미사 (pages/08) — 막대는 HTML로 그려 폭에 맞춰 줄어든다 */
+.nchart { padding-block: 0; margin-top: 44px; }
+.nchart h2 { font-size: var(--step-1); }
+.ndesc { margin-top: 4px; color: var(--muted); font-size: .9rem; }
+.nbars { margin-top: 16px; display: grid; gap: 12px; }
+.nrow { display: grid; grid-template-columns: 6.5em minmax(0, 1fr); gap: 12px; align-items: center; }
+.nlabel { font-weight: 700; font-size: .95rem; display: grid; line-height: 1.3; }
+.nlabel small { font-weight: 500; font-size: .78rem; color: var(--muted); }
+.barwrap { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.bar { height: 24px; background: var(--accent); border-radius: 0 4px 4px 0; cursor: default; }
+.bar:hover, .bar:focus-visible { filter: brightness(1.15); outline: none; }
+.val { font-size: .9rem; font-variant-numeric: tabular-nums; }
+.none { font-size: .85rem; color: var(--muted); }
+.stack { display: flex; gap: 2px; height: 28px; min-width: 0; }
+.seg { display: flex; align-items: center; justify-content: center; font-size: .78rem; font-weight: 700; min-width: 0; overflow: visible; white-space: nowrap; }
+.seg:first-child { border-radius: 0; }
+.seg:last-child { border-radius: 0 4px 4px 0; }
+.seg:hover, .seg:focus-visible { filter: brightness(1.12); outline: 2px solid var(--ink); outline-offset: 1px; }
+.nlegend { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: .85rem; color: var(--muted); }
+.nlegend span { display: inline-flex; align-items: center; gap: 6px; }
+.nlegend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+.ntiles { margin-top: 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.ntile { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; display: grid; gap: 4px; }
+.nt-label { font-size: .85rem; color: var(--muted); }
+.ntile b { font-size: 2.2rem; font-weight: 800; letter-spacing: -.02em; line-height: 1.1; }
+.nt-sub { font-size: .85rem; color: var(--muted); }
+.ntable { margin-top: 12px; font-size: .85rem; }
+.ntable summary { cursor: pointer; color: var(--accent); font-weight: 600; }
+.ntable table { margin-top: 8px; border-collapse: collapse; width: 100%; max-width: 720px; font-variant-numeric: tabular-nums; }
+.ntable th, .ntable td { border-bottom: 1px solid var(--line); padding: 6px 8px; text-align: right; }
+.ntable th:first-child, .ntable td:first-child { text-align: left; }
+.nnote { margin-top: 40px; font-size: .85rem; color: var(--muted); line-height: 1.7; }
+.ntip { position: fixed; z-index: 50; pointer-events: none; background: var(--ink); color: #fff; font-size: .85rem; font-weight: 700;
+  padding: 6px 10px; border-radius: 8px; white-space: nowrap; box-shadow: 0 6px 18px rgb(0 0 0 / .2); }
+
 /* 홈: 둘러보기 */
 .explore { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .explore a {
