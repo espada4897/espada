@@ -210,6 +210,14 @@ html { scroll-behavior: smooth; }
     </div>
   </div>
 
+  <div class="wrap">
+    <ul class="numbers">
+      <li><b>7년</b><span>2019년 10월부터 이어 온 모임</span></li>
+      <li><b>128권</b><span>지금까지 함께 읽은 책</span></li>
+      <li><b>4갈래</b><span>문학 · 인문 · 경제 · 과학</span></li>
+    </ul>
+  </div>
+
   <section id="meets">
     <div class="wrap">
       <div class="home-head">
@@ -240,6 +248,10 @@ html { scroll-behavior: smooth; }
         <a class="pbook" href="books.html"><img src="images/posters/%EC%9A%B0%EC%95%84%ED%95%9C%EC%82%AC%EA%B3%A0%EB%A5%BC%EC%9C%84%ED%95%9C%EC%B2%A0%ED%95%99.jpg" alt="" loading="lazy"><p>우아한 사고를 위한 철학 <span>· 지정독서</span></p></a>
         <a class="pbook" href="books.html"><img src="images/posters/%EC%9D%BD%EA%B8%B0%EC%9D%98%EC%9C%84%EA%B8%B0.jpg" alt="" loading="lazy"><p>읽기의 위기 <span>· 지정독서</span></p></a>
         <a class="pbook" href="books.html"><img src="images/posters/%EB%B0%B1%EB%85%84%EC%9D%98%EA%B3%A0%EB%8F%85.jpg" alt="" loading="lazy"><p>백년의 고독 <span>· 문학산책</span></p></a>
+      </div>
+      <div class="mid-cta">
+        <p>처음이라면 청강으로 분위기부터 보세요. 다 못 읽어도 괜찮습니다.</p>
+        <a class="btn primary" href="https://open.kakao.com/o/gfiuxgRh" target="_blank" rel="noopener">오픈카톡 들어오기</a>
       </div>
     </div>
   </section>
@@ -302,6 +314,21 @@ html { scroll-behavior: smooth; }
 })();
 </script>
 </main>
+
+<a class="float-cta" href="https://open.kakao.com/o/gfiuxgRh" target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">오픈카톡 들어오기 · 청강 환영</a>
+<script>
+(() => {
+  const bar = document.querySelector(".float-cta");
+  const zones = [...document.querySelectorAll(".join-band, footer, .hero .cta, .cal-btns")];
+  const seen = new Set();
+  const io = new IntersectionObserver(es => {
+    es.forEach(e => e.isIntersecting ? seen.add(e.target) : seen.delete(e.target));
+    bar.classList.toggle("on", scrollY > 500 && seen.size === 0);
+  });
+  zones.forEach(z => io.observe(z));
+  addEventListener("scroll", () => bar.classList.toggle("on", scrollY > 500 && seen.size === 0), { passive: true });
+})();
+</script>
 
 <footer>
   <div class="wrap">
