@@ -58,10 +58,10 @@ p { margin: 0; }
 .nextbar { background: var(--accent); color: #fff; }
 .nb-item { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 40px; padding-block: 6px;
   color: #fff; text-decoration: none; font-size: .9rem; }
-.nb-label { font-weight: 700; opacity: .75; }
-.nb-d { font-size: .8rem; font-weight: 800; padding: 1px 9px; border-radius: 999px; background: var(--lamp); color: #fff; font-variant-numeric: tabular-nums; }
+.nb-label { flex: none; white-space: nowrap; font-weight: 700; opacity: .75; }
+.nb-d { flex: none; white-space: nowrap; font-size: .8rem; font-weight: 800; padding: 1px 9px; border-radius: 999px; background: var(--lamp); color: #fff; font-variant-numeric: tabular-nums; }
 .nb-what { font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.nb-go { font-weight: 700; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+.nb-go { flex: none; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
 .nb-item:hover .nb-go { text-decoration-thickness: 2px; }
 @media (max-width: 560px) { .nb-label { display: none; } .nb-item { justify-content: flex-start; font-size: .85rem; gap: 8px; } }
 
