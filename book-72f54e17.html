@@ -89,13 +89,20 @@ html { scroll-behavior: smooth; }
       }
     }
   });
-  // 공유하기: 휴대폰은 공유 창(카톡·인스타 등), 안 되면 주소 복사
+  // 공유하기: 휴대폰은 공유 창(카톡·인스타 등), PC는 주소 복사.
+  // PC 윈도우 공유 창의 카톡은 대화방을 고르지 않고 붙여 넣어 버려서, PC에서는 쓰지 않고 '링크 복사'로 이름을 바꾼다.
+  const phone = matchMedia("(pointer: coarse)").matches;
+  if (!phone) {
+    const rename = root => root.querySelectorAll(".bd-share").forEach(b => b.textContent = "링크 복사");
+    rename(document);
+    document.querySelectorAll("template.book-detail").forEach(t => rename(t.content));
+  }
   document.addEventListener("click", ev => {
     const s = ev.target.closest(".bd-share");
     if (s) {
       const url = s.dataset.url, title = s.dataset.title;
-      if (navigator.share) { navigator.share({ title, url }).catch(() => {}); return; }
-      const done = () => { const t = s.textContent; s.textContent = "주소를 복사했습니다"; setTimeout(() => s.textContent = t, 2000); };
+      if (phone && navigator.share) { navigator.share({ title, url }).catch(() => {}); return; }
+      const done = () => { const t = s.textContent; s.textContent = "복사했습니다 · 카톡 대화방에 붙여 넣으세요"; setTimeout(() => s.textContent = t, 3000); };
       if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(url).then(done, () => prompt("이 주소를 복사하세요", url));
       else prompt("이 주소를 복사하세요", url);
       return;
