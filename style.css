@@ -212,6 +212,19 @@ p { margin: 0; }
 .meet-cta p { font-size: .95rem; color: var(--muted); }
 .meet-cta b { color: var(--ink); }
 @media (max-width: 560px) { .meet-cta .btn { width: 100%; } }
+/* 휴대폰: 다가오는 모임 카드를 가로로 작게(왼쪽 그림, 오른쪽 글) — 네 장이 한두 화면에 */
+@media (max-width: 600px) {
+  .meets { grid-template-columns: 1fr; gap: 12px; }
+  .meet { flex-direction: row; align-items: stretch; }
+  .meet > img, .meet > .meet-art { width: 112px; flex: none; aspect-ratio: auto; height: auto; min-height: 100%; object-fit: cover; }
+  .meet > .meet-art { padding: 10px; font-size: .85rem; }
+  .meet-body { padding: 12px 14px; gap: 3px; min-width: 0; }
+  .meet h3 { font-size: 1rem; }
+  .meet-when { font-size: .84rem; }
+  .meet-line { font-size: .85rem; color: var(--muted); }
+  .meet-foot { padding-top: 4px; }
+  .meet:hover { transform: none; }
+}
 
 /* 참여하기: 이달의 책 고르기 (build_site.py pick_html, 홈에서는 링크만) */
 #join .pick { margin: 0 0 40px; }
