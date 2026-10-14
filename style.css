@@ -577,6 +577,26 @@ section { padding-block: 72px 0; }
 .bp-about { margin-top: 28px; padding: 24px 28px; border-radius: 14px; background: var(--accent-soft); display: grid; gap: 14px; }
 .bp-about p:first-child { line-height: 1.8; }
 .bp-about .btn { margin-right: 6px; }
+/* 책 페이지: 이 책은 · 왜 이 책인가 · 모임에서 나눌 질문 (data/함께 읽은 책/책소개.csv) */
+.bi { grid-column: 1 / -1; border-top: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); }
+.bi h3 { font-size: .8rem; font-weight: 700; letter-spacing: .08em; color: var(--c, var(--accent)); }
+.bi-why { padding: 36px 28px 36px 32px; display: grid; gap: 22px; align-content: start; }
+.bi-why section { display: grid; gap: 10px; }
+.bi-why p { line-height: 1.85; max-width: 34em; }
+.bi-q { padding: 36px 32px 36px 28px; background: color-mix(in srgb, var(--c, var(--accent)) 5%, var(--surface)); border-left: 1px solid var(--line); display: grid; gap: 18px; align-content: start; }
+.bi-q:only-child { grid-column: 1 / -1; border-left: 0; }
+.bi-q ol { list-style: none; margin: 0; padding: 0; counter-reset: q; }
+.bi-q li { counter-increment: q; display: grid; grid-template-columns: 2.2em minmax(0, 1fr); gap: 10px; padding: 16px 0; border-top: 1px solid color-mix(in srgb, var(--c, var(--accent)) 18%, var(--line)); }
+.bi-q li:first-child { border-top: 0; padding-top: 4px; }
+.bi-q li::before { content: counter(q, decimal-leading-zero); font-family: var(--font-display); font-weight: 800; font-size: 1.05rem; color: var(--c, var(--accent)); line-height: 1.55; }
+.bi-q li p { font-family: var(--font-display); font-weight: 700; font-size: 1.16rem; line-height: 1.6; }
+.bi-invite { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; font-size: .9rem; color: var(--muted); padding-top: 14px; border-top: 1px solid var(--line); }
+@media (max-width: 680px) {
+  .bi { grid-template-columns: 1fr; }
+  .bi-why, .bi-q { padding: 26px 20px; }
+  .bi-q { border-left: 0; border-top: 1px solid var(--line); }
+  .bi-q li p { font-size: 1.08rem; }
+}
 
 /* 책 창: 이 책이 던지는 질문 (생각의 지도) */
 .bd-q { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line); display: grid; gap: 8px; }
