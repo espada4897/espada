@@ -198,6 +198,12 @@ p { margin: 0; }
 .meet-link:focus-visible { outline: none; }
 .meet:has(.meet-link:focus-visible) { outline: 2px solid var(--lamp); outline-offset: 3px; }
 .meet-cal { position: relative; z-index: 1; }
+/* 카드 아래 줄: 소개·질문 보기(있는 책만) + 캘린더에 추가. 카드 전체 클릭(신청)보다 위에 놓인다 */
+.meet-foot { margin-top: auto; padding-top: 6px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 14px; }
+.meet-foot .meet-cal { margin-top: 0; padding-top: 0; }
+.meet-more { position: relative; z-index: 1; font-size: .85rem; font-weight: 700; color: var(--accent); text-decoration: none; }
+.meet-foot:has(.meet-more) .meet-cal { color: var(--muted); }
+.meet-more:hover, .meet-foot .meet-cal:hover { text-decoration: underline; }
 .meet-cta { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line);
   display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; }
 .meet-cta p { font-size: .95rem; color: var(--muted); }
@@ -217,6 +223,8 @@ p { margin: 0; }
 .pick-book { font-weight: 700; min-width: 0; }
 .pick-book small { display: inline-flex; align-items: center; gap: 6px; font-size: .78rem; font-weight: 600; color: var(--muted); margin-right: 10px; }
 .pick-book small::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+.pick-more { display: block; width: fit-content; margin-top: 2px; font-size: .8rem; font-weight: 700; color: var(--accent); text-decoration: none; }
+.pick-more:hover { text-decoration: underline; }
 .pick-fee { font-size: .85rem; color: var(--muted); font-variant-numeric: tabular-nums; }
 .pick-list label:has(input:checked) { background: var(--accent-soft); }
 .pick-list label:has(input:checked) .pick-fee { color: var(--accent); font-weight: 700; }
@@ -569,6 +577,9 @@ section { padding-block: 72px 0; }
 
 /* 책 창·책 페이지: 참여하기·공유하기 */
 .bd-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.bd-more { justify-self: start; margin-top: 4px; font-size: .9rem; font-weight: 700; color: var(--accent); text-decoration: none; }
+.bd-more:hover { text-decoration: underline; }
+.bi { scroll-margin-top: 90px; }
 /* 책마다 공유용 페이지 (book-xxxx.html) */
 .bookpage .bp-back { margin-bottom: 16px; }
 .bookpage .bp-back a { color: var(--muted); text-decoration: none; font-size: .9rem; }
