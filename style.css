@@ -624,12 +624,13 @@ section { padding-block: 72px 0; }
 .bp { background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--c, var(--accent)); border-radius: 14px; overflow: hidden; }
 .bp-about { margin-top: 28px; padding: 24px 28px; border-radius: 14px; background: var(--accent-soft); display: grid; gap: 14px; }
 .bp-about p:first-child { line-height: 1.8; }
-.bp-about .btn { margin-right: 6px; }
+.bp-about p:last-child { display: flex; flex-wrap: wrap; gap: 8px; }
+@media (max-width: 560px) { .bp-about .btn { flex: 1 1 100%; justify-content: center; text-align: center; } }
 /* 책 페이지: 이 책은 · 왜 이 책인가 · 모임에서 나눌 질문 (data/함께 읽은 책/책소개.csv) */
 .bi { grid-column: 1 / -1; border-top: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); }
 .bi h3 { font-size: .8rem; font-weight: 700; letter-spacing: .08em; color: var(--c, var(--accent)); }
 .bi-why { padding: 36px 28px 36px 32px; display: grid; gap: 22px; align-content: start; }
-.bi-why section { display: grid; gap: 10px; }
+.bi-why section { display: grid; gap: 10px; padding-block: 0; }
 .bi-why p { line-height: 1.85; max-width: 34em; }
 .bi-q { padding: 36px 32px 36px 28px; background: color-mix(in srgb, var(--c, var(--accent)) 5%, var(--surface)); border-left: 1px solid var(--line); display: grid; gap: 18px; align-content: start; }
 .bi-q:only-child { grid-column: 1 / -1; border-left: 0; }
