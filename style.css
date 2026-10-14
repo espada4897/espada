@@ -929,7 +929,7 @@ footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
 .cl-rules div { padding: 16px 4px; display: grid; gap: 2px; }
 .cl-rules dt { font-size: .8rem; color: var(--muted); font-weight: 600; }
 .cl-rules dd { margin: 0; font-weight: 700; }
-.cl-band { background: var(--accent); color: #fff; }
+.cl-band { background: var(--accent); color: #fff; padding-block: 0; }  /* 공통 section 위 여백(72px)을 빼야 띠 안 글자가 가운데 */
 .cl-band .wrap { padding-block: 36px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
 .cl-band p { font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; }
 .cl-band .btn { background: #fff; color: var(--accent); }
