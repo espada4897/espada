@@ -36,7 +36,7 @@ html { scroll-behavior: smooth; }
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&display=swap">
-<link rel="stylesheet" href="style.css?v=e4c7ffe6">
+<link rel="stylesheet" href="style.css?v=7ce1d999">
 </head>
 <body>
 <header class="top">
@@ -59,12 +59,40 @@ html { scroll-behavior: smooth; }
     <div class="wrap">
       <div class="sec-head">
         <h1>참여하기</h1>
-        <p>오픈카톡방에 들어와 간단히 인사하면 시작입니다.</p>
+        <p>처음이라면 아래 순서대로 하시면 됩니다. 이미 함께하고 있다면 <a class="skip" href="#pick">바로 책 고르기 ↓</a></p>
+      </div>
+      <div class="start" id="start">
+        <div class="pick-head"><h3>처음이라면 이 순서로</h3><p>세 단계면 첫 모임에 들어올 수 있습니다.</p></div>
+        <ol class="start-steps">
+          <li><span class="start-n">1</span><div>
+            <h4>닉네임 정하기</h4>
+            <p>오픈카톡 닉네임을 <b>닉네임 / 사는 지역 / 좋아하는 분야</b> 순서로 정해 주세요.</p>
+            <div class="nick" aria-label="닉네임 예시"><span>에스파다</span><span>/</span><span>분당</span><span>/</span><span>자연과학</span></div>
+            <p class="start-sub">기본 프로필 그대로 들어오시면 누구신지 알기 어렵습니다.</p>
+          </div></li>
+          <li><span class="start-n">2</span><div>
+            <h4>톡방에 들어와 인사하기</h4>
+            <p>간단히 자기소개를 해 주세요. 운영 방침은 <a href="https://blog.naver.com/espada4896/224441906820" target="_blank" rel="noopener">블로그에서 확인하기</a></p>
+            <p><a class="btn primary" href="https://open.kakao.com/o/gfiuxgRh" target="_blank" rel="noopener">오픈카톡 들어오기</a></p>
+          </div></li>
+          <li><span class="start-n">3</span><div>
+            <h4>책 고르고 신청하기</h4>
+            <p>아래에서 이달의 책을 고르세요. 처음이라면 <b>청강</b>(듣기만 하는 참여)으로 오셔도 됩니다. 신청 문구를 톡방에 붙여 넣으면 끝입니다.</p>
+            <p><a href="#pick">이달의 책 고르기 ↓</a></p>
+          </div></li>
+        </ol>
+        <dl class="start-facts">
+          <div><dt>참가비</dt><dd>모임당 5,000원 · 청강 같음</dd></div>
+          <div><dt>카메라</dt><dd>켜고 참여</dd></div>
+          <div><dt>발언</dt><dd>필수 아님, 듣기만 해도 됨</dd></div>
+          <div><dt>나눠 읽는 책</dt><dd>#2만 와도 됨</dd></div>
+        </dl>
       </div>
       <div class="pick" id="pick" data-fee="5000" data-kakao="https://open.kakao.com/o/gfiuxgRh">
         <div class="pick-head"><h3>이달의 책 고르기</h3><p>관심 가는 책만 골라 신청하세요. 한 권이면 충분합니다.</p></div>
         <ul class="pick-list"><li style="--c:var(--s-lit)"><label><input type="checkbox" data-date="2026-10-17" data-msg="10/17(토) 21:00 문학산책 《죄와 벌 1·2》"><span class="pick-when">10월 17일(토) 21:00</span><span class="pick-book"><small>문학산책</small>죄와 벌 1·2<a class="pick-more" href="book-a5135c0c.html#intro">소개·질문 보기 →</a></span><span class="pick-fee">5,000원</span></label></li><li style="--c:var(--s-pick)"><label><input type="checkbox" data-date="2026-10-24" data-msg="10/24(토) 21:00 지정독서 《리더는 언제 차이를 만들어내는가》"><span class="pick-when">10월 24일(토) 21:00</span><span class="pick-book"><small>지정독서</small>리더는 언제 차이를 만들어내는가<a class="pick-more" href="book-17c811da.html#intro">소개·질문 보기 →</a></span><span class="pick-fee">5,000원</span></label></li><li style="--c:var(--s-wed)"><label><input type="checkbox" data-date="2026-10-28" data-msg="10/28(수) 21:00 수요독서 《리스크테이커 #2》"><span class="pick-when">10월 28일(수) 21:00</span><span class="pick-book"><small>수요독서</small>리스크테이커 #2<a class="pick-more" href="book-27650349.html#intro">소개·질문 보기 →</a></span><span class="pick-fee">5,000원</span></label></li><li style="--c:var(--s-eco)"><label><input type="checkbox" data-date="2026-10-31" data-msg="10/31(토) 21:00 경제독서 《경제학자는 결코 손해 보지 않는다》"><span class="pick-when">10월 31일(토) 21:00</span><span class="pick-book"><small>경제독서</small>경제학자는 결코 손해 보지 않는다<a class="pick-more" href="book-3b614e92.html#intro">소개·질문 보기 →</a></span><span class="pick-fee">5,000원</span></label></li></ul>
         <div class="pick-foot">
+          <label class="pick-audit"><input type="checkbox" id="pick-audit"> 처음이라 청강으로 참여합니다</label>
           <p class="pick-total" aria-live="polite">고른 책 <b class="pick-n">0</b>권 · 예상 참가비 <b class="pick-sum">0</b>원</p>
           <button type="button" class="btn primary pick-go" disabled>신청 문구 복사하고 오픈카톡 열기</button>
         </div>
@@ -79,7 +107,7 @@ html { scroll-behavior: smooth; }
 (() => {
   const box = document.querySelector(".pick");
   if (!box) return;
-  const fee = +box.dataset.fee, checks = [...box.querySelectorAll("input[type=checkbox]")];
+  const fee = +box.dataset.fee, checks = [...box.querySelectorAll(".pick-list input[type=checkbox]")];
   const go = box.querySelector(".pick-go"), done = box.querySelector(".pick-done");
   const update = () => {
     const n = checks.filter(c => c.checked).length;
@@ -94,7 +122,9 @@ html { scroll-behavior: smooth; }
   // 카톡 안 브라우저처럼 복사가 막히는 곳을 위해 문구를 화면에도 보여 준다.
   go.addEventListener("click", () => {
     const picked = checks.filter(c => c.checked);
+    const audit = document.getElementById("pick-audit");
     const text = "[책미사 참가 신청]\n" + picked.map(c => "· " + c.dataset.msg).join("\n")
+      + (audit && audit.checked ? "\n(처음이라 청강으로 참여합니다)" : "")
       + "\n참가비 " + (picked.length * fee).toLocaleString("ko-KR") + "원은 모임 전에 보내겠습니다.";
     const area = box.querySelector(".pick-text");
     area.value = text; done.hidden = false;
@@ -106,25 +136,6 @@ html { scroll-behavior: smooth; }
   update();
 })();
 </script>
-      <div class="join">
-        <div>
-          <h3>닉네임 규칙</h3>
-          <p>닉네임 / 사는 지역 / 좋아하는 분야 순서로 정해 주세요.</p>
-          <div class="nick" aria-label="닉네임 예시"><span>에스파다</span><span>/</span><span>분당</span><span>/</span><span>자연과학</span></div>
-          <p style="color:var(--muted);font-size:.9rem">기본 프로필 그대로 들어오시면 누구신지 알기 어렵습니다.</p>
-          <p><a class="btn primary" href="https://open.kakao.com/o/gfiuxgRh" target="_blank" rel="noopener">닉네임을 정했다면, 오픈카톡 들어오기</a></p>
-        </div>
-        <div>
-          <h3>처음 오셨다면</h3>
-          <ul>
-            <li><b>운영 방침</b>을 먼저 읽어 주세요. <a href="https://blog.naver.com/espada4896/224441906820" target="_blank" rel="noopener">블로그에서 확인하기</a></li>
-            <li>톡방에서 <b>간단한 자기소개</b>를 해 주세요.</li>
-            <li>가장 가까운 줌 모임에 <b>청강</b>으로 들어와 분위기를 보세요.</li>
-            <li><b>참가비</b>: 모임에 한 번 참여할 때마다 <b>5,000원</b>, 모임 전에 계좌이체로 냅니다(청강도 같습니다). 월회비나 멤버십, 가입비는 없습니다.</li>
-            <li>지난 모임 정리는 <a href="https://blog.naver.com/espada4896" target="_blank" rel="noopener">블로그</a>에 있습니다.</li>
-          </ul>
-        </div>
-      </div>
       <div class="faq" id="faq">
         <h2>자주 묻는 질문</h2>
         <details><summary>매달 모든 책을 읽어야 하나요?</summary><p>아니요. 한 달에 3~4권을 함께 읽지만, 관심 가는 책 한 권만 골라 참여해도 충분합니다. 참가비는 참여한 모임만큼, 모임당 5,000원입니다.</p></details>

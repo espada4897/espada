@@ -361,17 +361,38 @@ section { padding-block: 72px 0; }
 .quote cite { display: block; margin-top: 6px; font-family: var(--font-body); font-style: normal; font-weight: 400; font-size: .85rem; color: var(--muted); }
 
 /* 참여 */
-.join { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.join > div { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 22px; display: grid; gap: 12px; align-content: start; min-width: 0; }
-.join h3 { font-size: var(--step-1); }
+/* 처음이라면 이 순서로: 닉네임 → 톡방 인사 → 책 고르기('이달의 책 고르기' 상자와 같은 모양) */
+.start { margin: 0 0 20px; padding: 24px 28px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); display: grid; gap: 18px; }
+.start-steps { list-style: none; margin: 0; padding: 0; display: grid; }
+.start-steps li { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 14px; padding: 16px 0; border-top: 1px solid var(--line); }
+.start-steps li > div { display: grid; gap: 8px; min-width: 0; }
+.start-n { width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 800; display: grid; place-items: center; font-variant-numeric: tabular-nums; }
+.start-steps h4 { margin: 4px 0 0; font-size: 1.05rem; }
+.start-steps p { margin: 0; font-size: .94rem; color: var(--muted); }
+.start-steps p b { color: var(--ink); font-weight: 600; }
+.start-steps a:not(.btn) { color: var(--accent); font-weight: 700; }
+.start-steps .start-sub { font-size: .85rem; }
+.start .nick { width: fit-content; }
+.start-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); margin: 0; border-top: 1px solid var(--line); }
+.start-facts div { padding: 14px 2px 0; display: grid; gap: 2px; }
+.start-facts dt { font-size: .8rem; color: var(--muted); font-weight: 600; }
+.start-facts dd { margin: 0; font-weight: 700; font-size: .94rem; }
+.skip { color: var(--accent); font-weight: 700; white-space: nowrap; }
+.pick-audit { display: flex; align-items: center; gap: 8px; width: 100%; font-size: .92rem; font-weight: 600; cursor: pointer; }
+.pick-audit input { width: 18px; height: 18px; accent-color: var(--accent); margin: 0; }
+@media (max-width: 600px) {
+  .start { padding: 18px; }
+  .start-facts { grid-template-columns: 1fr; }
+  .start-facts div { grid-template-columns: 6.5em minmax(0, 1fr); align-items: baseline; padding-top: 10px; }
+  .start-steps li { grid-template-columns: 30px minmax(0, 1fr); gap: 12px; }
+  .start-n { width: 28px; height: 28px; }
+}
 .nick {
   font-family: var(--font-body); font-weight: 600; font-size: 1.05rem; padding: 12px 14px; border-radius: 8px;
   background: var(--bg); border: 1px dashed var(--line); display: flex; flex-wrap: wrap; gap: 4px;
 }
 .nick span:nth-child(odd) { color: var(--accent); }
 .nick span:nth-child(even) { color: var(--muted); }
-.join ul { margin: 0; padding-left: 1.1em; display: grid; gap: 6px; color: var(--muted); font-size: .94rem; }
-.join ul b { color: var(--ink); font-weight: 600; }
 
 /* 기수 */
 .eras { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
