@@ -36,7 +36,7 @@ html { scroll-behavior: smooth; }
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&display=swap">
-<link rel="stylesheet" href="style.css?v=389b7b4f">
+<link rel="stylesheet" href="style.css?v=2b3c1a98">
 </head>
 <body>
 <header class="top">
@@ -48,9 +48,13 @@ html { scroll-behavior: smooth; }
       <a href="log.html" aria-current="page">기록</a>
       <a href="join.html">참여하기</a>
     </nav>
+    <div class="bell">
+      <button type="button" class="bell-btn" aria-label="알림" aria-expanded="false" aria-controls="bell-panel"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 3a6 6 0 0 0-6 6v3.6L4.3 15.4A1 1 0 0 0 5.2 17h13.6a1 1 0 0 0 .9-1.6L18 12.6V9a6 6 0 0 0-6-6Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9.5 19.5a2.5 2.5 0 0 0 5 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><i class="bell-dot" hidden></i></button>
+      <div class="bell-panel" id="bell-panel" hidden><p class="bell-h">알림</p><ul class="bn"></ul></div>
+    </div>
     <a class="btn primary small top-cta" href="join.html#pick">이달의 책 신청</a>
   </div>
-<nav class="subnav" aria-label="기록"><div class="wrap"><a href="log.html" aria-current="page">모임 일정</a><a href="numbers.html">숫자로 보는 책미사</a><a href="story.html">책미사 이야기</a></div></nav>
+<nav class="subnav" aria-label="기록"><div class="wrap"><a href="log.html" aria-current="page">모임 일정</a><a href="past.html">과거의 오늘</a><a href="numbers.html">숫자로 보는 책미사</a><a href="story.html">책미사 이야기</a></div></nav>
 </header>
 <div class="nextbar" hidden><div class="wrap"><a class="nb-item" href="join.html?pick=2026-10-17#pick" data-at="2026-10-17T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">10/17(토) 21:00 · 문학산책 《죄와 벌 1·2》</span><span class="nb-go">신청하기 →</span></a><a class="nb-item" href="join.html?pick=2026-10-24#pick" data-at="2026-10-24T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">10/24(토) 21:00 · 지정독서 《리더는 언제 차이를 만들어내는가》</span><span class="nb-go">신청하기 →</span></a><a class="nb-item" href="join.html?pick=2026-10-28#pick" data-at="2026-10-28T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">10/28(수) 21:00 · 수요독서 《리스크테이커 #2》</span><span class="nb-go">신청하기 →</span></a><a class="nb-item" href="join.html?pick=2026-10-31#pick" data-at="2026-10-31T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">10/31(토) 21:00 · 경제독서 《경제학자는 결코 손해 보지 않는다》</span><span class="nb-go">신청하기 →</span></a></div></div>
 
@@ -227,6 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {  // 목록 칸까지 다 �
 </main>
 
 <a class="float-cta" href="join.html#pick" aria-hidden="true" tabindex="-1">이달의 책 신청하기 · 청강 환영</a>
+<script src="notices.js?v=a54cbc0d"></script>
 <script>
 (() => {
   const bar = document.querySelector(".float-cta");
@@ -241,7 +246,7 @@ document.addEventListener("DOMContentLoaded", () => {  // 목록 칸까지 다 �
   zones.forEach(z => io.observe(z));
   addEventListener("scroll", () => bar.classList.toggle("on", scrollY > 500 && seen.size === 0), { passive: true });
   // 방문 통계(GoatCounter가 켜져 있을 때만): 주요 버튼 클릭을 '어느 페이지에서 무엇을 눌렀나'로만 센다(누가 눌렀는지는 남지 않는다)
-  const CLICKS = [[".pick-go", "신청 문구 복사"], [".bd-share", "공유하기"], [".nb-item", "다음 모임 띠"],
+  const CLICKS = [[".pick-go", "신청 문구 복사"], [".bd-share", "공유하기"], [".nb-item", "다음 모임 띠"], [".bn a", "알림"],
                   ['a[href*="#pick"]', "신청 칸으로"], ['a[href^="https://open.kakao.com"]', "오픈카톡"]];
   document.addEventListener("click", ev => {
     if (!window.goatcounter || !window.goatcounter.count) return;
