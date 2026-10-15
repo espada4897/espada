@@ -1141,3 +1141,52 @@ footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
 .evp-nav b { color: var(--ink); font-weight: 700; }
 .ev-go { font-weight: 700; }
 @media (max-width: 760px) { .evp-body { grid-template-columns: minmax(0, 1fr); gap: 22px; } .evp-head h1 { font-size: 2.1rem; } }
+
+/* 완독 길잡이(data/완독길잡이/책이름.txt → 책 페이지 아래): 이름 읽는 법·인물표·줄거리 지도(눌러야 펼침)·질문·알고 읽으면 좋은 것 */
+.gd { margin-top: 40px; padding: 32px; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--sh-1); display: grid; gap: 34px; --c: var(--s-lit); scroll-margin-top: 80px; }
+.gd-sec, .gd-group { padding-block: 0; }
+.gd-head { display: grid; gap: 6px; }
+.gd-eyebrow { color: var(--c); font-weight: 700; font-size: var(--fs-sm); letter-spacing: .06em; }
+.gd-head h2 { margin: 0; font-family: var(--font-display); font-size: var(--step-2); text-wrap: balance; }
+.gd-head > p { color: var(--muted); }
+.gd-toc { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.gd-toc a { font-size: var(--fs-sm); padding: 4px 12px; border-radius: 999px; border: 1px solid var(--line); color: var(--ink); text-decoration: none; }
+.gd-toc a:hover { border-color: var(--c); color: var(--c); }
+.gd-sec { display: grid; gap: 14px; min-width: 0; scroll-margin-top: 80px; }
+.gd-h { margin: 0; font-size: var(--step-1); font-family: var(--font-display); display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.gd-h small { font-family: var(--font-body); font-size: var(--fs-sm); color: var(--muted); font-weight: 400; }
+.gd-anat { display: grid; grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); gap: 6px; }
+.gd-anat div { display: grid; gap: 4px; padding: 14px 10px; border-radius: var(--r-sm); background: color-mix(in srgb, var(--c) 8%, var(--bg)); text-align: center; border-top: 3px solid var(--c); }
+.gd-anat b { font-family: var(--font-display); font-size: 1.1rem; word-break: keep-all; }
+.gd-anat span { font-size: var(--fs-xs); color: var(--muted); }
+.gd-rules { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; font-size: var(--fs-md); }
+.gd-people { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 18px 24px; }
+.gd-group h4 { margin: 0 0 8px; font-size: var(--fs-sm); color: var(--c); letter-spacing: .04em; }
+.gd-group ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.gd-group li { display: grid; gap: 3px; padding: 10px 12px; border-radius: var(--r-sm); border: 1px solid var(--line); }
+.gd-name { font-weight: 700; }
+.gd-nick { display: flex; flex-wrap: wrap; gap: 4px; }
+.gd-nick span { font-size: var(--fs-xs); padding: 1px 8px; border-radius: 999px; background: color-mix(in srgb, var(--c) 12%, transparent); color: var(--c); font-weight: 700; }
+.gd-who { font-size: var(--fs-md); }
+.gd-first { font-size: var(--fs-xs); color: var(--muted); }
+.gd-parts { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.gd-part details { border-radius: var(--r-sm); border: 1px solid var(--line); border-left: 4px solid var(--c); }
+.gd-part.is-alt details { border-left-color: color-mix(in srgb, var(--c) 45%, var(--line)); }
+.gd-part summary { display: flex; align-items: baseline; gap: 10px; padding: 10px 14px; cursor: pointer; list-style: none; }
+.gd-part summary::-webkit-details-marker { display: none; }
+.gd-part summary b { min-width: 4.6em; }
+.gd-part summary span { font-size: var(--fs-xs); color: var(--muted); }
+.gd-part summary i { margin-left: auto; font-style: normal; font-size: var(--fs-xs); color: var(--c); }
+.gd-part details[open] summary i { font-size: 0; }
+.gd-part details[open] summary i::after { content: "접기"; font-size: var(--fs-xs); }
+.gd-part details p { padding: 0 14px 12px; font-size: var(--fs-md); }
+.gd-vol { display: flex; flex-wrap: wrap; gap: 6px; font-size: var(--fs-xs); color: var(--muted); }
+.gd-vol span { padding: 2px 10px; border-radius: 999px; border: 1px solid var(--line); }
+.gd-ask { padding: 20px; border-radius: var(--r-card); background: color-mix(in srgb, var(--c) 7%, var(--bg)); }
+.gd-ask > p { font-size: var(--fs-md); color: var(--muted); }
+.gd-ask ol { margin: 0; padding-left: 1.3em; display: grid; gap: 8px; }
+.gd-tips { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); gap: 12px; }
+.gd-tips li { display: grid; gap: 4px; padding: 14px; border-radius: var(--r-sm); border: 1px solid var(--line); }
+.gd-tips b { font-family: var(--font-display); font-size: var(--step-1); color: var(--c); }
+.gd-tips p { font-size: var(--fs-md); }
+@media (max-width: 600px) { .gd { padding: 22px 16px; } .gd-anat b { font-size: .84rem; } .gd-anat div { padding-inline: 4px; } }
