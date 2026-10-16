@@ -109,9 +109,10 @@ DTSTART:20261121T120000Z
 DTEND:20261121T143000Z
 SUMMARY:책미사 문학산책 《빨강의 자서전》
 LOCATION:줌
-DESCRIPTION:줌 링크는 모임 시간에 톡방에 올라옵니다.\n관
- 심 가는 책 한 권만 골라도 되고\, 처음이라면 청강으로 
- 함께할 수 있습니다.\nhttps://espada4897.github.io/espada/
+DESCRIPTION:신화 속 괴물은\, 사실 상처 입은 소년이었다\n
+ 줌 링크는 모임 시간에 톡방에 올라옵니다.\n관심 가는 
+ 책 한 권만 골라도 되고\, 처음이라면 청강으로 함께할 
+ 수 있습니다.\nhttps://espada4897.github.io/espada/
 URL:https://espada4897.github.io/espada/
 BEGIN:VALARM
 ACTION:DISPLAY
