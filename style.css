@@ -816,6 +816,30 @@ a.nb-book:hover { transform: translateY(-4px); }
   .qs img, .qpanel { max-width: 340px; }
   .pqs { grid-template-columns: 1fr; gap: 32px; padding-bottom: 40px; }
 }
+/* 책속의 한줄 '모든 문장': 작은 카드 격자, 누르면 크게(.book-dialog) */
+.qg-sec { border-top: 1px solid var(--line); padding-top: 40px; }
+.qg-h { margin: 0 0 16px; font-size: var(--fs-lg); }
+.qg-filter { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+.qg-filter::-webkit-scrollbar { display: none; }
+.qg-filter button { flex: none; }
+.qg { list-style: none; margin: 0 0 56px; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px 20px; }
+.qg-c { min-width: 0; scroll-margin-top: 120px; }
+.qg-open { all: unset; display: grid; gap: 8px; cursor: pointer; width: 100%; min-width: 0; }
+.qg-open:focus-visible { outline: 2px solid var(--lamp); outline-offset: 4px; border-radius: 4px; }
+.qg-open img, .qg-txt { display: block; width: 100%; max-width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 4px; box-shadow: var(--sh-1); transition: transform .2s ease; }
+.qg-open:hover img, .qg-open:hover .qg-txt { transform: translateY(-4px); }
+.qg-txt { box-sizing: border-box; background: var(--c); color: var(--spine-fg); padding: 14%; display: flex; align-items: center; }
+.qg-txt span { font-family: var(--font-display); font-weight: 700; font-size: clamp(.82rem, .7rem + .35vw, 1rem); line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; }
+.qg-name { font-size: var(--fs-sm); font-weight: 600; color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.qg-dialog .bd-content { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.qg-big { background: var(--c); color: var(--spine-fg); display: flex; align-items: center; padding: 40px 32px; min-height: 320px; }
+.qg-big p { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: clamp(1.1rem, 1rem + .8vw, 1.5rem); line-height: 1.6; }
+.qg-quote { margin: 0 0 8px; font-family: var(--font-display); font-size: var(--fs-md); line-height: 1.8; white-space: pre-line; }
+.qg-dialog h2 { margin: 0; font-size: var(--fs-md); }
+.qg-meta { margin: 0; color: var(--muted); font-size: var(--fs-sm); }
+.qg-links { margin: 8px 0 0; display: flex; flex-wrap: wrap; gap: 8px 16px; }
+@media (max-width: 860px) { .qg { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .qg { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 14px; } .qg-dialog .bd-content { grid-template-columns: 1fr; } .qg-big { min-height: 240px; } }
 .quote-list { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 12px; }
 .quote-list li { background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--c, var(--accent)); border-radius: var(--r-card); padding: 18px 20px; }
 .quote-list blockquote { margin: 0; font-family: var(--font-display); font-size: var(--step-1); font-weight: 700; line-height: 1.75; }
