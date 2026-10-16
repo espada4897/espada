@@ -36,7 +36,7 @@ html { scroll-behavior: smooth; }
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&display=swap">
-<link rel="stylesheet" href="style.css?v=3f6bbced">
+<link rel="stylesheet" href="style.css?v=64c3b6ae">
 </head>
 <body>
 <header class="top">
@@ -194,14 +194,19 @@ html { scroll-behavior: smooth; }
     const t = q.value.replace(/\s+/g, "").toLowerCase();
     let n = 0;
     for (const c of cards) {
-      const show = (!book || c.dataset.book === book) && (!t || c.dataset.search.includes(t));
+      const show = (!book || (book === "__day" ? c.dataset.day : c.dataset.book === book)) && (!t || c.dataset.search.includes(t));
       c.hidden = !show; n += show;
     }
     found.hidden = !(t || book);
     found.textContent = n ? `${n}개` : "찾는 문장이 없습니다";
     mag.hidden = head.hidden = !!(t || book);  // 찾는 동안에는 결과 격자만
+    if (day) day.hidden = mag.hidden;
   };
-  const mag = document.querySelector(".qmag"), head = document.querySelector(".qg-h");
+  const mag = document.querySelector(".qmag"), head = document.querySelector(".qg-h"), day = document.querySelector(".qday");
+  document.querySelector(".qday-all")?.addEventListener("click", () => {  // '그날의 한 줄 모두 보기' = 그 버튼을 누른 것처럼
+    btns.find(b => b.dataset.book === "__day")?.click();
+    q.scrollIntoView({ block: "start" });
+  });
   q.addEventListener("input", apply);
   for (const b of btns) b.addEventListener("click", () => {
     book = b.dataset.book;
