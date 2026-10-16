@@ -434,6 +434,9 @@ section { padding-block: 72px 0; }
 .eras { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border: 1px solid var(--line); border-radius: var(--r-card); overflow: hidden; }
 .era { padding: 22px; background: var(--surface); display: grid; gap: 8px; align-content: start; }
 .era + .era { border-left: 1px solid var(--line); }
+.era-photo { margin: -22px -22px 6px; background: var(--accent-soft); }
+.era-photo img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.era-photo figcaption { font-size: var(--fs-xs); color: var(--muted); padding: 8px 22px 0; background: var(--surface); }
 .era h3 { font-size: var(--step-1); }
 .era p { color: var(--muted); font-size: var(--fs-md); }
 .era.now h3 { color: var(--accent); }
