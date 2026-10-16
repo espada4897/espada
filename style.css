@@ -1267,3 +1267,9 @@ footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
 .nbe-q b { color: var(--ink); margin-right: 6px; }
 .nbe .btns { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
 @media (max-width: 640px) { .nbe { grid-template-columns: 1fr; padding: 20px 16px; } .nbe-cover { width: 140px; } }
+.nb-more { margin: 0; text-align: right; }
+.bp-nobel { margin: 0 0 16px; }
+.bp-nobel a { display: inline-flex; flex-wrap: wrap; gap: 4px 10px; align-items: baseline; padding: 8px 14px; border-radius: 99px; background: var(--accent-soft); color: var(--ink); text-decoration: none; font-size: var(--fs-sm); }
+.bp-nobel a b { color: var(--s-eco); }
+.bp-nobel a span { color: var(--muted); }
+.bp-nobel a:hover span { color: var(--accent); }
