@@ -102,4 +102,21 @@ DESCRIPTION:책미사 경제독서 30분 전
 TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
+BEGIN:VEVENT
+UID:20261121-1a1d1c2b89@chaekmisa
+DTSTAMP:20261022T120000Z
+DTSTART:20261121T120000Z
+DTEND:20261121T143000Z
+SUMMARY:책미사 문학산책 《빨강의 자서전》
+LOCATION:줌
+DESCRIPTION:줌 링크는 모임 시간에 톡방에 올라옵니다.\n관
+ 심 가는 책 한 권만 골라도 되고\, 처음이라면 청강으로 
+ 함께할 수 있습니다.\nhttps://espada4897.github.io/espada/
+URL:https://espada4897.github.io/espada/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:책미사 문학산책 30분 전
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
 END:VCALENDAR
