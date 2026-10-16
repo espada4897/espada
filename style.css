@@ -133,6 +133,15 @@ p { margin: 0; }
 .faq summary::after { content: "+"; color: var(--accent); font-size: var(--fs-lg); line-height: 1; }
 .faq details[open] summary::after { content: "−"; }
 .faq details p { padding: 0 0 18px; color: var(--muted); }
+/* 참여하기 '가끔은 직접 만납니다': 오프모임 사진 한 장 */
+.offline { margin-top: 24px; padding: 20px; border-radius: var(--r-card); background: var(--surface); border: 1px solid var(--line); display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 24px; align-items: center; }
+.offline-img { display: block; border-radius: var(--r-sm); overflow: hidden; background: var(--accent-soft); }
+.offline-img img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
+.offline-text { display: grid; gap: 8px; min-width: 0; }
+.offline-text h3 { font-size: var(--step-1); }
+.offline-text p { color: var(--muted); font-size: var(--fs-md); }
+.offline-cap a { color: var(--accent); }
+@media (max-width: 680px) { .offline { grid-template-columns: minmax(0, 1fr); gap: 14px; } }
 .cal-sub { margin-top: 24px !important; }
 
 /* 참여하기: 캘린더 구독 */
@@ -562,6 +571,19 @@ section { padding-block: 72px 0; }
 .bd-dates { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 6px; font-size: var(--fs-md); border-top: 1px solid var(--line); padding-top: 12px; }
 .bd-dates .book-badge { position: static; margin-left: 4px; }
 /* 창 안의 진행 자료 슬라이드 (data/진행자료/<책이름>/) */
+/* 그날의 모습: 오프모임 등 이 책을 함께 읽은 날의 사진(행사.csv '함께 읽은 책') */
+.bd-day { grid-column: 1 / -1; padding: 20px 28px 24px; border-top: 1px solid var(--line); display: grid; gap: 12px; min-width: 0; }
+.bd-day-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+.bd-day-head h3 { font-size: var(--step-1); margin: 0; }
+.bd-day-meta { font-size: var(--fs-sm); color: var(--muted); font-variant-numeric: tabular-nums; }
+.bd-day-line { margin: 0; font-family: var(--font-display); line-height: 1.6; padding-left: 12px; border-left: 3px solid var(--lamp); max-width: 40em; }
+.bd-day-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.bd-day-grid a { display: block; border-radius: var(--r-sm); overflow: hidden; background: var(--accent-soft); }
+.bd-day-grid img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .3s; }
+.bd-day-grid a:hover img { transform: scale(1.03); }
+.bd-day .bd-more { justify-self: start; }
+@media (max-width: 680px) { .bd-day { padding: 16px 20px 20px; } .bd-day-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .bd-day-grid a:nth-child(n+3) { display: none; } }
+@media (prefers-reduced-motion: reduce) { .bd-day-grid img { transition: none; } }
 .bd-slides { grid-column: 1 / -1; padding: 20px 28px 28px; border-top: 1px solid var(--line); display: grid; gap: 12px; min-width: 0; }
 .bd-slides-head { display: flex; align-items: center; gap: 10px; }
 .bd-slides-head h3 { font-size: var(--step-1); margin-right: auto; }
