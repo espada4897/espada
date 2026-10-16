@@ -1312,7 +1312,15 @@ footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
 .qg-stack::before { translate: 8px -8px; opacity: .6; } .qg-stack::after { translate: 4px -4px; opacity: .85; }
 .qg-stack img { position: relative; z-index: 1; }
 .qg-count { position: absolute; z-index: 2; right: 8px; bottom: 8px; padding: 2px 10px; border-radius: 99px; background: rgb(0 0 0 / .6); color: #fff; font-size: var(--fs-xs); font-weight: 700; }
-.pq-share { all: unset; cursor: pointer; margin-left: 10px; color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.qlink { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 5px; color: var(--accent); }
+/* 고리 아이콘: mask 대신 배경 그림(창 안에서 mask를 쓰면 일부 브라우저에서 화면이 비는 일이 있었음). 색은 --accent */
+.qlink::before { content: ""; width: 1em; height: 1em; flex: none; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231f5560' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M10 14a4.5 4.5 0 0 0 6.4 0l3.2-3.2a4.5 4.5 0 0 0-6.4-6.4L11.5 6'/%3E%3Cpath d='M14 10a4.5 4.5 0 0 0-6.4 0l-3.2 3.2a4.5 4.5 0 0 0 6.4 6.4l1.7-1.6'/%3E%3C/svg%3E") center / contain no-repeat; }
+.qlink:focus-visible { outline: 2px solid var(--lamp); outline-offset: 3px; border-radius: 2px; }
+.qs-links .qlink { font-weight: 600; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+.qg-links .qlink { font-size: var(--fs-md); font-weight: 700; }
+.qg-links .qlink:hover { text-decoration: underline; }
+.qg-links .bd-more { margin-top: 0; }
+.pq-src .qlink { margin-left: 10px; font-weight: 600; }
 /* 휴대폰: 창이 한 줄로 쌓여 버튼이 이미지 아래로 밀리니, 공유 버튼을 창 아래에 고정 */
 .qg-share-bar { display: none; }
 @media (max-width: 640px) {
