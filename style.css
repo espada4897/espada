@@ -691,9 +691,9 @@ a.nb-book:hover { transform: translateY(-4px); }
 .bd-more:hover { text-decoration: underline; }
 .bi { scroll-margin-top: 90px; }
 /* 책마다 공유용 페이지 (book-xxxx.html) */
-.bookpage .bp-back { margin-bottom: 16px; }
-.bookpage .bp-back a { color: var(--muted); text-decoration: none; font-size: var(--fs-md); }
-.bookpage .bp-back a:hover { color: var(--accent); }
+.bookpage .bp-back, .nobelpage .bp-back { margin-bottom: 16px; }
+.bookpage .bp-back a, .nobelpage .bp-back a { color: var(--muted); text-decoration: none; font-size: var(--fs-md); }
+.bookpage .bp-back a:hover, .nobelpage .bp-back a:hover { color: var(--accent); }
 .bp { background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--c, var(--accent)); border-radius: var(--r-card); overflow: hidden; }
 .bp-about { margin-top: 28px; padding: 24px 28px; border-radius: var(--r-card); background: var(--accent-soft); display: grid; gap: 14px; }
 .bp-about p:first-child { line-height: 1.8; }
@@ -1245,3 +1245,9 @@ footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
 .gd-tips p { font-size: var(--fs-md); }
 @media (max-width: 600px) { .gd { padding: 22px 16px; } .gd-anat b { font-size: .84rem; } .gd-anat div { padding-inline: 4px; } }
 .nb-low .nb { margin: 44px 0 0; }
+.nb-title { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; }
+.nb-solo { margin-top: 0; }
+.nb-cta { margin-bottom: 36px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px; padding: 18px 22px; border-radius: var(--r-card); background: var(--accent-soft); }
+.nb-cta p { margin: 0; display: grid; gap: 2px; }
+.nb-cta b { font-size: 1rem; }
+.nb-cta span { font-size: var(--fs-sm); color: var(--muted); }
