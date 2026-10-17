@@ -1001,7 +1001,7 @@ footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
 .nav a[aria-current="page"] { font-weight: 700; }
 @media (max-width: 560px) { .nav { gap: 22px; } }
 
-/* 모임 소개: 모임마다(지금 다섯). 모임 하나 = 상자 하나, 왼쪽 칸(설명·최근 책) | 오른쪽 칸(포스터 위·다음 책 아래), 두 칸 위 끝 맞춤 */
+/* 모임 소개: 모임마다(지금 여섯). 모임 하나 = 상자 하나, 왼쪽 칸(설명·최근 책) | 오른쪽 칸(포스터 위·다음 책 아래), 두 칸 위 끝 맞춤 */
 .cl-jump { display: flex; flex-wrap: wrap; gap: 8px; margin: -8px 0 28px; }
 .cl-jump a { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border: 1px solid var(--line); border-radius: 999px;
   background: var(--surface); color: var(--ink); text-decoration: none; font-size: var(--fs-md); font-weight: 600; }
