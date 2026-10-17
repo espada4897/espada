@@ -1186,6 +1186,31 @@ footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
 .sev-place { font-size: var(--fs-sm); color: var(--muted); }
 @media (prefers-reduced-motion: reduce) { .sev-img img { transition: none; } }
 
+/* 책미사 이야기: 걸어온 길(해마다 한 줄) */
+.story-tl { padding-block: 40px 0; }
+.story-tl h2 { font-family: var(--font-display); font-size: var(--step-2); margin: 0 0 6px; }
+.story-tl > p { color: var(--muted); margin: 0 0 22px; }
+.tl { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.tl-year { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 24px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+.tl-y { margin: 0; font-family: var(--font-display); font-size: var(--step-2); font-weight: 800; line-height: 1.1; color: var(--muted); font-variant-numeric: tabular-nums; }
+.tl-year.now .tl-y { color: var(--accent); }
+.tl-body { display: grid; gap: 10px; align-content: start; }
+.tl-title { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: var(--step-1); color: var(--ink); }
+.tl-shelf { margin: 0; display: flex; align-items: flex-end; flex-wrap: wrap; gap: 4px 10px; font-size: var(--fs-xs); color: var(--muted); }
+.tl-spines { display: flex; flex-wrap: wrap; gap: 2px; align-items: flex-end; }
+.tl-spines i { display: block; width: 5px; height: 22px; border-radius: 1px; background: var(--c); }
+.tl-spines i:nth-child(3n) { height: 18px; }
+.tl-spines i:nth-child(4n+1) { height: 20px; }
+.tl-items { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.tl-items li { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 10px; font-size: var(--fs-md); line-height: 1.6; }
+.tl-items time { color: var(--muted); font-size: var(--fs-sm); font-variant-numeric: tabular-nums; padding-top: 1px; }
+.tl-items a { color: var(--ink); text-decoration-color: var(--line); text-underline-offset: 3px; }
+.tl-items a:hover { color: var(--accent); }
+@media (max-width: 600px) {
+  .tl-year { grid-template-columns: minmax(0, 1fr); gap: 8px; padding: 18px 0; }
+  .tl-y { font-size: var(--step-1); }
+}
+
 /* 행사 페이지(event-날짜.html): 이름·날짜·장소·한줄 + 사진(큰 사진 + 작은 사진 줄) + 함께 읽은 책·후기 */
 .evp-crumb { font-size: var(--fs-sm); color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 18px; }
 .evp-crumb a { color: var(--muted); text-decoration: none; }
