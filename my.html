@@ -290,7 +290,11 @@ $("#my-make").onclick = async () => {
   try { await document.fonts.ready; } catch (e) {}
   const sans = "Pretendard, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif", serif = "'Nanum Myeongjo', serif";
   g.fillStyle = v("--bg") || "#f7f5f0"; g.fillRect(0, 0, W, H);
-  g.fillStyle = v("--ink") || "#1b1f22"; g.font = `800 72px ${serif}`; g.fillText(`${m + 1}월의 책`, 72, 140);
+  // 제목에 닉네임: '소리님의 10월'(길면 한 줄에 맞게 글자를 줄인다), 닉네임이 없으면 '10월의 책'
+  const who = read("mychaekmisa-name"), title = who ? `${who}님의 ${m + 1}월` : `${m + 1}월의 책`;
+  let fs = 72; g.font = `800 ${fs}px ${serif}`;
+  while (fs > 40 && g.measureText(title).width > W - 144) { fs -= 4; g.font = `800 ${fs}px ${serif}`; }
+  g.fillStyle = v("--ink") || "#1b1f22"; g.fillText(title, 72, 140);
   g.fillStyle = v("--muted") || "#6b7176"; g.font = `500 30px ${sans}`; g.fillText(`${y} · 다 읽은 책 ${mine.length}권`, 76, 196);
   const first = new Date(y, m, 1).getDay(), days = new Date(y, m + 1, 0).getDate();
   const gx = 60, gy = 250, gap = 10, cw = (W - gx * 2 - gap * 6) / 7, ch = cw * 4 / 3;
@@ -319,7 +323,7 @@ $("#my-make").onclick = async () => {
   let url;
   try { url = c.toDataURL("image/jpeg", .9); } catch (err) { $("#my-shot").innerHTML = `<p class="my-msg">이미지를 만들지 못했습니다. 인터넷에서 찾은 표지 중 일부를 쓸 수 없어서입니다.</p>`; return $("#my-shotbox").showModal(); }
   // 공유 창은 지원하는 브라우저에서만 보이고, 저장은 따로(공유를 눌렀는데 다운로드 안내가 뜨지 않게). 카카오톡 안 브라우저는 다른 브라우저로 안내.
-  const name = `${y}년${m + 1}월의책.jpg`, blob = await new Promise(r => c.toBlob(r, "image/jpeg", .9));
+  const name = `${who ? who + "_" : ""}${y}년${m + 1}월의책.jpg`, blob = await new Promise(r => c.toBlob(r, "image/jpeg", .9));
   const file = new File([blob], name, { type: "image/jpeg" });
   const canShare = !!(navigator.canShare && navigator.canShare({ files: [file] })), inKakao = /KAKAOTALK/i.test(navigator.userAgent);
   $("#my-shot").innerHTML = `<img src="${url}" alt="${m + 1}월의 책 달력 이미지"><p class="my-backup">`
