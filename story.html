@@ -87,6 +87,7 @@ html { scroll-behavior: smooth; }
 <script>
 (() => {
   const bar = document.querySelector(".float-cta");
+  if (!bar) return;  // 나의 책미사처럼 띠를 뺀 페이지
   // 휴대폰 하단 버튼은 '이달의 책 신청하기'(참여하기의 고르기 칸으로). 고르기 칸이 있는 참여하기 페이지에서는 띄우지 않는다.
   if (document.querySelector(".pick")) bar.remove();
   const zones = [...document.querySelectorAll(".join-band, footer, .hero .cta, .cal-btns, .meet-cta, .bp-about, .cl-band")];
