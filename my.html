@@ -232,7 +232,7 @@ function openDay(key, want) {
 function done() { save(); render(); openDay($("#my-sheet-body").dataset.day); }
 
 document.addEventListener("click", e => {
-  const day = e.target.closest("[data-day]"); if (day) return openDay(day.dataset.day);
+  const day = e.target.closest(".my-day[data-day]"); if (day) return openDay(day.dataset.day);  // 달력 칸만(열린 창에도 data-day가 있다)
   const add = e.target.closest("[data-add]");
   if (add) { const key = $("#my-sheet-body").dataset.day; if (!entries.some(x => x.date === key && x.t === add.dataset.add)) entries.push({ date: key, t: add.dataset.add }); return done(); }
   const del = e.target.closest("[data-del]"); if (del) { entries.splice(+del.dataset.del, 1); return done(); }
