@@ -74,6 +74,11 @@ html { scroll-behavior: smooth; }
         <p>다 읽은 책을 표지 달력에 남깁니다. 기록은 이 휴대폰에만 저장됩니다.</p>
       </div>
       <div class="my">
+        <div class="my-hello" id="my-kakao" hidden>
+          <p><b>휴대폰 브라우저로 열어 주세요</b>카카오톡 안에서는 기록이 카카오톡에만 따로 저장되고, 이미지 저장·홈 화면 추가가 잘 되지 않습니다.</p>
+          <p class="my-backup"><button type="button" class="btn primary small" id="my-ext">브라우저로 열기</button></p>
+          <p class="my-msg">안 열리면 오른쪽 아래 ⋮(아이폰은 아래 공유 버튼) → '다른 브라우저로 열기'를 눌러 주세요.</p>
+        </div>
         <form class="my-hello" id="my-hello" hidden>
           <p><b>나의 책미사에 오신 것을 환영합니다</b>톡방 닉네임을 적어 주세요. 이 휴대폰에서 '○○님의 책미사'로 보입니다.</p>
           <div class="my-own-row"><input class="book-search" id="my-name" maxlength="12" placeholder="톡방 닉네임 (예: 소리)" aria-label="톡방 닉네임" autocomplete="nickname"><button type="submit" class="btn primary small">시작하기</button></div>
@@ -119,12 +124,21 @@ const $ = s => document.querySelector(s);
 const store = (k, v) => { try { v === undefined ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (e) {} };
 const read = k => { try { return localStorage.getItem(k) || ""; } catch (e) { return ""; } };
 store("mychaekmisa-on", "1"); document.documentElement.classList.add("is-member");
+// 카카오톡 안 브라우저: 기록이 카톡에만 따로 쌓이고 저장·홈 화면 추가가 안 되니 휴대폰 기본 브라우저로 넘긴다(한 번은 자동)
+if (/KAKAOTALK/i.test(navigator.userAgent)) {
+  const ext = () => { location.href = "kakaotalk://web/openExternal?url=" + encodeURIComponent(location.href.split("#")[0]); };
+  $("#my-kakao").hidden = false;
+  $("#my-ext").onclick = ext;
+  let tried = "";
+  try { tried = sessionStorage.getItem("my-ext") || ""; sessionStorage.setItem("my-ext", "1"); } catch (e) {}
+  if (!tried) ext();
+}
 const head = document.querySelector("#my .sec-head h1");
 function greet() {
   const name = read("mychaekmisa-name");
   head.textContent = name ? `${name}님의 책미사` : "나의 책미사";
   document.title = `${head.textContent} · 책미사`;
-  $("#my-hello").hidden = !!name;
+  $("#my-hello").hidden = !!name || !$("#my-kakao").hidden;  // 카카오톡 안에서는 브라우저로 넘어간 뒤에 묻는다
 }
 $("#my-hello").addEventListener("submit", e => {
   e.preventDefault();
