@@ -303,13 +303,18 @@ $("#my-make").onclick = async () => {
   g.fillStyle = v("--accent") || "#1f5560"; g.font = `800 34px ${serif}`; g.fillText("책미사", 72, H - 64);
   g.fillStyle = v("--muted"); g.font = `500 24px ${sans}`; g.fillText("나의 책미사로 남긴 한 달", 200, H - 66);
   let url;
-  try { url = c.toDataURL("image/png"); } catch (err) { $("#my-shot").innerHTML = `<p class="my-msg">이미지를 만들지 못했습니다. 인터넷에서 찾은 표지 중 일부를 쓸 수 없어서입니다.</p>`; return $("#my-shotbox").showModal(); }
-  $("#my-shot").innerHTML = `<img src="${url}" alt="${m + 1}월의 책 달력 이미지"><p class="my-backup"><button type="button" class="btn primary small" id="my-share">공유하기 · 저장</button></p><p class="my-msg">이미지를 길게 눌러 저장할 수도 있습니다.</p>`;
-  $("#my-share").onclick = () => c.toBlob(async blob => {
-    const file = new File([blob], `${y}년${m + 1}월의책.png`, { type: "image/png" });
-    if (navigator.canShare && navigator.canShare({ files: [file] })) { try { await navigator.share({ files: [file], title: `${m + 1}월의 책` }); } catch (e) {} return; }
-    const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = file.name; a.click();
-  });
+  try { url = c.toDataURL("image/jpeg", .9); } catch (err) { $("#my-shot").innerHTML = `<p class="my-msg">이미지를 만들지 못했습니다. 인터넷에서 찾은 표지 중 일부를 쓸 수 없어서입니다.</p>`; return $("#my-shotbox").showModal(); }
+  // 공유 창은 지원하는 브라우저에서만 보이고, 저장은 따로(공유를 눌렀는데 다운로드 안내가 뜨지 않게). 카카오톡 안 브라우저는 다른 브라우저로 안내.
+  const name = `${y}년${m + 1}월의책.jpg`, blob = await new Promise(r => c.toBlob(r, "image/jpeg", .9));
+  const file = new File([blob], name, { type: "image/jpeg" });
+  const canShare = !!(navigator.canShare && navigator.canShare({ files: [file] })), inKakao = /KAKAOTALK/i.test(navigator.userAgent);
+  $("#my-shot").innerHTML = `<img src="${url}" alt="${m + 1}월의 책 달력 이미지"><p class="my-backup">`
+    + (canShare ? `<button type="button" class="btn primary small" id="my-share">공유하기</button>` : "")
+    + `<button type="button" class="btn ${canShare ? "ghost" : "primary"} small" id="my-save">이미지 저장</button></p>`
+    + `<p class="my-msg">${inKakao ? "카카오톡 안에서는 저장이 안 될 수 있습니다. 오른쪽 아래 ⋮ → '다른 브라우저로 열기'를 눌러 주세요. " : ""}`
+    + `저장할 때 휴대폰이 '다운로드' 안내를 띄울 수 있지만, 이미지는 휴대폰 안에서 만든 것이라 데이터는 쓰이지 않습니다. 이미지를 길게 눌러 저장해도 됩니다.</p>`;
+  if (canShare) $("#my-share").onclick = async () => { try { await navigator.share({ files: [file], title: `${m + 1}월의 책` }); } catch (e) {} };
+  $("#my-save").onclick = () => { const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; a.click(); };
   $("#my-shotbox").showModal();
 };
 
