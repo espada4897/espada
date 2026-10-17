@@ -77,6 +77,25 @@ html { scroll-behavior: smooth; }
 <a class="float-cta" href="join.html#pick" aria-hidden="true" tabindex="-1">이달의 책 신청하기 · 청강 환영</a>
 <script src="notices.js?v=7fc841b9"></script>
 <script>
+// '예정'·'읽는 중' 표시: 홈페이지를 다시 만들기 전에 모임 날짜(data-past)가 지나도 보는 날짜로 스스로 고친다
+(() => {
+  const n = new Date(), t = n.getFullYear() + "-" + String(n.getMonth() + 1).padStart(2, "0") + "-" + String(n.getDate()).padStart(2, "0");
+  const fix = root => root.querySelectorAll("[data-past]").forEach(b => {
+    if (b.dataset.past >= t) return;
+    const li = b.closest(".book, .nb-slot");
+    if (b.dataset.left >= t) {  // 나눠 읽는 책: 앞 회차가 지났고 뒤 회차가 남음
+      b.textContent = "읽는 중"; b.classList.add("doing"); b.dataset.past = b.dataset.left; delete b.dataset.left;
+      return;
+    }
+    if (li && li.classList.contains("nb-slot")) li.classList.replace("soon", "read");
+    else if (li) li.classList.remove("soon");
+    b.remove();
+  });
+  fix(document);
+  document.querySelectorAll("template").forEach(tp => fix(tp.content));
+})();
+</script>
+<script>
 (() => {
   const bar = document.querySelector(".float-cta");
   if (!bar) return;  // 나의 책미사처럼 띠를 뺀 페이지
