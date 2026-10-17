@@ -36,7 +36,8 @@ html { scroll-behavior: smooth; }
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&display=swap">
-<link rel="stylesheet" href="style.css?v=9d489777">
+<link rel="stylesheet" href="style.css?v=911f18e7">
+<script>try { if (localStorage.getItem("mychaekmisa-on")) document.documentElement.classList.add("is-member"); } catch (e) {}</script>
 </head>
 <body>
 <header class="top">
@@ -48,6 +49,7 @@ html { scroll-behavior: smooth; }
       <a href="log.html">기록</a>
       <a href="join.html">참여하기</a>
     </nav>
+    <a class="my-link" href="my.html" aria-label="나의 책미사" title="나의 책미사"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M5 4.5h4.5v15H5zM9.5 6h4v13.5h-4zM14.6 6.6l3.6-.9 2.9 13.1-3.6.9z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></a>
     <div class="bell">
       <button type="button" class="bell-btn" aria-label="알림" aria-expanded="false" aria-controls="bell-panel"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 3a6 6 0 0 0-6 6v3.6L4.3 15.4A1 1 0 0 0 5.2 17h13.6a1 1 0 0 0 .9-1.6L18 12.6V9a6 6 0 0 0-6-6Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9.5 19.5a2.5 2.5 0 0 0 5 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><i class="bell-dot" hidden></i></button>
       <div class="bell-panel" id="bell-panel" hidden><p class="bell-h">알림</p><ul class="bn"></ul></div>
@@ -62,7 +64,7 @@ html { scroll-behavior: smooth; }
   <section class="page bookpage" style="--c:var(--s-lit)">
     <div class="wrap">
       <p class="bp-back"><a href="books.html">← 함께 읽은 책</a></p>
-      <article class="bp bd-content"><div class="bd-media"><div class="book-cover-art bd-cover"><b>변신</b><span>프란츠 카프카</span></div></div><div class="bd-body"><p class="bd-series">문학산책</p><h2>변신</h2><p class="book-author">프란츠 카프카</p><ul class="bd-dates"><li>2022.7.23(토)</li></ul><p class="book-links"><a href="https://blog.naver.com/espada4896/222890502802" target="_blank" rel="noopener">블로그 기록</a></p><p class="bd-actions"><a class="btn primary small" href="./#meets">다음 모임 보기</a><button type="button" class="btn ghost small bd-share" data-url="https://espada4897.github.io/espada/book-d92645b1.html" data-title="《변신》 · 책미사">공유하기</button></p><div class="bd-q"><h3>이 책이 던지는 질문</h3><p class="bd-q-links"><a href="map.html#m2">나는 누구인가</a><a href="map.html#m6">사랑과 관계</a></p><p class="bd-q-also">같은 질문을 던지는 다른 책</p><p class="bd-q-books"><button type="button" class="bd-jump" data-key="19호실로가다" data-href="book-29dde673.html">19호실로 가다</button><button type="button" class="bd-jump" data-key="미움받을용기" data-href="book-deaa796d.html">미움받을 용기</button><button type="button" class="bd-jump" data-key="욕망이라는이름의전차" data-href="book-fd4071e4.html">욕망이라는 이름의 전차</button><button type="button" class="bd-jump" data-key="이토록친밀한배신자" data-href="book-82819cb7.html">이토록 친밀한 배신자</button></p></div></div></article>
+      <article class="bp bd-content"><div class="bd-media"><div class="book-cover-art bd-cover"><b>변신</b><span>프란츠 카프카</span></div></div><div class="bd-body"><p class="bd-series">문학산책</p><h2>변신</h2><p class="book-author">프란츠 카프카</p><ul class="bd-dates"><li>2022.7.23(토)</li></ul><p class="book-links"><a href="https://blog.naver.com/espada4896/222890502802" target="_blank" rel="noopener">블로그 기록</a></p><p class="bd-actions"><a class="btn primary small" href="./#meets">다음 모임 보기</a><button type="button" class="btn ghost small bd-share" data-url="https://espada4897.github.io/espada/book-d92645b1.html" data-title="《변신》 · 책미사">공유하기</button></p><a class="bd-more my-add" href="my.html?add=%EB%B3%80%EC%8B%A0&amp;date=2022-07-23">내 달력에 담기 →</a><div class="bd-q"><h3>이 책이 던지는 질문</h3><p class="bd-q-links"><a href="map.html#m2">나는 누구인가</a><a href="map.html#m6">사랑과 관계</a></p><p class="bd-q-also">같은 질문을 던지는 다른 책</p><p class="bd-q-books"><button type="button" class="bd-jump" data-key="19호실로가다" data-href="book-29dde673.html">19호실로 가다</button><button type="button" class="bd-jump" data-key="미움받을용기" data-href="book-deaa796d.html">미움받을 용기</button><button type="button" class="bd-jump" data-key="욕망이라는이름의전차" data-href="book-fd4071e4.html">욕망이라는 이름의 전차</button><button type="button" class="bd-jump" data-key="이토록친밀한배신자" data-href="book-82819cb7.html">이토록 친밀한 배신자</button></p></div></div></article>
       
       <div class="bp-about"><p><b>책미사</b>는 2019년부터 이어 온 독서모임입니다. 주로 토요일, 때로는 수요일 밤 9시에 줌에서 만납니다. 한 달에 한 권이면 충분하고, 참가비는 모임당 5,000원입니다. 처음이라면 듣기만 하는 청강으로 분위기를 먼저 보셔도 됩니다.</p><p><a class="btn primary" href="join.html#pick">이달의 책 신청하기</a> <a class="btn ghost" href="./">책미사 둘러보기</a></p></div>
     </div>

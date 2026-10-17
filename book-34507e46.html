@@ -36,7 +36,8 @@ html { scroll-behavior: smooth; }
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&display=swap">
-<link rel="stylesheet" href="style.css?v=9d489777">
+<link rel="stylesheet" href="style.css?v=911f18e7">
+<script>try { if (localStorage.getItem("mychaekmisa-on")) document.documentElement.classList.add("is-member"); } catch (e) {}</script>
 </head>
 <body>
 <header class="top">
@@ -48,6 +49,7 @@ html { scroll-behavior: smooth; }
       <a href="log.html">기록</a>
       <a href="join.html">참여하기</a>
     </nav>
+    <a class="my-link" href="my.html" aria-label="나의 책미사" title="나의 책미사"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M5 4.5h4.5v15H5zM9.5 6h4v13.5h-4zM14.6 6.6l3.6-.9 2.9 13.1-3.6.9z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></a>
     <div class="bell">
       <button type="button" class="bell-btn" aria-label="알림" aria-expanded="false" aria-controls="bell-panel"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 3a6 6 0 0 0-6 6v3.6L4.3 15.4A1 1 0 0 0 5.2 17h13.6a1 1 0 0 0 .9-1.6L18 12.6V9a6 6 0 0 0-6-6Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9.5 19.5a2.5 2.5 0 0 0 5 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><i class="bell-dot" hidden></i></button>
       <div class="bell-panel" id="bell-panel" hidden><p class="bell-h">알림</p><ul class="bn"></ul></div>
@@ -62,7 +64,7 @@ html { scroll-behavior: smooth; }
   <section class="page bookpage" style="--c:var(--s-pick)">
     <div class="wrap">
       <p class="bp-back"><a href="books.html">← 함께 읽은 책</a></p>
-      <article class="bp bd-content"><div class="bd-media"><div class="book-cover-art bd-cover"><b>온전히 평등하고 지극히 차별적인</b><span>김원영</span></div></div><div class="bd-body"><p class="bd-series">지정독서</p><h2>온전히 평등하고 지극히 차별적인</h2><p class="book-author">김원영</p><ul class="bd-dates"><li>2024.11.11(월)</li></ul><p class="book-links"><a href="https://blog.naver.com/espada4896/223655250965" target="_blank" rel="noopener">블로그 기록</a></p><p class="bd-actions"><a class="btn primary small" href="./#meets">다음 모임 보기</a><button type="button" class="btn ghost small bd-share" data-url="https://espada4897.github.io/espada/book-34507e46.html" data-title="《온전히 평등하고 지극히 차별적인》 · 책미사">공유하기</button></p><div class="bd-q"><h3>이 책이 던지는 질문</h3><p class="bd-q-links"><a href="map.html#m5">사회와 정의</a></p><p class="bd-q-also">같은 질문을 던지는 다른 책</p><p class="bd-q-books"><button type="button" class="bd-jump" data-key="진정성이라는거짓말" data-href="book-bce04e46.html">진정성이라는 거짓말</button><button type="button" class="bd-jump" data-key="공정하다는착각" data-href="book-979ffa13.html">공정하다는 착각</button><button type="button" class="bd-jump" data-key="시대예보핵개인의시대" data-href="book-f95c5769.html">시대예보:핵개인의 시대</button><button type="button" class="bd-jump" data-key="리더는언제차이를만들어내는가" data-href="book-17c811da.html">리더는 언제 차이를 만들어내는가</button></p></div></div></article>
+      <article class="bp bd-content"><div class="bd-media"><div class="book-cover-art bd-cover"><b>온전히 평등하고 지극히 차별적인</b><span>김원영</span></div></div><div class="bd-body"><p class="bd-series">지정독서</p><h2>온전히 평등하고 지극히 차별적인</h2><p class="book-author">김원영</p><ul class="bd-dates"><li>2024.11.11(월)</li></ul><p class="book-links"><a href="https://blog.naver.com/espada4896/223655250965" target="_blank" rel="noopener">블로그 기록</a></p><p class="bd-actions"><a class="btn primary small" href="./#meets">다음 모임 보기</a><button type="button" class="btn ghost small bd-share" data-url="https://espada4897.github.io/espada/book-34507e46.html" data-title="《온전히 평등하고 지극히 차별적인》 · 책미사">공유하기</button></p><a class="bd-more my-add" href="my.html?add=%EC%98%A8%EC%A0%84%ED%9E%88%20%ED%8F%89%EB%93%B1%ED%95%98%EA%B3%A0%20%EC%A7%80%EA%B7%B9%ED%9E%88%20%EC%B0%A8%EB%B3%84%EC%A0%81%EC%9D%B8&amp;date=2024-11-11">내 달력에 담기 →</a><div class="bd-q"><h3>이 책이 던지는 질문</h3><p class="bd-q-links"><a href="map.html#m5">사회와 정의</a></p><p class="bd-q-also">같은 질문을 던지는 다른 책</p><p class="bd-q-books"><button type="button" class="bd-jump" data-key="진정성이라는거짓말" data-href="book-bce04e46.html">진정성이라는 거짓말</button><button type="button" class="bd-jump" data-key="공정하다는착각" data-href="book-979ffa13.html">공정하다는 착각</button><button type="button" class="bd-jump" data-key="시대예보핵개인의시대" data-href="book-f95c5769.html">시대예보:핵개인의 시대</button><button type="button" class="bd-jump" data-key="리더는언제차이를만들어내는가" data-href="book-17c811da.html">리더는 언제 차이를 만들어내는가</button></p></div></div></article>
       
       <div class="bp-about"><p><b>책미사</b>는 2019년부터 이어 온 독서모임입니다. 주로 토요일, 때로는 수요일 밤 9시에 줌에서 만납니다. 한 달에 한 권이면 충분하고, 참가비는 모임당 5,000원입니다. 처음이라면 듣기만 하는 청강으로 분위기를 먼저 보셔도 됩니다.</p><p><a class="btn primary" href="join.html#pick">이달의 책 신청하기</a> <a class="btn ghost" href="./">책미사 둘러보기</a></p></div>
     </div>

@@ -34,7 +34,8 @@ html { scroll-behavior: smooth; }
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&display=swap">
-<link rel="stylesheet" href="style.css?v=9d489777">
+<link rel="stylesheet" href="style.css?v=911f18e7">
+<script>try { if (localStorage.getItem("mychaekmisa-on")) document.documentElement.classList.add("is-member"); } catch (e) {}</script>
 </head>
 <body>
 <header class="top">
@@ -46,6 +47,7 @@ html { scroll-behavior: smooth; }
       <a href="log.html">기록</a>
       <a href="join.html">참여하기</a>
     </nav>
+    <a class="my-link" href="my.html" aria-label="나의 책미사" title="나의 책미사"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M5 4.5h4.5v15H5zM9.5 6h4v13.5h-4zM14.6 6.6l3.6-.9 2.9 13.1-3.6.9z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></a>
     <div class="bell">
       <button type="button" class="bell-btn" aria-label="알림" aria-expanded="false" aria-controls="bell-panel"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 3a6 6 0 0 0-6 6v3.6L4.3 15.4A1 1 0 0 0 5.2 17h13.6a1 1 0 0 0 .9-1.6L18 12.6V9a6 6 0 0 0-6-6Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9.5 19.5a2.5 2.5 0 0 0 5 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><i class="bell-dot" hidden></i></button>
       <div class="bell-panel" id="bell-panel" hidden><p class="bell-h">알림</p><ul class="bn"></ul></div>
@@ -60,7 +62,7 @@ html { scroll-behavior: smooth; }
   <section class="page bookpage" style="--c:var(--s-eco)">
     <div class="wrap">
       <p class="bp-back"><a href="books.html">← 함께 읽은 책</a></p>
-      <article class="bp bd-content"><div class="bd-media"><img src="images/posters/%EB%B0%B0%ED%84%B0%EB%A6%AC%EC%A0%84%EC%9F%81.jpg" alt="배터리 전쟁 안내 이미지"></div><div class="bd-body"><p class="bd-series">경제독서</p><h2>배터리 전쟁</h2><p class="book-author">강희종</p><ul class="bd-dates"><li>2026.2.28(토)</li><li>2026.4.4(토)</li></ul><p class="bd-actions"><a class="btn primary small" href="./#meets">다음 모임 보기</a><button type="button" class="btn ghost small bd-share" data-url="https://espada4897.github.io/espada/book-fe929d8e.html" data-title="《배터리 전쟁》 · 책미사">공유하기</button></p></div></article>
+      <article class="bp bd-content"><div class="bd-media"><img src="images/posters/%EB%B0%B0%ED%84%B0%EB%A6%AC%EC%A0%84%EC%9F%81.jpg" alt="배터리 전쟁 안내 이미지"></div><div class="bd-body"><p class="bd-series">경제독서</p><h2>배터리 전쟁</h2><p class="book-author">강희종</p><ul class="bd-dates"><li>2026.2.28(토)</li><li>2026.4.4(토)</li></ul><p class="bd-actions"><a class="btn primary small" href="./#meets">다음 모임 보기</a><button type="button" class="btn ghost small bd-share" data-url="https://espada4897.github.io/espada/book-fe929d8e.html" data-title="《배터리 전쟁》 · 책미사">공유하기</button></p><a class="bd-more my-add" href="my.html?add=%EB%B0%B0%ED%84%B0%EB%A6%AC%20%EC%A0%84%EC%9F%81&amp;date=2026-04-04">내 달력에 담기 →</a></div></article>
       
       <div class="bp-about"><p><b>책미사</b>는 2019년부터 이어 온 독서모임입니다. 주로 토요일, 때로는 수요일 밤 9시에 줌에서 만납니다. 한 달에 한 권이면 충분하고, 참가비는 모임당 5,000원입니다. 처음이라면 듣기만 하는 청강으로 분위기를 먼저 보셔도 됩니다.</p><p><a class="btn primary" href="join.html#pick">이달의 책 신청하기</a> <a class="btn ghost" href="./">책미사 둘러보기</a></p></div>
     </div>

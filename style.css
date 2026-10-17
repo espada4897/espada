@@ -1376,3 +1376,91 @@ footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
 .bd-dayq li span { font-size: var(--fs-sm); color: var(--muted); }
 .bd-dayq .bd-more { justify-self: start; }
 @media (max-width: 640px) { .qday { padding: 20px 16px; } .qday-head .bd-more { margin-left: 0; } }
+
+/* 머리: 나의 책미사 아이콘(종 옆) */
+.my-link { flex: none; display: grid; place-items: center; width: 40px; height: 40px; margin-inline: 0 -4px; border-radius: 50%; color: var(--ink); }
+.my-link:hover, .my-link[aria-current] { background: var(--accent-soft); color: var(--accent); }
+.my-link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+/* 회원 링크(my.html)로 한 번 들어온 휴대폰에만 입구가 보인다 */
+html:not(.is-member) .my-link, html:not(.is-member) .my-add { display: none; }
+.my-hello { display: grid; gap: 10px; padding: 16px; border: 1px solid var(--line); border-top: 3px solid var(--accent); border-radius: var(--r-card); background: var(--surface); }
+.my-hello p { margin: 0; font-size: var(--fs-md); color: var(--muted); }
+.my-hello b { display: block; color: var(--ink); font-size: var(--step-0); margin-bottom: 2px; }
+
+/* 나의 책미사(my.html): 표지 달력 · 이달의 책장 · 이미지 만들기. 휴대폰 한 손 폭에 맞춘다 */
+.my { max-width: 520px; display: grid; gap: 14px; }
+.my-month { display: flex; align-items: center; justify-content: space-between; }
+.my-month h2 { margin: 0; font-family: var(--font-display); font-size: var(--step-2); font-weight: 800; }
+.my-month h2 span { color: var(--muted); font-size: var(--fs-md); margin-right: 6px; }
+.my-nav { display: flex; gap: 6px; }
+.my-nav button { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-size: var(--fs-lg); cursor: pointer; }
+.my-sum { margin: 0; display: flex; gap: 14px; font-size: var(--fs-sm); color: var(--muted); }
+.my-sum b { color: var(--ink); font-size: var(--step-0); }
+.my-cal { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+.my-dow { text-align: center; font-size: var(--fs-xs); color: var(--muted); }
+.my-dow.sun { color: var(--s-lit); }
+.my-day { position: relative; aspect-ratio: 3 / 4; max-width: 100%; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface); padding: 0; overflow: hidden; cursor: pointer; color: var(--ink); }
+.my-day.blank { visibility: hidden; }
+.my-n { position: absolute; top: 3px; left: 5px; z-index: 2; font-size: var(--fs-xs); color: var(--muted); font-variant-numeric: tabular-nums; }
+.my-day.has .my-n { color: #fff; text-shadow: 0 0 3px rgb(0 0 0 / .7); }
+.my-day.today { border-color: var(--lamp); box-shadow: inset 0 0 0 1px var(--lamp); }
+.my-day.today .my-n { color: var(--lamp); font-weight: 700; }
+.my-day.has.today .my-n { color: #fff; }
+.my-day img, .my-day .my-spine { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.my-spine { display: grid; place-items: center; padding: 14px 3px 3px; background: var(--c, var(--accent)); color: #fff; font-size: 9px; line-height: 1.25; text-align: center; font-weight: 700; word-break: keep-all; overflow: hidden; }
+.my-plus { position: absolute; right: 3px; bottom: 3px; z-index: 2; background: rgb(0 0 0 / .65); color: #fff; font-size: 10px; border-radius: 999px; padding: 0 5px; }
+.my-meet { position: absolute; left: 4px; right: 3px; bottom: 4px; z-index: 2; display: flex; gap: 3px; align-items: center; font-size: 9px; line-height: 1.2; color: var(--c); font-weight: 700; text-align: left; }
+.my-meet::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--c); flex: none; }
+.my-day.has .my-meet { display: none; }
+.my-shelf { display: grid; gap: 8px; margin: 0; padding: 0; }
+.my-shelf h3 { margin: 0; font-size: var(--fs-md); }
+.my-shelf ul { list-style: none; margin: 0; padding: 0 0 4px; display: flex; gap: 8px; overflow-x: auto; }
+.my-shelf li { flex: none; width: 64px; display: grid; gap: 4px; font-size: var(--fs-xs); color: var(--muted); }
+.my-shelf li span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.my-shelf li.my-empty { width: auto; flex: 1; white-space: normal; }
+.my-cv { position: relative; display: block; aspect-ratio: 3 / 4; border-radius: 3px; overflow: hidden; box-shadow: var(--sh-1); }
+.my-cv img, .my-cv .my-spine { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.my-empty { font-size: var(--fs-sm); color: var(--muted); }
+.my-make { width: 100%; justify-content: center; }
+.my-hint { margin: -6px 0 0; text-align: center; font-size: var(--fs-xs); color: var(--muted); }
+.my-more { border-top: 1px solid var(--line); padding-top: 12px; font-size: var(--fs-sm); }
+.my-more summary { cursor: pointer; color: var(--muted); }
+.my-more-body { display: grid; gap: 10px; margin-top: 10px; color: var(--muted); }
+.my-more-body p { margin: 0; }
+.my-more-body b { display: block; color: var(--ink); }
+.my-backup { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; }
+.my-file { position: relative; overflow: hidden; cursor: pointer; }
+.my-file input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.my-msg { margin: 0; font-size: var(--fs-sm); color: var(--muted); }
+.my-sheet { width: min(520px, 100%); max-height: 88vh; margin: auto auto 0; border: 0; border-radius: var(--r-lg) var(--r-lg) 0 0; padding: 18px 18px calc(18px + env(safe-area-inset-bottom, 0px)); background: var(--surface); color: var(--ink); }
+.my-sheet::backdrop { background: rgb(0 0 0 / .45); }
+#my-sheet-body, .my-shot { display: grid; gap: 12px; }
+.my-sheet-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.my-sheet-head h3 { margin: 0; font-family: var(--font-display); font-size: var(--step-1); }
+.my-x { border: 0; background: none; font-size: 24px; color: var(--muted); width: 40px; height: 40px; cursor: pointer; }
+.my-card { border: 1px solid var(--line); border-top: 3px solid var(--c); border-radius: var(--r-sm); padding: 12px; display: grid; gap: 8px; justify-items: start; }
+.my-card p { margin: 0; font-size: var(--fs-md); }
+.my-card small { color: var(--c); font-weight: 700; font-size: var(--fs-xs); }
+.my-label { margin: 4px 0 0; font-size: var(--fs-sm); font-weight: 700; }
+.my-list, .my-res, .my-found { list-style: none; margin: 0; padding: 0; }
+.my-list { display: grid; gap: 8px; }
+.my-list li { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 10px; align-items: center; }
+.my-list b { display: block; font-size: var(--fs-md); }
+.my-list small, .my-res small { display: block; color: var(--muted); font-size: var(--fs-xs); }
+.my-del { border: 0; background: none; color: var(--muted); font-size: var(--fs-sm); text-decoration: underline; cursor: pointer; }
+.my-res { display: grid; gap: 2px; max-height: 34vh; overflow-y: auto; }
+.my-res button { width: 100%; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; align-items: center; text-align: left; padding: 6px; border: 0; border-radius: var(--r-sm); background: none; color: var(--ink); font: inherit; font-size: var(--fs-md); cursor: pointer; }
+.my-res button:hover { background: var(--accent-soft); }
+.my-res .my-spine, .my-list .my-spine { font-size: 5px; padding: 2px; }
+.my-own { display: grid; gap: 8px; justify-items: start; border-top: 1px solid var(--line); padding-top: 12px; }
+.my-own-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; width: 100%; }
+.my-own-row .book-search { flex: 1 1 160px; min-width: 0; }
+.my-found { display: flex; gap: 8px; overflow-x: auto; max-width: 100%; }
+.my-found button { border: 2px solid transparent; border-radius: 4px; padding: 0; background: none; cursor: pointer; }
+.my-found button.on { border-color: var(--accent); }
+.my-found img { display: block; height: 84px; width: auto; border-radius: 2px; }
+.my-shot img { width: 100%; border-radius: var(--r-sm); display: block; }
+/* 홈 화면에서 앱처럼 열었을 때: 홈페이지 메뉴·띠를 숨기고 나의 책미사만 */
+@media (display-mode: standalone) {
+  body:has(#my) .nav, body:has(#my) .subnav, body:has(#my) .nextbar, body:has(#my) .top-cta, body:has(#my) .float-cta, body:has(#my) .bell, body:has(#my) .my-link { display: none !important; }
+}

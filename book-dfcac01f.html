@@ -34,7 +34,8 @@ html { scroll-behavior: smooth; }
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&display=swap">
-<link rel="stylesheet" href="style.css?v=9d489777">
+<link rel="stylesheet" href="style.css?v=911f18e7">
+<script>try { if (localStorage.getItem("mychaekmisa-on")) document.documentElement.classList.add("is-member"); } catch (e) {}</script>
 </head>
 <body>
 <header class="top">
@@ -46,6 +47,7 @@ html { scroll-behavior: smooth; }
       <a href="log.html">기록</a>
       <a href="join.html">참여하기</a>
     </nav>
+    <a class="my-link" href="my.html" aria-label="나의 책미사" title="나의 책미사"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M5 4.5h4.5v15H5zM9.5 6h4v13.5h-4zM14.6 6.6l3.6-.9 2.9 13.1-3.6.9z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></a>
     <div class="bell">
       <button type="button" class="bell-btn" aria-label="알림" aria-expanded="false" aria-controls="bell-panel"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 3a6 6 0 0 0-6 6v3.6L4.3 15.4A1 1 0 0 0 5.2 17h13.6a1 1 0 0 0 .9-1.6L18 12.6V9a6 6 0 0 0-6-6Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9.5 19.5a2.5 2.5 0 0 0 5 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><i class="bell-dot" hidden></i></button>
       <div class="bell-panel" id="bell-panel" hidden><p class="bell-h">알림</p><ul class="bn"></ul></div>
@@ -60,7 +62,7 @@ html { scroll-behavior: smooth; }
   <section class="page bookpage" style="--c:var(--s-lit)">
     <div class="wrap">
       <p class="bp-back"><a href="books.html">← 함께 읽은 책</a></p>
-      <article class="bp bd-content"><div class="bd-media"><img src="images/posters/%EB%85%B8%EC%9D%B8%EA%B3%BC%EB%B0%94%EB%8B%A4.jpg" alt="노인과 바다 안내 이미지"></div><div class="bd-body"><p class="bd-series">문학산책</p><h2>노인과 바다</h2><p class="book-author">어니스트 헤밍웨이</p><ul class="bd-dates"><li>2026.3.21(토)</li></ul><p class="book-links"><a href="https://blog.naver.com/espada4896/224384017295" target="_blank" rel="noopener">블로그 기록</a><a href="https://drive.google.com/uc?export=download&amp;id=1vG4ksVTp3M6JYr3zh_nuXd8bHKByzQ46" rel="noopener">PDF 내려받기</a></p><p class="bd-actions"><a class="btn primary small" href="./#meets">다음 모임 보기</a><button type="button" class="btn ghost small bd-share" data-url="https://espada4897.github.io/espada/book-dfcac01f.html" data-title="《노인과 바다》 · 책미사">공유하기</button></p><div class="bd-q"><h3>이 책이 던지는 질문</h3><p class="bd-q-links"><a href="map.html#m1">어떻게 살아야 하는가</a></p><p class="bd-q-also">같은 질문을 던지는 다른 책</p><p class="bd-q-books"><button type="button" class="bd-jump" data-key="그리스인조르바" data-href="book-1f91d171.html">그리스인 조르바</button><button type="button" class="bd-jump" data-key="너무시끄러운고독" data-href="book-1ee92d79.html">너무 시끄러운 고독</button><button type="button" class="bd-jump" data-key="파이이야기" data-href="book-bc420774.html">파이 이야기</button><button type="button" class="bd-jump" data-key="이방인" data-href="book-a73eff35.html">이방인</button></p></div></div></article>
+      <article class="bp bd-content"><div class="bd-media"><img src="images/posters/%EB%85%B8%EC%9D%B8%EA%B3%BC%EB%B0%94%EB%8B%A4.jpg" alt="노인과 바다 안내 이미지"></div><div class="bd-body"><p class="bd-series">문학산책</p><h2>노인과 바다</h2><p class="book-author">어니스트 헤밍웨이</p><ul class="bd-dates"><li>2026.3.21(토)</li></ul><p class="book-links"><a href="https://blog.naver.com/espada4896/224384017295" target="_blank" rel="noopener">블로그 기록</a><a href="https://drive.google.com/uc?export=download&amp;id=1vG4ksVTp3M6JYr3zh_nuXd8bHKByzQ46" rel="noopener">PDF 내려받기</a></p><p class="bd-actions"><a class="btn primary small" href="./#meets">다음 모임 보기</a><button type="button" class="btn ghost small bd-share" data-url="https://espada4897.github.io/espada/book-dfcac01f.html" data-title="《노인과 바다》 · 책미사">공유하기</button></p><a class="bd-more my-add" href="my.html?add=%EB%85%B8%EC%9D%B8%EA%B3%BC%20%EB%B0%94%EB%8B%A4&amp;date=2026-03-21">내 달력에 담기 →</a><div class="bd-q"><h3>이 책이 던지는 질문</h3><p class="bd-q-links"><a href="map.html#m1">어떻게 살아야 하는가</a></p><p class="bd-q-also">같은 질문을 던지는 다른 책</p><p class="bd-q-books"><button type="button" class="bd-jump" data-key="그리스인조르바" data-href="book-1f91d171.html">그리스인 조르바</button><button type="button" class="bd-jump" data-key="너무시끄러운고독" data-href="book-1ee92d79.html">너무 시끄러운 고독</button><button type="button" class="bd-jump" data-key="파이이야기" data-href="book-bc420774.html">파이 이야기</button><button type="button" class="bd-jump" data-key="이방인" data-href="book-a73eff35.html">이방인</button></p></div></div></article>
       
       <div class="bp-about"><p><b>책미사</b>는 2019년부터 이어 온 독서모임입니다. 주로 토요일, 때로는 수요일 밤 9시에 줌에서 만납니다. 한 달에 한 권이면 충분하고, 참가비는 모임당 5,000원입니다. 처음이라면 듣기만 하는 청강으로 분위기를 먼저 보셔도 됩니다.</p><p><a class="btn primary" href="join.html#pick">이달의 책 신청하기</a> <a class="btn ghost" href="./">책미사 둘러보기</a></p></div>
     </div>
