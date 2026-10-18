@@ -1501,3 +1501,8 @@ html:not(.is-member) .my-link, html:not(.is-member) .my-add { display: none; }
 .newbar a { flex: 1; min-width: 0; color: var(--accent); text-decoration: none; }
 .newbar button { border: 0; background: none; color: var(--muted); font-size: 1.1rem; cursor: pointer; padding: 2px 6px; }
 .join-welcome { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-size: var(--fs-md); margin-bottom: 20px; }
+.wc-title { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px 16px; }
+.wc-title h1 { min-width: 0; }
+.wc-share { flex: none; display: grid; justify-items: end; gap: 4px; margin: 0; }
+.wc-share .btn { white-space: nowrap; }
+#wc-copied { max-width: 12em; text-align: right; font-size: var(--fs-sm); }
