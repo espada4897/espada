@@ -1464,3 +1464,40 @@ html:not(.is-member) .my-link, html:not(.is-member) .my-add { display: none; }
 @media (display-mode: standalone) {
   body:has(#my) .nav, body:has(#my) .subnav, body:has(#my) .nextbar, body:has(#my) .top-cta, body:has(#my) .float-cta, body:has(#my) .bell, body:has(#my) .my-link { display: none !important; }
 }
+
+/* 처음 오신 분께(welcome.html): 톡방에서 링크로 여는 안내. 단계는 실제 순서라 번호를 붙인다 */
+.wc { max-width: 720px; display: grid; gap: 28px; }
+.wc-head { display: grid; gap: 12px; }
+.wc-head h1 { font-family: var(--font-display); font-weight: 800; font-size: var(--step-2); line-height: 1.35; text-wrap: balance; }
+.wc-lead { color: var(--muted); }
+.wc-facts { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.wc-facts li { background: var(--accent-soft); color: var(--accent); border-radius: 999px; padding: 4px 12px; font-size: var(--fs-md); }
+.wc-h2 { font-family: var(--font-display); font-size: var(--step-1); font-weight: 800; }
+.wc-steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 28px; }
+.wc-steps > li { display: grid; grid-template-columns: 40px 1fr; gap: 14px; scroll-margin-top: 80px; }
+.wc-steps > li > div { min-width: 0; display: grid; gap: 10px; }
+.wc-n { width: 36px; height: 36px; border-radius: 50%; border: 1.5px solid var(--accent); color: var(--accent); display: grid; place-items: center; font-weight: 700; }
+.wc-sub { color: var(--muted); font-size: var(--fs-md); }
+.wc-nick { display: inline-flex; flex-wrap: wrap; gap: 6px; width: fit-content; max-width: 100%; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 8px 12px; font-weight: 700; }
+.wc-nick i { color: var(--muted); font-style: normal; font-weight: 400; }
+.wc-meets { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.wc-meets li { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); padding: 14px 16px; display: grid; grid-template-columns: 64px 1fr; gap: 14px; }
+.wc-date { text-align: center; line-height: 1.25; font-variant-numeric: tabular-nums; }
+.wc-date b { display: block; font-family: var(--font-display); font-size: var(--fs-lg); }
+.wc-date span { font-size: var(--fs-xs); color: var(--muted); }
+.wc-meets li > div { min-width: 0; display: grid; gap: 4px; }
+.wc-chip { justify-self: start; font-size: var(--fs-xs); color: var(--spine-fg); background: var(--c); border-radius: 6px; padding: 1px 8px; font-weight: 700; }
+.wc-book { font-weight: 700; color: var(--ink); text-decoration: none; }
+.wc-book small { font-weight: 400; color: var(--muted); }
+.wc-line { font-family: var(--font-display); color: var(--muted); font-size: var(--fs-md); }
+.wc-note { font-size: var(--fs-sm); color: var(--lamp); }
+.wc-more { display: grid; gap: 14px; border-top: 1px solid var(--line); padding-top: 28px; }
+.wc-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.wc-links a { display: grid; gap: 2px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 14px; color: var(--ink); text-decoration: none; }
+.wc-links a span { font-size: var(--fs-sm); color: var(--muted); }
+#wc-copied { font-size: var(--fs-md); color: var(--accent); }
+/* 첫 화면 띠: 처음 온 기기에서만 한 번(스크립트가 보이게 한다) */
+.newbar { display: flex; align-items: center; gap: 10px; background: var(--accent-soft); padding: 10px max(16px, calc((100% - 1120px) / 2 + 24px)); font-size: var(--fs-md); }
+.newbar a { flex: 1; min-width: 0; color: var(--accent); text-decoration: none; }
+.newbar button { border: 0; background: none; color: var(--muted); font-size: 1.1rem; cursor: pointer; padding: 2px 6px; }
+.join-welcome { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; font-size: var(--fs-md); margin-bottom: 20px; }

@@ -36,7 +36,7 @@ html { scroll-behavior: smooth; }
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&display=swap">
-<link rel="stylesheet" href="style.css?v=a66a10e1">
+<link rel="stylesheet" href="style.css?v=659e52c4">
 <script>try { if (localStorage.getItem("mychaekmisa-on")) document.documentElement.classList.add("is-member"); } catch (e) {}</script>
 </head>
 <body>
@@ -74,7 +74,7 @@ html { scroll-behavior: smooth; }
       <div id="view-cal" role="tabpanel" aria-labelledby="tab-cal">
             <nav class="mnav" aria-label="달 고르기"><button type="button" class="mstep" data-step="-1" aria-label="이전 달">‹</button><div class="mchips"><span class="mnav-year">2026</span><button type="button" class="mchip" data-month="2026-05" aria-pressed="false">5월</button><button type="button" class="mchip" data-month="2026-06" aria-pressed="false">6월</button><button type="button" class="mchip" data-month="2026-07" aria-pressed="false">7월</button><button type="button" class="mchip" data-month="2026-08" aria-pressed="false">8월</button><button type="button" class="mchip" data-month="2026-09" aria-pressed="false">9월</button><button type="button" class="mchip" data-month="2026-10" aria-pressed="false">10월</button><button type="button" class="mchip" data-month="2026-11" aria-pressed="true">11월</button></div><button type="button" class="mstep" data-step="1" aria-label="다음 달">›</button></nav>
       <section class="cal-month" id="m2026-11" data-month="2026-11">
-        <header class="cal-head"><h2>2026년 <strong>11월</strong></h2><p><span class="cal-sum">모임 1회</span></p></header>
+        <header class="cal-head"><h2>2026년 <strong>11월</strong></h2><p><span class="cal-sum">모임 1회 · </span><button type="button" class="cal-poster-link" data-src="images/schedule/2026%EB%85%8411%EC%9B%94.jpg" data-alt="책미사 2026년 11월 일정 안내 이미지">11월 일정 포스터 보기</button></p></header>
         <div class="cal"><div class="wd sun">일</div><div class="wd">월</div><div class="wd">화</div><div class="wd">수</div><div class="wd">목</div><div class="wd">금</div><div class="wd sat">토</div><div class="day" data-date="2026-11-01"><b class="sun">1</b></div><div class="day" data-date="2026-11-02"><b class="">2</b></div><div class="day" data-date="2026-11-03"><b class="">3</b></div><div class="day" data-date="2026-11-04"><b class="">4</b></div><div class="day" data-date="2026-11-05"><b class="">5</b></div><div class="day" data-date="2026-11-06"><b class="">6</b></div><div class="day" data-date="2026-11-07"><b class="sat">7</b></div><div class="day" data-date="2026-11-08"><b class="sun">8</b></div><div class="day" data-date="2026-11-09"><b class="">9</b></div><div class="day" data-date="2026-11-10"><b class="">10</b></div><div class="day" data-date="2026-11-11"><b class="">11</b></div><div class="day" data-date="2026-11-12"><b class="">12</b></div><div class="day" data-date="2026-11-13"><b class="">13</b></div><div class="day" data-date="2026-11-14"><b class="sat">14</b></div><div class="day" data-date="2026-11-15"><b class="sun">15</b></div><div class="day" data-date="2026-11-16"><b class="">16</b></div><div class="day" data-date="2026-11-17"><b class="">17</b></div><div class="day" data-date="2026-11-18"><b class="">18</b></div><div class="day" data-date="2026-11-19"><b class="">19</b></div><div class="day" data-date="2026-11-20"><b class="">20</b></div><div class="day" data-date="2026-11-21"><b class="sat">21</b><button type="button" class="ev" data-i="17" data-date="2026-11-21" style="--c:var(--s-lit)" title="문학산책 · 빨강의 자서전"><i></i><span>빨강의 자서전</span></button></div><div class="day" data-date="2026-11-22"><b class="sun">22</b></div><div class="day" data-date="2026-11-23"><b class="">23</b></div><div class="day" data-date="2026-11-24"><b class="">24</b></div><div class="day" data-date="2026-11-25"><b class="">25</b></div><div class="day" data-date="2026-11-26"><b class="">26</b></div><div class="day" data-date="2026-11-27"><b class="">27</b></div><div class="day" data-date="2026-11-28"><b class="sat">28</b></div><div class="day" data-date="2026-11-29"><b class="sun">29</b></div><div class="day" data-date="2026-11-30"><b class="">30</b></div><div class="day out"></div><div class="day out"></div><div class="day out"></div><div class="day out"></div><div class="day out"></div></div>
         <ol class="cal-list"><li style="--c:var(--s-lit)"><button type="button" class="" data-i="17" data-date="2026-11-21"><time>11.21 토</time><span class="s"><i></i>문학산책</span><b>빨강의 자서전</b></button></li></ol>
       </section>
@@ -229,6 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {  // 목록 칸까지 다 �
     <div class="wrap">
       <div class="sec-head"><h2>월별 일정</h2><p>이미지를 누르면 크게 볼 수 있습니다.</p></div>
       <div class="months">
+        <figure class="sched-month" data-month="2026-11"><a href="images/schedule/2026%EB%85%8411%EC%9B%94.jpg" target="_blank" rel="noopener"><img src="images/schedule/2026%EB%85%8411%EC%9B%94.jpg" alt="책미사 2026년 11월 일정 안내 이미지" width="1254" height="1254" loading="lazy"></a><figcaption>2026년 11월</figcaption></figure>
         <figure class="sched-month" data-month="2026-10"><a href="images/schedule/2026%EB%85%8410%EC%9B%94.jpg" target="_blank" rel="noopener"><img src="images/schedule/2026%EB%85%8410%EC%9B%94.jpg" alt="책미사 2026년 10월 일정 안내 이미지" width="2048" height="2048" loading="lazy"></a><figcaption>2026년 10월</figcaption></figure>
         <figure class="sched-month" data-month="2026-09"><a href="images/schedule/2026%EB%85%849%EC%9B%94.jpg" target="_blank" rel="noopener"><img src="images/schedule/2026%EB%85%849%EC%9B%94.jpg" alt="책미사 2026년 9월 일정 안내 이미지" width="1254" height="1254" loading="lazy"></a><figcaption>2026년 9월</figcaption></figure>
       </div>
@@ -343,6 +344,7 @@ document.addEventListener("DOMContentLoaded", () => {  // 목록 칸까지 다 �
   <div class="wrap">
     <span class="foot-brand"><img src="logo.png?v=ad6c60cc" alt="책미사" width="100" height="32"><span>책으로 미래를 여는 사람들</span></span>
     <nav aria-label="바깥 링크">
+      <a href="welcome.html">처음 오신 분께</a>
       <a href="https://open.kakao.com/o/gfiuxgRh" target="_blank" rel="noopener">오픈카톡</a>
       <a href="https://blog.naver.com/espada4896" target="_blank" rel="noopener">블로그</a>
       <a href="https://cafe.naver.com/espada4896" target="_blank" rel="noopener">카페</a>
