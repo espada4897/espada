@@ -1506,3 +1506,4 @@ html:not(.is-member) .my-link, html:not(.is-member) .my-add { display: none; }
 .wc-share { flex: none; display: grid; justify-items: end; gap: 4px; margin: 0; }
 .wc-share .btn { white-space: nowrap; }
 #wc-copied { max-width: 12em; text-align: right; font-size: var(--fs-sm); }
+.wc-say { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 8px 12px; width: fit-content; max-width: 100%; }
