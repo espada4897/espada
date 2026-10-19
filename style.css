@@ -106,6 +106,17 @@ p { margin: 0; }
 }
 .feature .tag .dday:not(:empty), .meet-when .dday:not(:empty) { color: #fff; background: var(--lamp); border-radius: 999px; padding: 1px 9px; }
 .feature .tag .doing, .meet-when .doing { color: #fff; background: var(--accent); border-radius: 999px; padding: 1px 9px; }
+/* 첫 화면 월 포스터 넘기기: 지난 달·이번 달·다음 달 + 전체 일정 */
+.month-flip { position: relative; touch-action: pan-y; }
+.month-flip .mf-arrow { position: absolute; padding: 0; top: 50%; translate: 0 -50%; width: 40px; height: 40px; border-radius: 50%; border: 0; cursor: pointer;
+  display: grid; place-items: center; font-size: 1.4rem; line-height: 1; color: var(--ink); background: rgb(255 255 255 / .85); box-shadow: 0 2px 10px rgb(27 31 34 / .15); }
+.month-flip .mf-arrow:hover { background: #fff; }
+.month-flip .mf-arrow.prev { left: 10px; } .month-flip .mf-arrow.next { right: 10px; }
+.mf-nav { margin-top: 14px; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 4px; font-size: var(--fs-md); }
+.mf-nav button { border: 0; background: none; font: inherit; color: var(--muted); padding: 4px 10px; border-radius: 999px; cursor: pointer; }
+.mf-nav button[aria-current="true"] { color: var(--accent); background: var(--accent-soft); font-weight: 700; }
+.mf-all { margin-left: 8px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+.mf-arrow:focus-visible, .mf-nav button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 .feature-fallback { aspect-ratio: 1; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); font-weight: 700; box-shadow: none; }
 
 .btn {
