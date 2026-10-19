@@ -1518,3 +1518,35 @@ html:not(.is-member) .my-link, html:not(.is-member) .my-add { display: none; }
 .wc-share .btn { white-space: nowrap; }
 #wc-copied { max-width: 12em; text-align: right; font-size: var(--fs-sm); }
 .wc-say { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 8px 12px; width: fit-content; max-width: 100%; }
+
+/* 책 구하는 길: 다가오는 모임 카드 아래 칩(누르면 자세히) + 책 페이지의 '이 책 구하는 길'(찾아오는 길처럼). 값은 data/다음 모임/다음모임.csv '구하는 길' */
+.getbook { position: relative; z-index: 1; margin-top: 4px; border-top: 1px dashed var(--line); padding-top: 10px; }
+.getbook summary { list-style: none; cursor: pointer; display: grid; gap: 6px; }
+.getbook summary::-webkit-details-marker { display: none; }
+.getbook summary:focus-visible { outline: 2px solid var(--lamp); outline-offset: 3px; border-radius: 4px; }
+.gb-label { display: flex; justify-content: space-between; font-size: var(--fs-xs); font-weight: 800; letter-spacing: .04em; color: var(--accent); }
+.gb-label i { font-style: normal; font-weight: 600; color: var(--muted); }
+.getbook:not([open]) .gb-label i::after { content: " ▾"; }
+.getbook[open] .gb-label i::after { content: " ▴"; }
+.gb-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.gb-chip { font-size: var(--fs-xs); font-weight: 700; border-radius: 999px; padding: 2px 9px; background: var(--accent-soft); color: var(--accent); white-space: nowrap; }
+.gb-chip.ok { background: #e7f1ea; color: #2f6b4f; }
+.gb-chip.warn { background: #f6eedd; color: #9a6a1c; }
+.gb-chip.off { background: none; border: 1px solid var(--line); color: var(--muted); font-weight: 600; }
+.gb-more { margin-top: 10px; display: grid; gap: 8px; font-size: var(--fs-sm); }
+.gb-row { display: grid; grid-template-columns: 4.2em minmax(0, 1fr); gap: 8px; }
+.gb-row b { color: var(--muted); }
+.gb-row a, .waybox a { color: var(--accent); font-weight: 700; }
+.gb-tip { background: var(--bg); border-radius: var(--r-sm); padding: 8px 10px; font-size: var(--fs-sm); }
+.waybox { margin-top: 28px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); padding: 22px 24px; display: grid; gap: 14px; }
+.waybox h3 { font-family: var(--font-display); font-size: var(--step-1); }
+.way { display: grid; grid-template-columns: 2.2em minmax(0, 1fr) auto; gap: 12px; align-items: start; padding-top: 14px; border-top: 1px solid var(--line); }
+.way .ic { font-size: 1.4rem; line-height: 1.2; }
+.way .t { font-weight: 800; }
+.way .d { color: var(--muted); font-size: var(--fs-md); }
+.way > .gb-chip { align-self: center; }
+@media (max-width: 600px) {
+  .waybox { padding: 18px; }
+  .way { grid-template-columns: 2em minmax(0, 1fr); }
+  .way > .gb-chip { grid-column: 2; justify-self: start; }
+}
