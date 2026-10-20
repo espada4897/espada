@@ -1550,3 +1550,34 @@ html:not(.is-member) .my-link, html:not(.is-member) .my-add { display: none; }
   .way { grid-template-columns: 2em minmax(0, 1fr); }
   .way > .gb-chip { grid-column: 2; justify-self: start; }
 }
+
+/* 매일 독서 인증(cert.html): 사람마다 이번 달 점 줄 */
+.ct-upd { font-size: var(--fs-sm); color: var(--muted); }
+.ct-king { margin-top: 24px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; padding: 16px 20px;
+  background: var(--accent-soft); border-radius: var(--r-card); }
+.ct-king span { font-size: var(--fs-sm); color: var(--accent); font-weight: 700; }
+.ct-king b { font-size: var(--step-1); }
+.ct-king b::before { content: "👑 "; }
+.ct-king em { font-style: normal; color: var(--muted); font-size: var(--fs-sm); }
+.ct-legend { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 24px 0 8px; font-size: var(--fs-sm); color: var(--muted); }
+.ct-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.ct-d { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
+.ct-d.b { background: var(--accent); }
+.ct-d.h { background: transparent; box-shadow: inset 0 0 0 2px var(--accent); }
+.ct-list { list-style: none; margin: 0; padding: 0; }
+.ct-list li { display: grid; grid-template-columns: 7rem minmax(0, 1fr) 4.5rem 6.5rem; gap: 6px 14px; align-items: center;
+  padding: 12px 0; border-bottom: 1px solid var(--line); }
+.ct-name { overflow-wrap: anywhere; }
+.ct-dots { display: flex; flex-wrap: wrap; gap: 4px; }
+.ct-n { font-variant-numeric: tabular-nums; color: var(--muted); font-size: var(--fs-md); text-align: right; }
+.ct-n b { color: var(--ink); font-size: var(--step-1); }
+.ct-state { font-size: var(--fs-sm); color: var(--accent); font-weight: 700; }
+.ct-list li.is-host { color: var(--muted); }
+.ct-list li.is-host .ct-state { color: var(--muted); font-weight: 400; }
+@media (max-width: 600px) {
+  .ct-list li { grid-template-columns: minmax(0, 1fr) auto; }
+  .ct-dots { grid-column: 1 / -1; grid-row: 2; }
+  .ct-n { grid-column: 2; grid-row: 1; }
+  .ct-state { grid-column: 1 / -1; grid-row: 3; }
+  .ct-state:empty { display: none; }
+}
