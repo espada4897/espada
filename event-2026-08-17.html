@@ -63,7 +63,12 @@ html { scroll-behavior: smooth; }
     <div class="wrap">
       <nav class="evp-crumb" aria-label="위치"><a href="log.html">기록</a><span>›</span><a href="story.html">책미사 이야기</a><span>›</span><a href="story.html#events">함께한 행사</a></nav>
       <header class="evp-head"><span class="evp-kind">번개</span><h1>여름 번개</h1><p class="evp-meta"><time datetime="2026-08-17">2026.8.17(월)</time><span>신당역 우승님 개인사무실</span></p><p class="evp-line">오프독서모임보다 더 많이 나오는 듯, 부담이 없어서 더 좋은 번개</p></header>
-      <div class="evp-body"><div class="evp-gal"><figure class="evp-main"><img src="images/events/2026-08-17_%EC%97%AC%EB%A6%84%EB%B2%88%EA%B0%9C/%EC%97%AC%EB%A6%84%EB%B2%88%EA%B0%9C_001.jpg" alt="여름 번개 사진"></figure></div><div class="evp-side"><div class="evp-acts"><button type="button" class="btn primary small bd-share" data-url="https://espada4897.github.io/espada/event-2026-08-17.html" data-title="여름 번개 · 책미사">이 행사를 톡방에 공유</button></div><p class="evp-note">내년 8월 17일부터 과거의 오늘에도 이 행사가 나옵니다.</p></div></div>
+      <div class="evp-body"><div class="evp-gal"><figure class="evp-main"><img src="images/events/2026-08-17_%EC%97%AC%EB%A6%84%EB%B2%88%EA%B0%9C/%EC%97%AC%EB%A6%84%EB%B2%88%EA%B0%9C_001.jpg" alt="여름 번개 사진"></figure></div><div class="evp-side"><div class="evp-acts"><button type="button" class="btn primary small bd-share" data-url="https://espada4897.github.io/espada/event-2026-08-17.html" data-title="여름 번개 · 책미사" data-text="📸 [책미사] 여름 번개
+2026.8.17(월) · 신당역 우승님 개인사무실
+
+오프독서모임보다 더 많이 나오는 듯, 부담이 없어서 더 좋은 번개
+
+그날 사진 1장 👇">이 행사를 톡방에 공유</button></div><p class="evp-note">내년 8월 17일부터 과거의 오늘에도 이 행사가 나옵니다.</p></div></div>
       <nav class="evp-nav" aria-label="다른 행사"><a href="event-2025-05-10.html">‹ 이전 행사 <b>순수의 시대 오프모임</b></a><a href="story.html#events">함께한 행사 모두 보기</a><span></span></nav>
     </div>
   </section>
@@ -138,11 +143,13 @@ document.querySelectorAll(".evp-gal").forEach(g => {
   document.addEventListener("click", ev => {
     const s = ev.target.closest(".bd-share");
     if (s) {
-      const url = s.dataset.url, title = s.dataset.title;
-      if (phone && navigator.share) { navigator.share({ title, url }).catch(() => {}); return; }
+      // data-text가 있으면(과거의 오늘·행사) 소개 글 + 주소를 함께 보낸다: 톡방에 붙이면 무슨 날인지 바로 보이게
+      const url = s.dataset.url, title = s.dataset.title, text = s.dataset.text;
+      const copy = text ? `${text}\n${url}` : url;
+      if (phone && navigator.share) { navigator.share(text ? { title, text: copy } : { title, url }).catch(() => {}); return; }
       const done = () => { const t = s.textContent; s.textContent = "복사했습니다 · 카톡 대화방에 붙여 넣으세요"; setTimeout(() => s.textContent = t, 3000); };
-      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(url).then(done, () => prompt("이 주소를 복사하세요", url));
-      else prompt("이 주소를 복사하세요", url);
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(copy).then(done, () => prompt("이 글을 복사하세요", copy));
+      else prompt("이 글을 복사하세요", copy);
       return;
     }
     // 책 페이지의 '같은 질문을 던지는 다른 책'은 그 책 페이지로(함께 읽은 책 페이지에서는 창 안에서 바뀐다)
