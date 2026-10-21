@@ -739,15 +739,16 @@ a.nb-book:hover { transform: translateY(-4px); }
 .bd-q-links a { font-family: var(--font-display); font-weight: 700; color: var(--accent); text-decoration: none; }
 .bd-q-links a:hover { text-decoration: underline; }
 .bd-q-also { font-size: var(--fs-sm); color: var(--muted); margin-top: 4px; }
-.bd-q-books { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.bd-q-books { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 120px)); gap: 16px; }
 .bd-jump { font: inherit; width: 100%; padding: 0; border: 0; background: none; color: var(--ink); cursor: pointer; text-align: left; display: grid; gap: 4px; }
 .bd-jump img, .bd-jump .book-cover-art { width: 100%; aspect-ratio: 2 / 3; height: auto; object-fit: cover; border-radius: 3px 6px 6px 3px; box-shadow: 0 3px 10px rgb(0 0 0 / .18); margin-bottom: 4px; }
-.bd-jump .book-cover-art { padding: 10px; }
+.bd-jump .book-cover-art { padding: 10px; color: var(--spine-fg); }
+.bd-jump .book-cover-art b { color: inherit; }
 .bd-jump .book-cover-art b { font-size: var(--fs-sm); }
 .bd-jump > b { font-size: var(--fs-sm); line-height: 1.4; }
 .bd-jump > span { font-size: var(--fs-xs); color: var(--muted); }
 .bd-jump:hover > b { color: var(--accent); }
-@media (max-width: 680px) { .bd-q { padding: 16px 20px 24px; } .bd-q-books { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 680px) { .bd-q { padding: 16px 20px 24px; } .bd-q-books { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; } }
 
 /* 생각의 지도 (pages/04_생각의 지도): 질문 하나에 한 면, 잡지처럼 */
 .qintro { max-width: 640px; }
