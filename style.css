@@ -1395,6 +1395,9 @@ footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
 .bd-review { grid-column: 1 / -1; padding: 20px 28px 24px; border-top: 1px solid var(--line); display: grid; gap: 14px; min-width: 0; scroll-margin-top: 80px; }
 .rv-title { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: var(--step-2); line-height: 1.35; text-wrap: balance; }
 .rv-lead { margin: 0; line-height: 1.75; max-width: 40em; }
+.rv-photo { margin: 0; display: grid; gap: 6px; }
+.rv-photo img { display: block; width: 100%; max-width: 760px; height: auto; border-radius: var(--r-sm); }
+.rv-photo figcaption { font-size: var(--fs-sm); color: var(--muted); }
 .rv-points { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; counter-reset: rv; }
 .rv-points li { counter-increment: rv; display: grid; gap: 2px; padding: 12px 14px 12px 44px; position: relative; background: var(--accent-soft); border-radius: var(--r-sm); min-width: 0; }
 .rv-points li::before { content: counter(rv); position: absolute; left: 14px; top: 11px; font-family: var(--font-display); font-weight: 800; color: var(--c, var(--accent)); font-size: 1.15rem; }
