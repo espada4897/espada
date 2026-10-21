@@ -1386,6 +1386,32 @@ footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
 .bd-dayq li p { margin: 0; font-family: var(--font-display); line-height: 1.7; max-width: 40em; }
 .bd-dayq li span { font-size: var(--fs-sm); color: var(--muted); }
 .bd-dayq .bd-more { justify-self: start; }
+/* 책 창·책 페이지: 이 책의 다른 칸으로 가는 칩 한 줄(모임 후기 · 책 소개와 질문 · 완독 길잡이 · 내 달력에 담기) */
+.bd-jumps { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.bd-jumps a { display: inline-flex; align-items: center; padding: 5px 12px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); font-size: var(--fs-sm); font-weight: 600; text-decoration: none; }
+.bd-jumps a:hover { background: var(--accent); color: var(--surface); }
+.bd-jumps a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+/* 모임 후기(data/모임 후기/) */
+.bd-review { grid-column: 1 / -1; padding: 20px 28px 24px; border-top: 1px solid var(--line); display: grid; gap: 14px; min-width: 0; scroll-margin-top: 80px; }
+.rv-title { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: var(--step-2); line-height: 1.35; text-wrap: balance; }
+.rv-lead { margin: 0; line-height: 1.75; max-width: 40em; }
+.rv-points { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; counter-reset: rv; }
+.rv-points li { counter-increment: rv; display: grid; gap: 2px; padding: 12px 14px 12px 44px; position: relative; background: var(--accent-soft); border-radius: var(--r-sm); min-width: 0; }
+.rv-points li::before { content: counter(rv); position: absolute; left: 14px; top: 11px; font-family: var(--font-display); font-weight: 800; color: var(--c, var(--accent)); font-size: 1.15rem; }
+.rv-points b { font-size: var(--fs-md); }
+.rv-points span { font-size: var(--fs-sm); color: var(--muted); line-height: 1.55; }
+.rv-full { border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface); }
+.rv-full summary { cursor: pointer; padding: 12px 16px; font-weight: 600; color: var(--accent); list-style: none; display: flex; justify-content: space-between; }
+.rv-full summary::after { content: "펼치기 ▾"; font-weight: 400; font-size: var(--fs-sm); color: var(--muted); }
+.rv-full[open] summary::after { content: "접기 ▴"; }
+.rv-full summary::-webkit-details-marker { display: none; }
+.rv-body { padding: 4px 20px 20px; max-width: 42em; }
+.rv-body h4 { font-family: var(--font-display); font-size: var(--step-1); margin: 26px 0 8px; padding-left: 10px; border-left: 3px solid var(--c, var(--accent)); }
+.rv-body p { margin: 0 0 12px; line-height: 1.85; }
+.rv-list { margin: 0 0 12px; padding-left: 1.1em; display: grid; gap: 8px; line-height: 1.75; }
+.rv-note { font-size: var(--fs-sm); color: var(--muted); }
+.rv-links { margin: 0; display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; }
+@media (max-width: 640px) { .bd-review { padding: 18px 16px 20px; } .rv-points { grid-template-columns: minmax(0, 1fr); } .rv-body { padding: 4px 14px 16px; } }
 @media (max-width: 640px) { .qday { padding: 20px 16px; } .qday-head .bd-more { margin-left: 0; } }
 
 /* 머리: 나의 책미사 아이콘(종 옆) */
