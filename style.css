@@ -1395,10 +1395,11 @@ footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
 .bd-review { grid-column: 1 / -1; padding: 20px 28px 24px; border-top: 1px solid var(--line); display: grid; gap: 14px; min-width: 0; scroll-margin-top: 80px; }
 .rv-title { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: var(--step-2); line-height: 1.35; text-wrap: balance; }
 .rv-lead { margin: 0; line-height: 1.75; max-width: 40em; }
-.rv-cards { display: flex; gap: 10px; margin: 0; padding: 0 0 8px; list-style: none; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; }
-.rv-cards li { flex: 0 0 min(72%, 280px); scroll-snap-align: start; }
+.rv-cardbox > summary { cursor: pointer; font-size: var(--fs-sm); color: var(--muted); }
+.rv-cardbox[open] > summary { margin-bottom: 8px; }
+.rv-cards { display: flex; gap: 8px; margin: 0; padding: 0 0 6px; list-style: none; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; }
+.rv-cards li { flex: 0 0 140px; scroll-snap-align: start; }
 .rv-cards img { display: block; width: 100%; height: auto; border-radius: var(--r-sm); border: 1px solid var(--line); }
-.rv-cards-hint { margin: -4px 0 0; font-size: var(--fs-sm); color: var(--muted); }
 .rv-photo { margin: 0; display: grid; gap: 6px; }
 .rv-photo img { display: block; width: 100%; max-width: 760px; height: auto; border-radius: var(--r-sm); }
 .rv-photo figcaption { font-size: var(--fs-sm); color: var(--muted); }
