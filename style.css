@@ -796,6 +796,43 @@ a.nb-book:hover { transform: translateY(-4px); }
 }
 @media (max-width: 560px) { .qstart ul { gap: 10px; } .qstart b { font-size: var(--fs-sm); } .qcover .book-cover-art b { font-size: var(--fs-sm); } }
 
+/* 질문의 서재 (pages/03a_질문의 서재): 질문 하나에 한 줄, 누르면 그날 이야기·다르게 읽은 곳·이어지는 책 */
+.ql-today { margin-top: 32px; background: var(--accent); color: #fbf8f1; border-radius: var(--r-card); padding: 26px clamp(20px, 4vw, 36px); display: grid; gap: 12px; box-shadow: var(--sh-1); }
+.ql-today-lab { font-size: var(--fs-xs); font-weight: 700; letter-spacing: .08em; opacity: .85; }
+.ql-today-q { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: clamp(1.25rem, 1rem + 1vw, 1.6rem); line-height: 1.5; text-wrap: pretty; }
+.ql-today-m { font-size: var(--fs-md); opacity: .9; }
+.ql-today .ql-btn { background: rgb(255 255 255 / .14); border-color: rgb(255 255 255 / .4); color: #fbf8f1; }
+.ql-today .ql-btn:hover { background: rgb(255 255 255 / .24); border-color: #fbf8f1; }
+.ql-tools { margin-top: 32px; }
+.ql-note { font-family: var(--font-display); font-size: var(--fs-md); color: var(--muted); min-height: 1.6em; }
+.ql-list { list-style: none; margin: 8px 0 0; padding: 0; border-top: 1px solid var(--ink); }
+.ql { border-bottom: 1px solid var(--line); scroll-margin-top: 110px; }
+.ql-q { width: 100%; text-align: left; background: none; border: 0; padding: 18px 2px; display: grid; gap: 6px; font: inherit; color: var(--ink); cursor: pointer; }
+.ql-text { font-family: var(--font-display); font-weight: 700; font-size: var(--step-1); line-height: 1.55; text-wrap: pretty; transition: color .2s ease; }
+.ql-q:hover .ql-text, .ql.open .ql-text { color: var(--accent); }
+.ql-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; font-size: var(--fs-sm); color: var(--muted); }
+.ql-meta b { color: var(--ink); font-weight: 600; }
+.ql-src { font-size: var(--fs-xs); font-weight: 700; padding: 1px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+.ql-src.r { background: #f6ecda; color: #8a5d17; }
+.ql-who { font-size: var(--fs-xs); padding: 0 8px; border-radius: 999px; border: 1px solid var(--line); }
+.ql-more { display: grid; gap: 18px; padding: 0 2px 24px; }
+.ql-more .qlabel { margin-bottom: 8px; }
+.ql-said { margin: 0; padding: 0 0 0 14px; list-style: none; border-left: 2px solid var(--line); display: grid; gap: 6px; font-size: var(--fs-md); line-height: 1.8; }
+.ql-diff { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.ql-diff p { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 10px 14px; font-size: var(--fs-md); line-height: 1.7; min-width: 0; }
+.ql-diff b { display: block; font-size: var(--fs-xs); color: var(--lamp); margin-bottom: 2px; }
+.ql-rel { display: flex; flex-wrap: wrap; gap: 8px; }
+.ql-rel a { display: grid; gap: 2px; max-width: 100%; padding: 8px 12px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface); text-decoration: none; color: var(--ink); font-size: var(--fs-sm); }
+.ql-rel a span { font-family: var(--font-display); font-weight: 700; }
+.ql-rel a small { color: var(--muted); }
+.ql-rel a:hover { border-color: var(--accent); }
+.ql-acts { display: flex; flex-wrap: wrap; gap: 8px; }
+.ql-btn { display: inline-flex; align-items: center; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: inherit; font-size: var(--fs-sm); font-weight: 600; text-decoration: none; cursor: pointer; }
+.ql-btn:hover { border-color: var(--accent); }
+.ql-btn.copied { border-color: var(--lamp); color: var(--lamp); }
+.ql-empty { padding: 28px 0; }
+@media (max-width: 560px) { .ql-diff { grid-template-columns: 1fr; } .ql { scroll-margin-top: 190px; } }
+
 /* 홈: 둘러보기 */
 .explore { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .explore a {
@@ -1020,7 +1057,7 @@ footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
 
 /* 머리 아래 작은 탭 줄: 묶음(서재·기록) 안의 페이지들 */
 .subnav { border-top: 1px solid var(--line); background: rgb(250 248 244 / .9); }
-.subnav .wrap { display: flex; gap: 6px; padding-block: 8px; overflow-x: auto; scrollbar-width: none; }
+.subnav .wrap { display: flex; flex-wrap: nowrap; gap: 6px; padding-block: 8px; overflow-x: auto; scrollbar-width: none; }  /* 휴대폰의 .top .wrap 줄바꿈을 받지 않고 옆으로 밀기 */
 .subnav a { flex: none; padding: 4px 14px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface);
   font-size: var(--fs-sm); color: var(--muted); text-decoration: none; white-space: nowrap; }
 .subnav a:hover { border-color: var(--accent); color: var(--ink); }
