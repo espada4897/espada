@@ -814,6 +814,8 @@ a.nb-book:hover { transform: translateY(-4px); }
 .ql-meta b { color: var(--ink); font-weight: 600; }
 .ql-src { font-size: var(--fs-xs); font-weight: 700; padding: 1px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
 .ql-src.r { background: #f6ecda; color: #8a5d17; }
+.ql-src.t { background: var(--accent); color: #fff; }
+.ql-talk small { color: var(--muted); font-size: var(--fs-xs); white-space: nowrap; }
 .ql-who { font-size: var(--fs-xs); padding: 0 8px; border-radius: 999px; border: 1px solid var(--line); }
 .ql-more { display: grid; gap: 18px; padding: 0 2px 24px; }
 .ql-more .qlabel { margin-bottom: 8px; }
