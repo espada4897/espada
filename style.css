@@ -1058,6 +1058,36 @@ footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
 .cl-now-links a.go { color: var(--ink); }
 .cl-now-links a:hover { text-decoration: underline; }
 .cl-now-empty { display: block; color: var(--muted); font-size: var(--fs-md); }
+/* 한책읽기: 모임 소개 연표 · 읽는 방법, 책 창 '한책읽기 ○기' 칸 */
+.hc-how { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; counter-reset: hc; }
+.hc-how li { display: grid; gap: 2px; padding-left: 30px; position: relative; font-size: var(--fs-sm); color: var(--muted); counter-increment: hc; }
+.hc-how li::before { content: counter(hc); position: absolute; left: 0; top: 1px; width: 21px; height: 21px; border-radius: 50%; background: var(--c); color: var(--spine-fg); font-size: var(--fs-xs); font-weight: 700; display: grid; place-items: center; }
+.hc-how b { color: var(--ink); font-size: var(--fs-md); }
+.hc-years { gap: 12px; }
+.hc-year { display: grid; grid-template-columns: 3.4em minmax(0, 1fr); gap: 8px; align-items: start; }
+.hc-year > b { font-family: var(--font-display); color: var(--muted); padding-top: 5px; font-variant-numeric: tabular-nums; }
+.hc-year ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.hc-year li { display: grid; grid-template-columns: 2.6em minmax(0, 1fr) auto; gap: 8px; align-items: baseline; padding: 5px 10px; border-radius: var(--r-sm); background: var(--surface); font-size: var(--fs-md); }
+.hc-no { font-family: var(--font-display); font-weight: 800; color: var(--c); font-variant-numeric: tabular-nums; }
+.hc-year a { color: var(--ink); text-decoration: none; font-weight: 600; min-width: 0; }
+.hc-year a:hover { color: var(--c); text-decoration: underline; }
+.hc-when { font-size: var(--fs-xs); color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.hc-next { margin-top: 4px; padding: 12px 14px; border: 1px dashed var(--c); border-radius: var(--r-sm); font-size: var(--fs-sm); }
+.hc-next b { color: var(--c); }
+.hc-box { margin-top: 12px; padding: 14px 16px; border: 1px solid var(--line); border-left: 4px solid var(--s-meet); border-radius: var(--r-sm); display: grid; gap: 10px; }
+.hc-title { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.hc-title b { font-family: var(--font-display); font-weight: 800; color: var(--s-meet); }
+.hc-title span { font-size: var(--fs-xs); color: var(--muted); }
+.hc-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(7.5em, 1fr)); gap: 8px; margin: 0; }
+.hc-facts div { display: grid; gap: 1px; }
+.hc-facts dt { font-size: var(--fs-xs); color: var(--muted); }
+.hc-facts dd { margin: 0; font-weight: 700; font-size: var(--fs-sm); font-variant-numeric: tabular-nums; }
+.hc-plan summary { cursor: pointer; font-size: var(--fs-sm); font-weight: 700; color: var(--accent); }
+.hc-plan ol { list-style: none; margin: 8px 0 0; padding: 0; display: grid; font-size: var(--fs-xs); max-height: 320px; overflow-y: auto; }
+.hc-plan li { display: grid; grid-template-columns: 4.2em 4.6em minmax(0, 1fr); gap: 6px; padding: 4px 0; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+.hc-plan li span:not(:last-child) { color: var(--muted); }
+.hc-plan li.hc-zoom, .hc-plan li.hc-zoom span { color: var(--s-meet); font-weight: 700; }
+@media (max-width: 560px) { .hc-year { grid-template-columns: minmax(0, 1fr); gap: 4px; } .hc-year li { grid-template-columns: 2.6em minmax(0, 1fr); } .hc-when { grid-column: 2; } }
 @media (max-width: 820px) {
   .cl { grid-template-columns: minmax(0, 1fr); }
   .cl-now { border-left: 0; border-top: 1px solid var(--line); grid-template-columns: 130px minmax(0, 1fr); gap: 0 18px; }
