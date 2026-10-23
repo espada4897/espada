@@ -1733,3 +1733,7 @@ html:not(.is-member) .my-link, html:not(.is-member) .my-add { display: none; }
   .ct-state { grid-column: 1 / -1; grid-row: 3; }
   .ct-state:empty { display: none; }
 }
+/* 톡방 공유가 막힌 앱 안 브라우저: 버튼 아래 펼쳐서 길게 눌러 복사 */
+.share-box { flex-basis: 100%; width: 100%; display: grid; gap: 6px; margin-top: 8px; }
+.share-box p { margin: 0; font-size: var(--fs-sm); color: var(--muted); }
+.share-box textarea { width: 100%; font: inherit; font-size: var(--fs-sm); line-height: 1.6; padding: 10px 12px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface); color: var(--ink); resize: vertical; }
