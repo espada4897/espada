@@ -103,6 +103,40 @@ TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
 BEGIN:VEVENT
+UID:20261107-6f2b6e209f@chaekmisa
+DTSTAMP:20261008T120000Z
+DTSTART:20261107T120000Z
+DTEND:20261107T143000Z
+SUMMARY:책미사 지정독서 《가호》
+LOCATION:줌
+DESCRIPTION:줌 링크는 모임 시간에 톡방에 올라옵니다.\n관
+ 심 가는 책 한 권만 골라도 되고\, 처음이라면 청강으로 
+ 함께할 수 있습니다.\nhttps://espada4897.github.io/espada/
+URL:https://espada4897.github.io/espada/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:책미사 지정독서 30분 전
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20261114-b501c5878e@chaekmisa
+DTSTAMP:20261015T120000Z
+DTSTART:20261114T120000Z
+DTEND:20261114T143000Z
+SUMMARY:책미사 지정독서 《다시\, 책으로》
+LOCATION:줌
+DESCRIPTION:줌 링크는 모임 시간에 톡방에 올라옵니다.\n관
+ 심 가는 책 한 권만 골라도 되고\, 처음이라면 청강으로 
+ 함께할 수 있습니다.\nhttps://espada4897.github.io/espada/
+URL:https://espada4897.github.io/espada/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:책미사 지정독서 30분 전
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
 UID:20261121-1a1d1c2b89@chaekmisa
 DTSTAMP:20261022T120000Z
 DTSTART:20261121T120000Z
@@ -117,6 +151,24 @@ URL:https://espada4897.github.io/espada/
 BEGIN:VALARM
 ACTION:DISPLAY
 DESCRIPTION:책미사 문학산책 30분 전
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20261128-5a7edd435d@chaekmisa
+DTSTAMP:20261029T120000Z
+DTSTART:20261128T120000Z
+DTEND:20261128T143000Z
+SUMMARY:책미사 지정독서 《남에게 보여주려고 인생을 낭
+ 비하지 마라》
+LOCATION:줌
+DESCRIPTION:줌 링크는 모임 시간에 톡방에 올라옵니다.\n관
+ 심 가는 책 한 권만 골라도 되고\, 처음이라면 청강으로 
+ 함께할 수 있습니다.\nhttps://espada4897.github.io/espada/
+URL:https://espada4897.github.io/espada/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:책미사 지정독서 30분 전
 TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
