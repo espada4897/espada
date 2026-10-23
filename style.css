@@ -301,14 +301,14 @@ p { margin: 0; }
 /* 홈: 멤버들의 한마디 (data/멤버 한마디/) */
 /* 옆으로 넘겨 보는 줄: PC 2장 + 다음 카드 살짝, 휴대폰 1장 + 살짝. 자동으로 넘기지 않는다 */
 /* 홈 '회원들이 꼽은 책미사': 한마디 위 잡지형 세 줄 — 문장은 크게, 인원은 작게 */
-.why { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: 32px; margin-bottom: 56px; }
-.why-head p { margin-top: 8px; color: var(--muted); font-size: var(--fs-md); }
-.why ol { list-style: none; margin: 0; padding: 0; display: grid; }
-.why li { padding: 18px 0; border-top: 1px solid var(--line); min-width: 0; }
-.why li:last-child { border-bottom: 1px solid var(--line); }
-.why-s { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: var(--fs-lg); line-height: 1.5; text-wrap: balance; }
-.why-k { margin: 4px 0 0; font-size: var(--fs-sm); color: var(--muted); font-variant-numeric: tabular-nums; }
-@media (max-width: 720px) { .why { grid-template-columns: minmax(0, 1fr); gap: 12px; margin-bottom: 44px; } .why-s { font-size: var(--step-1); } }
+.picks { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: 32px; margin-bottom: 56px; }
+.picks-head p { margin-top: 8px; color: var(--muted); font-size: var(--fs-md); }
+.picks ol { list-style: none; margin: 0; padding: 0; display: grid; }
+.picks li { padding: 18px 0; border-top: 1px solid var(--line); min-width: 0; }
+.picks li:last-child { border-bottom: 1px solid var(--line); }
+.picks-s { margin: 0; font-family: var(--font-display); font-weight: 700; font-size: var(--fs-lg); line-height: 1.5; text-wrap: balance; }
+.picks-k { margin: 4px 0 0; font-size: var(--fs-sm); color: var(--muted); font-variant-numeric: tabular-nums; }
+@media (max-width: 720px) { .picks { grid-template-columns: minmax(0, 1fr); gap: 12px; margin-bottom: 44px; } .picks-s { font-size: var(--step-1); } }
 .voices { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 4px; }
 .voices::-webkit-scrollbar { display: none; }
 .voices:focus-visible { outline: 2px solid var(--lamp); outline-offset: 4px; border-radius: var(--r-card); }
