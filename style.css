@@ -1527,6 +1527,15 @@ footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
 .rv-list { margin: 0 0 12px; padding-left: 1.1em; display: grid; gap: 8px; line-height: 1.75; }
 .rv-note { font-size: var(--fs-sm); color: var(--muted); }
 .rv-links { margin: 0; display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; }
+.rv-insta { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 16px; align-items: center; max-width: 460px; padding: 12px;
+  border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--surface); color: var(--ink); text-decoration: none; }
+.rv-insta.no-img { grid-template-columns: minmax(0, 1fr); }
+.rv-insta:hover, .rv-insta:focus-visible { border-color: var(--accent); }
+.rv-insta img { display: block; width: 96px; height: 120px; object-fit: cover; border-radius: 6px; }
+.rv-insta p { margin: 0; }
+.rv-insta .t { font-weight: 700; font-size: var(--fs-md); }
+.rv-insta .d { font-size: var(--fs-sm); color: var(--muted); line-height: 1.55; }
+.rv-insta .go { margin-top: 6px; font-size: var(--fs-sm); font-weight: 700; color: var(--accent); }
 @media (max-width: 640px) { .bd-review { padding: 18px 16px 20px; } .rv-points { grid-template-columns: minmax(0, 1fr); } .rv-body { padding: 4px 14px 16px; } }
 @media (max-width: 640px) { .qday { padding: 20px 16px; } .qday-head .bd-more { margin-left: 0; } }
 
