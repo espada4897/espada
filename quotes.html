@@ -309,7 +309,8 @@ html { scroll-behavior: smooth; }
   });
   // 공유하기: 휴대폰은 공유 창(카톡·인스타 등), PC는 주소 복사.
   // PC 윈도우 공유 창의 카톡은 대화방을 고르지 않고 붙여 넣어 버려서, PC에서는 쓰지 않고 '링크 복사'로 이름을 바꾼다.
-  const phone = matchMedia("(pointer: coarse)").matches;
+  // 터치 화면 노트북도 '(pointer: coarse)'로 잡혀 PC가 휴대폰처럼 굴었다(10/23) → 마우스가 없는 기기거나 휴대폰·태블릿 이름일 때만
+  const phone = matchMedia("(hover: none) and (pointer: coarse)").matches || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   if (!phone) {
     const rename = root => root.querySelectorAll(".bd-share").forEach(b => b.textContent = "링크 복사");
     rename(document);
