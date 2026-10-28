@@ -1561,6 +1561,9 @@ html:not(.is-member) .my-link, html:not(.is-member) .my-add { display: none; }
 /* 나의 책미사(my.html): 표지 달력 · 이달의 책장 · 이미지 만들기. 휴대폰 한 손 폭에 맞춘다 */
 .my { max-width: 520px; display: grid; gap: 14px; }
 .my-month { display: flex; align-items: center; justify-content: space-between; }
+.my-addbig { width: 100%; min-height: 56px; margin: 6px 0 4px; border: 0; border-radius: 14px; background: var(--accent); color: #fff; font: inherit; font-size: 1.08rem; font-weight: 700; cursor: pointer; box-shadow: var(--sh-1); }
+.my-addbig span { font-size: 1.3rem; margin-right: 4px; vertical-align: -1px; }
+.my-addhint { margin: 0 0 12px; font-size: var(--fs-sm); color: var(--muted); text-align: center; }
 .my-month h2 { margin: 0; font-family: var(--font-display); font-size: var(--step-2); font-weight: 800; }
 .my-month h2 span { color: var(--muted); font-size: var(--fs-md); margin-right: 6px; }
 .my-nav { display: flex; gap: 6px; }
