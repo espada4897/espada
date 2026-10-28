@@ -1808,6 +1808,18 @@ html:not(.is-member) .my-link, html:not(.is-member) .my-add { display: none; }
 .j-spine-img { width: auto; height: 150px; padding: 0; background: none; display: flex; writing-mode: horizontal-tb; gap: 1px; border-radius: 2px; }
 .j-spine-img img { height: 100%; display: block; border-radius: 2px; }
 .j-spine-img[aria-pressed="true"] img { outline: 2px solid var(--c); outline-offset: 1px; }
+/* 연도별 책장 '표지' 보기: 앞표지가 선반에 서 있는 모양(연말 카드 B). 한 줄 높이 132px마다 선반 판 */
+.j-view { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; background: var(--surface); }
+.j-view button { font: inherit; font-size: .85rem; border: 0; background: none; color: var(--muted); padding: 8px 16px; min-height: 36px; border-radius: 999px; cursor: pointer; }
+.j-view button[aria-pressed="true"] { background: var(--accent); color: #fff; font-weight: 700; }
+.j-shelves.is-cover .j-row { gap: 0 12px; border-bottom: 0; padding: 0 8px;
+  background: repeating-linear-gradient(to bottom, transparent 0 122px, var(--line) 122px 130px, transparent 130px 132px); }
+.j-cover { height: 132px; padding: 0 0 10px; border: 0; background: none; cursor: pointer; display: flex; align-items: flex-end; }
+.j-cover img { height: 110px; display: block; border-radius: 1px 3px 3px 1px; box-shadow: 0 4px 10px rgb(27 31 34 / .22); }
+.j-cover-plain span { width: 76px; height: 110px; box-sizing: border-box; padding: 10px 8px; background: var(--c); color: var(--spine-fg); font-family: var(--font-display); font-weight: 700; font-size: .72rem; line-height: 1.35; text-align: left; border-radius: 1px 3px 3px 1px; box-shadow: 0 4px 10px rgb(27 31 34 / .22); overflow: hidden; display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; word-break: keep-all; }
+.j-cover:hover img, .j-cover:hover span, .j-cover[aria-pressed="true"] img, .j-cover[aria-pressed="true"] span { transform: translateY(-5px); }
+.j-cover[aria-pressed="true"] img, .j-cover[aria-pressed="true"] span { outline: 2px solid var(--c); outline-offset: 2px; }
+@media (prefers-reduced-motion: no-preference) { .j-cover img, .j-cover span { transition: transform .15s; } }
 @media (prefers-reduced-motion: no-preference) { .j-spine { transition: transform .15s; } }
 .j-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: .8rem; color: var(--muted); }
 .j-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; background: var(--c); margin-right: 5px; vertical-align: -1px; }
