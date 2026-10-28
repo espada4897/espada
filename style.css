@@ -1821,7 +1821,17 @@ html:not(.is-member) .my-link, html:not(.is-member) .my-add { display: none; }
 .j-cover[aria-pressed="true"] img, .j-cover[aria-pressed="true"] span { outline: 2px solid var(--c); outline-offset: 2px; }
 @media (prefers-reduced-motion: no-preference) { .j-cover img, .j-cover span { transition: transform .15s; } }
 /* 연도별 책장 '이미지 저장': 연도 아래 작은 단추 → 그림 창(샘플: 예스24 서재 만들기의 이미지 저장) */
-.j-saveBtn { margin-top: 8px; font: inherit; font-size: .72rem; line-height: 1.3; color: var(--accent); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 6px 6px; min-height: 32px; cursor: pointer; font-family: var(--font-body); font-weight: 400; }
+/* 책장 위 큰 단추들(샘플: 예스24 서재 만들기) — 책표지로/책등으로 보기, 이미지 저장하기 */
+.j-shelfbar { display: grid; gap: 12px; margin: 4px 0 22px; }
+.j-viewBig { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 6px; border-radius: 18px; background: var(--line); }
+.j-viewBig button { font: inherit; font-size: 1rem; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 14px 8px; min-height: 76px; border: 0; border-radius: 13px; background: none; color: var(--muted); cursor: pointer; }
+.j-viewBig button[aria-pressed="true"] { background: var(--surface); color: var(--ink); font-weight: 700; box-shadow: var(--sh-1); }
+.j-shelfbar > .j-etc { margin: 0; text-align: center; }
+.j-saveRow { display: grid; grid-template-columns: auto auto minmax(0, 1fr); gap: 10px; align-items: center; }
+.j-saveRow select { font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; min-height: 56px; }
+.j-saveBig { font: inherit; font-size: 1.08rem; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; border: 0; border-radius: 14px; background: var(--accent); color: #fff; cursor: pointer; box-shadow: var(--sh-1); }
+.j-saveBig:hover { filter: brightness(1.08); }
+@media (max-width: 640px) { .j-saveRow { grid-template-columns: auto minmax(0, 1fr); } .j-saveBig { grid-column: 1 / -1; } }
 .j-save { width: min(560px, calc(100vw - 32px)); max-height: calc(100vh - 32px); box-sizing: border-box; border: 0; border-radius: 20px; padding: 22px 22px 18px; background: var(--surface); color: var(--ink); box-shadow: var(--sh-2); }
 .j-save[open] { display: flex; flex-direction: column; gap: 12px; }
 .j-save::backdrop { background: rgb(27 31 34 / .55); }
