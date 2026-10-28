@@ -42,7 +42,7 @@ html { scroll-behavior: smooth; }
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&display=swap">
-<link rel="stylesheet" href="style.css?v=7b66ebc0">
+<link rel="stylesheet" href="style.css?v=4a3f6887">
 <script>try { if (localStorage.getItem("mychaekmisa-on")) document.documentElement.classList.add("is-member"); } catch (e) {}</script>
 </head>
 <body>
@@ -145,6 +145,13 @@ html { scroll-behavior: smooth; }
         <div class="j-legend"><span style="--c:var(--s-lit)"><i></i>문학산책</span><span style="--c:var(--s-pick)"><i></i>지정독서</span><span style="--c:var(--s-wed)"><i></i>수요독서</span><span style="--c:var(--s-eco)"><i></i>경제독서</span><span style="--c:var(--s-etc)"><i></i>그 밖</span></div></div>
       <div class="j-shelves" id="j-shelves"></div>
       <div class="j-detail" id="j-detail" hidden></div>
+      <dialog class="j-save" id="j-save" aria-labelledby="j-save-h">
+        <div class="j-saveHead"><h2 id="j-save-h">이미지 저장</h2><button type="button" class="j-saveX" id="j-save-x" aria-label="닫기">×</button></div>
+        <p class="j-etc" id="j-save-msg"></p>
+        <div class="j-saveBox" id="j-save-box"><img id="j-save-img" alt=""></div>
+        <button type="button" class="btn" id="j-save-full">화면 전체보기</button>
+        <button type="button" class="btn primary" id="j-save-close">닫기</button>
+      </dialog>
     </section>
 
   </div>
@@ -336,7 +343,7 @@ function draw() {
         const sp = m.sp || [], cv = m.cv || [], n = Math.max(sp.length, cv.length, 1), imgs = view === "cover" ? cv : sp;
         return Array.from({length: n}, (_, k) => book(m, k, n, imgs[k]));
       });
-      return `<div class="j-year"><div class="j-y">${y}<small>${all.length}권</small></div><div class="j-row">${all.join("")}</div></div>`;
+      return `<div class="j-year"><div class="j-y">${y}<small>${all.length}권</small>${y !== "날짜 모름" ? `<button type="button" class="j-saveBtn" data-y="${y}">이미지 저장</button>` : ""}</div><div class="j-row">${all.join("")}</div></div>`;
     }).join("") || `<p class="j-empty">위 달력에 책미사 모임 책을 담으면 여기 해마다 꽂혀요.</p>`;
     $("detail").hidden = true;
   };
@@ -349,6 +356,7 @@ function draw() {
     cardDraw();
   };
   $("shelves").onclick = e => {
+    const sv = e.target.closest(".j-saveBtn"); if (sv) { saveShelf(sv.dataset.y); return; }
     const b = e.target.closest(".j-spine, .j-cover"); if (!b) return;
     document.querySelectorAll("#j-shelves [aria-pressed=true]").forEach(x => x.setAttribute("aria-pressed", "false"));
     b.setAttribute("aria-pressed", "true");
@@ -550,6 +558,68 @@ function draw() {
       } catch (er) { $("card-msg").textContent = "이 화면에서는 저장이 안 돼요. 휴대폰 브라우저(크롬·사파리)로 열어 주세요."; }
     };
     cardDraw();
+  }
+
+  // 해마다 책장 그림 저장: 연도 아래 '이미지 저장' → 그해 책장(지금 보기: 책등·표지)을 그림으로 만들어 내려받고 창에 띄운다
+  // (자동 저장이 안 되는 휴대폰·카카오톡에서는 창의 그림을 길게 눌러 저장하거나 '화면 전체보기' 뒤 캡처)
+  async function shelfPicture(y) {
+    const cover = view === "cover", css = getComputedStyle(document.documentElement);
+    const list = byY[y].slice().sort((a,b) => (a.d||"").localeCompare(b.d||""));
+    const vols = list.flatMap(m => {
+      const sp = m.sp || [], cs = m.cv || [], n = Math.max(sp.length, cs.length, 1), im = cover ? cs : sp;
+      return Array.from({length: n}, (_, k) => ({ t: m.t + (n > 1 ? ` ${k + 1}권` : ""), c: css.getPropertyValue(col(m.m)).trim() || "#6b5a7a", img: im[k] }));
+    });
+    const pics = await Promise.all(vols.map(v => v.img ? loadImg(v.img[0]) : null));
+    try { await document.fonts.load("800 30px 'Nanum Myeongjo'"); } catch (e) {}
+    const H = cover ? 300 : 640, GAP = cover ? 18 : 6, PAD = 40, MAXW = 1500, ROWGAP = cover ? 48 : 36, FOOT = 70;
+    vols.forEach((v, i) => {
+      v.pic = pics[i];
+      if (cover) { v.h = H; v.w = v.pic ? v.img[1] * H : H * .68; }
+      else { v.h = v.pic ? spineH(v.img, H) : H * (.82 + ((v.t.length * 13) % 18) / 100); v.w = v.pic ? v.img[1] * v.h : (38 + (v.t.length * 7) % 14) * H / 380; }
+    });
+    const rows = [[]]; let used = 0;
+    for (const v of vols) { if (used + v.w > MAXW && rows[rows.length - 1].length) { rows.push([]); used = 0; } rows[rows.length - 1].push(v); used += v.w + GAP; }
+    const rowW = rows.map(r => r.reduce((s, v) => s + v.w + GAP, -GAP)), W = Math.ceil(Math.max(...rowW, 600) + PAD * 2);
+    const rowH = H + (cover ? 12 : 0), CH = Math.ceil(PAD + rows.length * rowH + (rows.length - 1) * ROWGAP + FOOT);
+    const cv = document.createElement("canvas"); cv.width = W; cv.height = CH;
+    const ctx = cv.getContext("2d");
+    ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, W, CH);
+    rows.forEach((row, i) => {
+      const base = PAD + i * (rowH + ROWGAP) + H;
+      let x = (W - rowW[i]) / 2;
+      for (const v of row) {
+        if (cover) { ctx.save(); ctx.shadowColor = "rgba(0,0,0,.25)"; ctx.shadowBlur = 10; ctx.shadowOffsetY = 4; }
+        if (v.pic) ctx.drawImage(v.pic, x, base - v.h, v.w, v.h);
+        else { ctx.fillStyle = v.c; rrect(ctx, x, base - v.h, v.w, v.h, cover ? 3 : [3, 3, 0, 0]); ctx.fill(); }
+        if (cover) ctx.restore();
+        if (!v.pic) {
+          ctx.fillStyle = "#fbf8f1";
+          if (cover) { const fs = 26; ctx.font = `800 ${fs}px ${SERIF}`; wrapText(ctx, v.t, v.w - 32).slice(0, 6).forEach((ln, k) => ctx.fillText(ln, x + 16, base - v.h + 24 + fs * (1 + k * 1.35))); }
+          else { const fs = 30 * H / 640; ctx.font = `700 ${fs}px ${SANS}`; vtext(ctx, v.t, x + v.w / 2, base - v.h + 16, v.h - 32, fs); }
+        }
+        x += v.w + GAP;
+      }
+      if (cover) { ctx.save(); ctx.shadowColor = "rgba(0,0,0,.18)"; ctx.shadowBlur = 8; ctx.shadowOffsetY = 4; ctx.fillStyle = "#e9e4db"; ctx.fillRect(PAD / 2, base, W - PAD, 12); ctx.restore(); }
+    });
+    ctx.fillStyle = "#6b7176"; ctx.font = `400 22px ${SANS}`; ctx.textBaseline = "alphabetic";
+    ctx.fillText(`책미사 · ${y}${p.name ? ` · ${p.name} 님의 책장` : ""}`, PAD, CH - 28);
+    ctx.textAlign = "right"; ctx.fillText(`${vols.length}권`, W - PAD, CH - 28); ctx.textAlign = "left";
+    return cv;
+  }
+  async function saveShelf(y) {
+    const dlg = $("save"), pic = $("save-img"), name = `책미사_${y}_책장${view === "cover" ? "_표지" : "_책등"}.png`;
+    pic.removeAttribute("src"); pic.alt = `${y}년 책장`; $("save-msg").textContent = "그림을 만드는 중이에요…";
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
+    const cv = await shelfPicture(y);
+    let url = "";
+    try { url = cv.toDataURL("image/png"); } catch (e) { $("save-msg").textContent = "이 화면에서는 그림을 만들 수 없어요. 휴대폰 브라우저(크롬·사파리)로 열어 주세요."; return; }
+    pic.src = url;
+    $("save-msg").textContent = "만약 이미지가 자동으로 저장되지 않는다면 아래 이미지를 길게 눌러서 직접 저장하거나, '화면 전체보기'를 누른 뒤 화면을 캡처해 주세요.";
+    try { const a = document.createElement("a"); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove(); } catch (e) {}
+  }
+  if ($("save")) {
+    $("save-x").onclick = $("save-close").onclick = () => { const d = $("save"); if (d.close) d.close(); else d.removeAttribute("open"); };
+    $("save-full").onclick = () => { const b = $("save-box"); if (b.requestFullscreen) b.requestFullscreen().catch(() => {}); else if (b.webkitRequestFullscreen) b.webkitRequestFullscreen(); };
   }
 
   // 질문
