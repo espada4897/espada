@@ -1805,7 +1805,7 @@ html:not(.is-member) .my-link, html:not(.is-member) .my-add { display: none; }
 .j-row { display: flex; flex-wrap: wrap; gap: 3px; align-items: flex-end; border-bottom: 4px solid var(--line); padding-bottom: 0; min-width: 0; }
 .j-spine { width: 22px; border-radius: 3px 3px 0 0; background: var(--c); color: var(--spine-fg); writing-mode: vertical-rl; font-size: .68rem; line-height: 22px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; padding: 6px 0; cursor: pointer; border: 0; font-family: var(--font-body); }
 .j-spine:hover, .j-spine[aria-pressed="true"] { transform: translateY(-6px); }
-.j-spine-img { width: auto; height: 150px; padding: 0; background: none; display: flex; writing-mode: horizontal-tb; gap: 1px; border-radius: 2px; }
+.j-spine-img { width: auto; height: 150px; align-self: flex-end; padding: 0; background: none; display: flex; writing-mode: horizontal-tb; gap: 1px; border-radius: 2px; }
 .j-spine-img img { height: 100%; display: block; border-radius: 2px; }
 .j-spine-img[aria-pressed="true"] img { outline: 2px solid var(--c); outline-offset: 1px; }
 /* 연도별 책장 '표지' 보기: 앞표지가 선반에 서 있는 모양(연말 카드 B). 한 줄 높이 132px마다 선반 판 */
@@ -1820,6 +1820,13 @@ html:not(.is-member) .my-link, html:not(.is-member) .my-add { display: none; }
 .j-cover:hover img, .j-cover:hover span, .j-cover[aria-pressed="true"] img, .j-cover[aria-pressed="true"] span { transform: translateY(-5px); }
 .j-cover[aria-pressed="true"] img, .j-cover[aria-pressed="true"] span { outline: 2px solid var(--c); outline-offset: 2px; }
 @media (prefers-reduced-motion: no-preference) { .j-cover img, .j-cover span { transition: transform .15s; } }
+/* 연말 카드: 왼쪽 그림 미리보기, 오른쪽 고르기·저장(휴대폰은 위아래) */
+.j-cardwrap { display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: 24px; align-items: start; }
+.j-cardwrap canvas { width: 100%; height: auto; display: block; border-radius: 10px; box-shadow: var(--sh-1); }
+.j-cardctl { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+.j-cardyear { font-size: .9rem; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+.j-cardyear select { font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; min-height: 40px; }
+@media (max-width: 640px) { .j-cardwrap { grid-template-columns: minmax(0, 1fr); } }
 @media (prefers-reduced-motion: no-preference) { .j-spine { transition: transform .15s; } }
 .j-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: .8rem; color: var(--muted); }
 .j-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; background: var(--c); margin-right: 5px; vertical-align: -1px; }
