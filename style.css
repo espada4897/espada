@@ -1644,6 +1644,9 @@ html:not(.is-member) .my-link, html:not(.is-member) .my-add { display: none; }
 .wc-facts { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .wc-facts li { background: var(--accent-soft); color: var(--accent); border-radius: 999px; padding: 4px 12px; font-size: var(--fs-md); }
 .wc-h2 { font-family: var(--font-display); font-size: var(--step-1); font-weight: 800; }
+.wc-who { display: grid; gap: 12px; }
+.wc-who ul { margin: 0; padding-left: 1.2em; display: grid; gap: 4px; }
+.wc-who p { color: var(--muted); }
 .wc-steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 28px; }
 .wc-steps > li { display: grid; grid-template-columns: 40px 1fr; gap: 14px; scroll-margin-top: 80px; }
 .wc-steps > li > div { min-width: 0; display: grid; gap: 10px; }
@@ -1802,6 +1805,9 @@ html:not(.is-member) .my-link, html:not(.is-member) .my-add { display: none; }
 .j-row { display: flex; flex-wrap: wrap; gap: 3px; align-items: flex-end; border-bottom: 4px solid var(--line); padding-bottom: 0; min-width: 0; }
 .j-spine { width: 22px; border-radius: 3px 3px 0 0; background: var(--c); color: var(--spine-fg); writing-mode: vertical-rl; font-size: .68rem; line-height: 22px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; padding: 6px 0; cursor: pointer; border: 0; font-family: var(--font-body); }
 .j-spine:hover, .j-spine[aria-pressed="true"] { transform: translateY(-6px); }
+.j-spine-img { width: auto; height: 150px; padding: 0; background: none; display: flex; writing-mode: horizontal-tb; gap: 1px; border-radius: 2px; }
+.j-spine-img img { height: 100%; display: block; border-radius: 2px; }
+.j-spine-img[aria-pressed="true"] img { outline: 2px solid var(--c); outline-offset: 1px; }
 @media (prefers-reduced-motion: no-preference) { .j-spine { transition: transform .15s; } }
 .j-legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: .8rem; color: var(--muted); }
 .j-legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; background: var(--c); margin-right: 5px; vertical-align: -1px; }
