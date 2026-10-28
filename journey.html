@@ -42,7 +42,7 @@ html { scroll-behavior: smooth; }
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&display=swap">
-<link rel="stylesheet" href="style.css?v=32010fd0">
+<link rel="stylesheet" href="style.css?v=5cb65c1e">
 <script>try { if (localStorage.getItem("mychaekmisa-on")) document.documentElement.classList.add("is-member"); } catch (e) {}</script>
 </head>
 <body>
@@ -64,7 +64,7 @@ html { scroll-behavior: smooth; }
   </div>
 <nav class="subnav" aria-label="기록"><div class="wrap"><a href="log.html">모임 일정</a><a href="cert.html">독서 인증</a><a href="journey.html" aria-current="page">나의 독서 여정</a><a href="past.html">과거의 오늘</a><a href="numbers.html">숫자로 보는 책미사</a><a href="story.html">책미사 이야기</a></div></nav>
 </header>
-<div class="nextbar" hidden><div class="wrap"><a class="nb-item" href="join.html?pick=2026-10-28#pick" data-at="2026-10-28T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">10/28(수) 21:00 · 수요독서 《리스크테이커 #2》</span><span class="nb-go">신청하기 →</span></a><a class="nb-item" href="join.html?pick=2026-10-31#pick" data-at="2026-10-31T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">10/31(토) 21:00 · 경제독서 《경제학자는 결코 손해 보지 않는다》</span><span class="nb-go">신청하기 →</span></a><a class="nb-item" href="join.html?pick=2026-11-07#pick" data-at="2026-11-07T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">11/7(토) 21:00 · 지정독서 《가호》</span><span class="nb-go">신청하기 →</span></a><a class="nb-item" href="join.html?pick=2026-11-14#pick" data-at="2026-11-14T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">11/14(토) 21:00 · 지정독서 《다시, 책으로》</span><span class="nb-go">신청하기 →</span></a><a class="nb-item" href="join.html?pick=2026-11-21#pick" data-at="2026-11-21T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">11/21(토) 21:00 · 문학산책 《빨강의 자서전》</span><span class="nb-go">신청하기 →</span></a><a class="nb-item" href="join.html?pick=2026-11-28#pick" data-at="2026-11-28T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">11/28(토) 21:00 · 지정독서 《남에게 보여주려고 인생을 낭비하지 마라》</span><span class="nb-go">신청하기 →</span></a></div></div>
+<div class="nextbar" hidden><div class="wrap"><a class="nb-item" href="join.html?pick=2026-10-31#pick" data-at="2026-10-31T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">10/31(토) 21:00 · 경제독서 《경제학자는 결코 손해 보지 않는다》</span><span class="nb-go">신청하기 →</span></a><a class="nb-item" href="join.html?pick=2026-11-07#pick" data-at="2026-11-07T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">11/7(토) 21:00 · 지정독서 《가호》</span><span class="nb-go">신청하기 →</span></a><a class="nb-item" href="join.html?pick=2026-11-14#pick" data-at="2026-11-14T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">11/14(토) 21:00 · 지정독서 《다시, 책으로》</span><span class="nb-go">신청하기 →</span></a><a class="nb-item" href="join.html?pick=2026-11-21#pick" data-at="2026-11-21T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">11/21(토) 21:00 · 문학산책 《빨강의 자서전》</span><span class="nb-go">신청하기 →</span></a><a class="nb-item" href="join.html?pick=2026-11-28#pick" data-at="2026-11-28T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">11/28(토) 21:00 · 지정독서 《남에게 보여주려고 인생을 낭비하지 마라》</span><span class="nb-go">신청하기 →</span></a></div></div>
 
 <main>
   <section class="page" id="my">
@@ -159,6 +159,7 @@ html { scroll-behavior: smooth; }
         <div class="j-saveBox" id="j-save-box"><img id="j-save-img" alt=""></div>
         <button type="button" class="btn" id="j-save-full">화면 전체보기</button>
         <button type="button" class="btn primary" id="j-save-close">닫기</button>
+        <div class="j-full" id="j-full" hidden><img id="j-full-img" alt=""><p>캡처한 뒤 '닫기'나 화면을 누르면 돌아갑니다</p><button type="button" class="j-fullX" id="j-full-x">× 닫기</button></div>
       </dialog>
     </section>
 
@@ -620,6 +621,7 @@ function draw() {
     const dlg = $("save"), pic = $("save-img"), name = `책미사_${y}_책장${view === "cover" ? "_표지" : "_책등"}.png`;
     pic.removeAttribute("src"); pic.alt = `${y}년 책장`; $("save-msg").textContent = "그림을 만드는 중이에요…";
     if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
+    try { history.pushState({ jl: "save" }, ""); } catch (e) {}  // 휴대폰 '뒤로 가기'로 닫히게
     const cv = await shelfPicture(y);
     let url = "";
     try { url = cv.toDataURL("image/png"); } catch (e) { $("save-msg").textContent = "이 화면에서는 그림을 만들 수 없어요. 휴대폰 브라우저(크롬·사파리)로 열어 주세요."; return; }
@@ -628,9 +630,24 @@ function draw() {
     try { const a = document.createElement("a"); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove(); } catch (e) {}
   }
   if ($("save")) {
+    // 화면 전체보기는 브라우저 전체 화면 대신 페이지 안의 검은 판(휴대폰에서 빠져나올 길이 없던 문제, 10/29)
+    // 닫기: 오른쪽 위 '× 닫기' · 화면 아무 곳 · 휴대폰 뒤로 가기. 창과 판은 열 때 history에 한 칸씩 쌓고 닫을 때 되돌린다
+    const shut = () => { $("full").hidden = true; const d = $("save"); if (d.open) { if (d.close) d.close(); else d.removeAttribute("open"); } };
+    const st = () => (history.state && history.state.jl) || "";
+    const back = layer => { if (st() === layer) history.back(); else if (layer === "full") $("full").hidden = true; else shut(); };
+    window.addEventListener("popstate", () => {  // 되돌아간 칸에 맞춰 판·창을 닫는다
+      if (st() !== "full") $("full").hidden = true;
+      if (st() !== "full" && st() !== "save" && $("save").open) shut();
+    });
     $("save-go").onclick = () => { if ($("save-y").value) saveShelf($("save-y").value); };
-    $("save-x").onclick = $("save-close").onclick = () => { const d = $("save"); if (d.close) d.close(); else d.removeAttribute("open"); };
-    $("save-full").onclick = () => { const b = $("save-box"); if (b.requestFullscreen) b.requestFullscreen().catch(() => {}); else if (b.webkitRequestFullscreen) b.webkitRequestFullscreen(); };
+    $("save-x").onclick = $("save-close").onclick = () => back("save");
+    $("save").addEventListener("cancel", e => { e.preventDefault(); back($("full").hidden ? "save" : "full"); });
+    $("save-full").onclick = () => {
+      if (!$("save-img").src) return;
+      $("full-img").src = $("save-img").src; $("full").hidden = false;
+      try { history.pushState({ jl: "full" }, ""); } catch (e) {}
+    };
+    $("full").onclick = () => back("full");
   }
 
   // 질문
