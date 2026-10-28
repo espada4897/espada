@@ -42,7 +42,7 @@ html { scroll-behavior: smooth; }
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&display=swap">
-<link rel="stylesheet" href="style.css?v=702bc93c">
+<link rel="stylesheet" href="style.css?v=70d8c9e4">
 <script>try { if (localStorage.getItem("mychaekmisa-on")) document.documentElement.classList.add("is-member"); } catch (e) {}</script>
 </head>
 <body>
@@ -119,8 +119,8 @@ html { scroll-behavior: smooth; }
           <div class="my-nav"><button type="button" id="my-prev" aria-label="이전 달">‹</button><button type="button" id="my-next" aria-label="다음 달">›</button></div>
         </div>
         <p class="my-sum" id="my-sum"></p>
-        <button type="button" class="my-addbig" id="my-addbig"><span aria-hidden="true">＋</span> 오늘 다 읽은 책 담기</button>
-        <p class="my-addhint">다른 날 읽은 책은 아래 달력에서 <b>그 날짜를 눌러</b> 담아요. 책미사 모임 날은 누르면 그날 책이 바로 보여요.</p>
+        <button type="button" class="my-addbig" id="my-addbig"><span aria-hidden="true">＋</span> 다 읽은 책 담기</button>
+        <p class="my-addhint">누르면 오늘 날짜로 열리고, 창 위에서 <b>다 읽은 날</b>을 바꿀 수 있어요. 아래 달력의 날짜를 눌러도 돼요.</p>
         <div class="my-cal" id="my-cal"></div>
         <section class="my-shelf"><h3 id="my-shelf-h"></h3><ul id="my-shelf"></ul></section>
         <button type="button" class="btn primary my-make" id="my-make">이달 달력 이미지로 만들기</button>
@@ -783,7 +783,8 @@ function openDay(key, want) {
   const es = entries.filter(e => e.date === key), ms = (meets[key] || []).slice();
   const w = want && byTitle[want];
   if (w && !ms.includes(w)) ms.unshift(w);
-  let h = `<div class="my-sheet-head"><h3>${m}월 ${d}일</h3><button type="button" class="my-x" data-close aria-label="닫기">×</button></div>`;
+  let h = `<div class="my-sheet-head"><h3>${m}월 ${d}일</h3><button type="button" class="my-x" data-close aria-label="닫기">×</button></div>`
+    + `<label class="my-when">다 읽은 날 <input type="date" id="my-when" value="${key}" max="${TODAY}"></label>`;  // 큰 단추로 열어도 여기서 날짜를 바꾼다(10/29)
   ms.forEach(b => {
     const has = es.some(e => e.t === b.t), future = key > TODAY, isMeet = b.d.includes(key);
     h += `<div class="my-card" style="--c:var(${SC[b.s] || "--accent"})"><small>${isMeet ? `이날 책미사 · ${esc(b.s || "모임")}` : "책미사에서 함께 읽은 책"}</small><p><b>《${esc(b.t)}》</b> ${esc(b.a)}</p>`
@@ -802,6 +803,7 @@ function openDay(key, want) {
     + `<ul class="my-found" id="my-found"></ul><p class="my-msg" id="my-own-msg">표지를 고르거나 찍지 않으면 책등 색으로 담깁니다.</p><button type="button" class="btn primary small" id="my-own-add">담기</button></div>`;
   $("#my-sheet-body").innerHTML = h;
   $("#my-sheet-body").dataset.day = key;
+  $("#my-when").addEventListener("change", e => { if (/^\d{4}-\d\d-\d\d$/.test(e.target.value)) openDay(e.target.value); });
   const list = q => {
     const k = q.replace(/\s/g, "");
     const r = BOOKS.filter(b => k ? (b.t + b.a).replace(/\s/g, "").includes(k) : b.d.some(d => d <= TODAY)).slice(0, k ? 30 : 10);  // 찾기 전에는 지난 모임 책만
@@ -842,10 +844,13 @@ function openDay(key, want) {
   });
   if (!$("#my-sheet").open) $("#my-sheet").showModal();
 }
-function done() { save(); render(); openDay($("#my-sheet-body").dataset.day); }
+function done() {  // 다른 달 날짜로 담았으면 달력도 그 달로(창에서 날짜를 바꿔 담은 경우)
+  const k = $("#my-sheet-body").dataset.day; cur = new Date(+k.slice(0, 4), +k.slice(5, 7) - 1, 1);
+  save(); render(); openDay(k);
+}
 
 document.addEventListener("click", e => {
-  if (e.target.closest("#my-addbig")) return openDay(TODAY);  // 날짜를 누를 생각을 잘 못 해서(10/29) 큰 단추로 오늘 창을 연다
+  if (e.target.closest("#my-addbig")) return openDay(TODAY);  // 날짜를 누를 생각을 잘 못 해서(10/29) 큰 단추로 오늘 창을 연다(창에서 날짜를 바꿈)
   const day = e.target.closest(".my-day[data-day]"); if (day) return openDay(day.dataset.day);  // 달력 칸만(열린 창에도 data-day가 있다)
   const add = e.target.closest("[data-add]");
   if (add) { const key = $("#my-sheet-body").dataset.day; if (!entries.some(x => x.date === key && x.t === add.dataset.add)) entries.push({ date: key, t: add.dataset.add }); return done(); }
