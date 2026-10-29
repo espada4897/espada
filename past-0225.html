@@ -127,6 +127,13 @@ addEventListener("load", () => {
                   ['a[href*="#pick"]', "신청 칸으로"], ['a[href^="https://open.kakao.com"]', "오픈카톡"]];
   document.addEventListener("click", ev => {
     if (!window.goatcounter || !window.goatcounter.count) return;
+    // 후기 PDF는 어느 책의 PDF인지로 센다(책 창·함께 읽은 책 어디서 눌러도 같은 책이면 한 줄)
+    const pdf = ev.target.closest('a[href*="pdf/book-"]');
+    if (pdf) {
+      const book = pdf.getAttribute("href").split("/").pop().split(".")[0];
+      window.goatcounter.count({ path: "클릭/후기 PDF/" + book, title: "후기 PDF " + (document.title.split(" · ")[0] || book), event: true });
+      return;
+    }
     for (const [sel, name] of CLICKS) {
       if (ev.target.closest(sel)) {
         const page = location.pathname.split("/").pop().replace(".html", "") || "index";
