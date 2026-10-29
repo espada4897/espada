@@ -828,6 +828,31 @@ a.nb-book:hover { transform: translateY(-4px); }
 .ql-talk small { color: var(--muted); font-size: var(--fs-xs); white-space: nowrap; }
 .ql-who { font-size: var(--fs-xs); padding: 0 8px; border-radius: 999px; border: 1px solid var(--line); }
 .ql-more { padding: 0 0 22px; }
+/* 질문의 서재 책 표지 선반: 책 하나에 한 칸, 누르면 그 책 질문만 */
+.qb { margin-top: 8px; }
+.qb-lab { font-family: var(--font-display); font-weight: 800; font-size: var(--step-1); display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+.qb-lab small { font-family: var(--font-body); font-weight: 400; font-size: var(--fs-sm); color: var(--muted); }
+.qb-grid { list-style: none; margin: 14px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 20px 16px; }
+.qb-grid > li { min-width: 0; }
+.qb-card { width: 100%; min-width: 0; display: grid; gap: 6px; padding: 0; border: 0; background: none; text-align: left; font: inherit; color: var(--ink); cursor: pointer; }
+.qb-card img, .qb-art { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--r-sm); box-shadow: var(--sh-1); transition: transform .2s ease, box-shadow .2s ease; }
+.qb-art { display: grid; place-items: center; padding: 14px; background: var(--c, var(--accent)); color: var(--spine-fg); text-align: center; }
+.qb-art b { font-family: var(--font-display); font-weight: 800; font-size: var(--fs-md); line-height: 1.4; word-break: keep-all; }
+.qb-card:hover img, .qb-card:hover .qb-art, .qb-card:focus-visible img { transform: translateY(-3px); box-shadow: var(--sh-2); }
+.qb-t { font-weight: 700; font-size: var(--fs-md); line-height: 1.4; text-wrap: balance; }
+.qb-n { font-size: var(--fs-xs); font-weight: 700; color: var(--accent); }
+.qb-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; padding: 4px 0 6px; }
+.qb-head p { font-family: var(--font-display); font-size: var(--step-1); }
+.qb-head .qb-cnt { font-family: var(--font-body); font-size: var(--fs-sm); color: var(--muted); }
+.qb.picked .qb-lab, .qb.picked .qb-grid, .qb.finding { display: none; }
+.ql-list.shelved:not(.on) { display: none; }
+@media (max-width: 560px) {
+  .qb-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 10px; }
+  .qb-t, .qb-art b { font-size: var(--fs-xs); }
+  .qb-art { padding: 8px; }
+}
+.qb-head[hidden], .ql-empty[hidden] { display: none; }
+
 .ql-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); overflow: hidden; }
 .ql-sec { padding: 18px 22px; display: grid; gap: 10px; }
 .ql-sec + .ql-sec { border-top: 1px solid var(--line); }
