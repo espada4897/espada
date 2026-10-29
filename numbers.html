@@ -36,7 +36,7 @@ html { scroll-behavior: smooth; }
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&display=swap">
-<link rel="stylesheet" href="style.css?v=70d8c9e4">
+<link rel="stylesheet" href="style.css?v=8984a9cd">
 <script>try { if (localStorage.getItem("mychaekmisa-on")) document.documentElement.classList.add("is-member"); } catch (e) {}</script>
 </head>
 <body>
@@ -241,6 +241,11 @@ html { scroll-behavior: smooth; }
 })();
 </script>
 <script>
+// 책 페이지 #pdf·#review로 들어오면, 위쪽 그림이 늦게 뜨며 밀린 자리를 다 뜬 뒤 다시 맞춘다(인스타에서 PDF 칸으로 바로 오는 주소)
+addEventListener("load", () => {
+  const t = /^#(pdf|review)$/.test(location.hash) && document.getElementById(location.hash.slice(1));
+  if (t) t.scrollIntoView({ block: "start" });
+});
 (() => {
   // 아래 신청 띠는 띠가 있는 페이지에서만. 띠가 없는 페이지(과거의 오늘·책·행사 등)도 아래 공유·통계·슬라이드는 돌아야 한다
   // (예전에는 여기서 return 해서 그 페이지들의 '톡방에 공유'가 먹통이었다, 10/23)
