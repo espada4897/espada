@@ -929,6 +929,20 @@ a.nb-book:hover { transform: translateY(-4px); }
 .qg-dialog .bd-content { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
 .qg-big { background: var(--c); color: var(--spine-fg); display: flex; align-items: center; padding: 40px 32px; min-height: 320px; }
 .qg-big p { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: clamp(1.1rem, 1rem + .8vw, 1.5rem); line-height: 1.6; }
+/* 배경 사진(data/책속의 한줄 배경): 밝은 사진엔 짙은 글씨, 어두운 사진엔 밝은 글씨. 모임 색은 왼쪽 아래 짧은 선에만 */
+.qg-txt[data-tone], .qg-big[data-tone] { position: relative; isolation: isolate; background: var(--c) var(--bgimg) center / cover no-repeat; }
+.qg-txt[data-tone]::before, .qg-big[data-tone]::before { content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit; }
+.qg-txt[data-tone]::after, .qg-big[data-tone]::after { content: ""; position: absolute; left: 14%; bottom: 11%; width: 22px; height: 2px; background: var(--c); }
+.qg-big[data-tone]::after { left: clamp(28px, 5vw, 48px); bottom: 30px; width: 34px; }
+.qg-txt[data-tone="light"], .qg-big[data-tone="light"] { color: #2a2420; }
+.qg-txt[data-tone="light"]::before, .qg-big[data-tone="light"]::before { background: rgb(248 243 233 / .38); }
+.qg-txt[data-tone="dark"], .qg-big[data-tone="dark"] { color: #f2eadc; }
+.qg-txt[data-tone="dark"]::before, .qg-big[data-tone="dark"]::before { background: rgb(14 11 8 / .38); }
+.qg-txt[data-tone] span { font-weight: 400; }
+.qg-txt[data-tone="dark"] span, .qg-big[data-tone="dark"] p { text-shadow: 0 1px 14px rgb(0 0 0 / .45); }
+.qg-big[data-tone] { padding: 48px clamp(28px, 5vw, 48px) 64px; }
+.qg-big[data-tone] p { font-weight: 400; line-height: 1.9; letter-spacing: -.005em; max-width: 24em; }
+@media (max-width: 640px) { .qg-txt[data-tone]::after { display: none; } }  /* 휴대폰 작은 카드에선 선이 글 끝줄에 붙는다 */
 .qg-quote { margin: 0 0 8px; font-family: var(--font-display); font-size: var(--fs-md); line-height: 1.8; white-space: pre-line; }
 .qg-dialog h2 { margin: 0; font-size: var(--fs-md); }
 .qg-meta { margin: 0; color: var(--muted); font-size: var(--fs-sm); }
