@@ -2055,3 +2055,12 @@ html:not(.is-member) .my-link, html:not(.is-member) .my-add { display: none; }
 .j-invite { font-size: .8rem; line-height: 1.5; color: var(--ink); }
 .j-invite em { font-style: normal; color: var(--accent); font-weight: 500; }
 footer { color: var(--muted); font-size: .82rem; border-top: 1px solid var(--line); padding-top: 16px; }
+
+/* 책 페이지 '모임 전 한 장'(data/모임 전 한 장/) — 책 정보 바로 아래, 그림 + 질문 */
+.bd-pre { grid-column: 1 / -1; padding: 20px 28px; border-top: 1px solid var(--line); display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 20px; align-items: start; }
+.bd-pre img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 4px; box-shadow: 0 1px 2px rgb(27 31 34 / .12), 0 6px 16px rgb(27 31 34 / .12); }
+.bd-pre-body { min-width: 0; display: grid; gap: 6px; align-content: start; justify-items: start; }
+.bd-pre h3 { margin: 0; font-size: var(--fs-sm); letter-spacing: .08em; color: var(--accent); }
+.bd-pre-q { margin: 0; font: 700 1.15rem/1.5 var(--font-display); }
+.bd-pre-note { margin: 0; color: var(--muted); font-size: var(--fs-sm); }
+@media (max-width: 680px) { .bd-pre { grid-template-columns: 110px minmax(0, 1fr); padding: 16px 20px; gap: 14px; } }
