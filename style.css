@@ -2064,3 +2064,10 @@ footer { color: var(--muted); font-size: .82rem; border-top: 1px solid var(--lin
 .bd-pre-q { margin: 0; font: 700 1.15rem/1.5 var(--font-display); }
 .bd-pre-note { margin: 0; color: var(--muted); font-size: var(--fs-sm); }
 @media (max-width: 680px) { .bd-pre { grid-template-columns: 110px minmax(0, 1fr); padding: 16px 20px; gap: 14px; } }
+
+/* 후기 칸 '후기를 읽고 남겨 주신 글'(후기 txt의 '댓글:' 줄) — 이름 없이 */
+.rv-replies { display: grid; gap: 10px; }
+.rv-replies .qlabel { margin: 0; }
+.rv-replies blockquote { margin: 0; padding: 14px 18px; background: var(--surface); border-radius: var(--r-card); border: 1px solid var(--line); display: grid; gap: 6px; max-width: 46em; }
+.rv-replies blockquote p { margin: 0; line-height: 1.8; }
+.rv-replies cite { font-style: normal; font-size: var(--fs-sm); color: var(--muted); }
