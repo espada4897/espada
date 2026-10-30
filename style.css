@@ -802,7 +802,7 @@ a.nb-book:hover { transform: translateY(-4px); }
 .qlist span { color: var(--line); }
 .qlist.also a { color: var(--muted); }
 /* 질문 칸 맨 아래 '이 질문으로 나눈 모임 후기': 블로그 후기가 모이면 PDF 한 권(scripts/bundle_pdf.py) */
-.qbundle { grid-column: 1 / -1; margin-top: 18px; display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 18px; padding: 16px; border-radius: var(--r-card); background: var(--surface); border: 1px solid var(--line); }
+.qbundle { grid-column: 1 / -1; margin-top: 18px; display: grid; grid-template-columns: 140px minmax(0, 1fr); gap: 20px; padding: 16px; border-radius: var(--r-card); background: var(--surface); border: 1px solid var(--line); }
 .qbundle.soon { grid-template-columns: minmax(0, 1fr); border-style: dashed; background: transparent; }
 .qb-cov { width: 100%; aspect-ratio: 148 / 210; object-fit: cover; background: #f4efe5; color: var(--ink); border-radius: 2px; padding: 10px; display: flex; flex-direction: column; gap: 4px; box-shadow: 0 1px 2px rgb(27 31 34 / .12), 0 6px 16px rgb(27 31 34 / .12); }
 img.qb-cov { padding: 0; }
