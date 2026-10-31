@@ -64,7 +64,7 @@ html { scroll-behavior: smooth; }
   </div>
 <nav class="subnav" aria-label="기록"><div class="wrap"><a href="log.html">모임 일정</a><a href="cert.html">독서 인증</a><a href="journey.html" aria-current="page">나의 독서 여정</a><a href="past.html">과거의 오늘</a><a href="numbers.html">숫자로 보는 책미사</a><a href="story.html">책미사 이야기</a></div></nav>
 </header>
-<div class="nextbar" hidden><div class="wrap"><a class="nb-item" href="join.html?pick=2026-10-31#pick" data-at="2026-10-31T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">10/31(토) 21:00 · 경제독서 《경제학자는 결코 손해 보지 않는다》</span><span class="nb-go">신청하기 →</span></a><a class="nb-item" href="join.html?pick=2026-11-07#pick" data-at="2026-11-07T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">11/7(토) 21:00 · 지정독서 《가호》</span><span class="nb-go">신청하기 →</span></a><a class="nb-item" href="join.html?pick=2026-11-14#pick" data-at="2026-11-14T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">11/14(토) 21:00 · 지정독서 《다시, 책으로》</span><span class="nb-go">신청하기 →</span></a><a class="nb-item" href="join.html?pick=2026-11-21#pick" data-at="2026-11-21T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">11/21(토) 21:00 · 문학산책 《빨강의 자서전》</span><span class="nb-go">신청하기 →</span></a><a class="nb-item" href="join.html?pick=2026-11-28#pick" data-at="2026-11-28T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">11/28(토) 21:00 · 지정독서 《남에게 보여주려고 인생을 낭비하지 마라》</span><span class="nb-go">신청하기 →</span></a></div></div>
+<div class="nextbar" hidden><div class="wrap"><a class="nb-item" href="join.html?pick=2026-11-07#pick" data-at="2026-11-07T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">11/7(토) 21:00 · 지정독서 《가호》</span><span class="nb-go">신청하기 →</span></a><a class="nb-item" href="join.html?pick=2026-11-14#pick" data-at="2026-11-14T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">11/14(토) 21:00 · 지정독서 《다시, 책으로》</span><span class="nb-go">신청하기 →</span></a><a class="nb-item" href="join.html?pick=2026-11-21#pick" data-at="2026-11-21T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">11/21(토) 21:00 · 문학산책 《빨강의 자서전》</span><span class="nb-go">신청하기 →</span></a><a class="nb-item" href="join.html?pick=2026-11-28#pick" data-at="2026-11-28T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">11/28(토) 21:00 · 지정독서 《남에게 보여주려고 인생을 낭비하지 마라》</span><span class="nb-go">신청하기 →</span></a></div></div>
 
 <main>
   <section class="page" id="my">
@@ -121,6 +121,7 @@ html { scroll-behavior: smooth; }
         <p class="my-sum" id="my-sum"></p>
         <button type="button" class="my-addbig" id="my-addbig"><span aria-hidden="true">＋</span> 다 읽은 책 담기</button>
         <p class="my-addhint">누르면 오늘 날짜로 열리고, 창 위에서 <b>다 읽은 날</b>을 바꿀 수 있어요. 아래 달력의 날짜를 눌러도 돼요.</p>
+        <p class="my-msg" id="my-save-warn" role="alert" hidden><b>방금 담은 책이 저장되지 않았습니다.</b> 시크릿 창이거나 저장 공간이 부족할 수 있어요. 크롬·사파리 일반 창에서 다시 담아 주세요.</p>
         <div class="my-cal" id="my-cal"></div>
         <section class="my-shelf"><h3 id="my-shelf-h"></h3><ul id="my-shelf"></ul></section>
         <button type="button" class="btn primary my-make" id="my-make">이달 달력 이미지로 만들기</button>
@@ -714,7 +715,19 @@ BOOKS.forEach(b => b.d.forEach(d => (meets[d] = meets[d] || []).push(b)));
 let entries;
 try { entries = JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) { entries = []; }
 if (!Array.isArray(entries)) entries = [];
-const save = () => { try { localStorage.setItem(KEY, JSON.stringify(entries)); document.dispatchEvent(new Event("my-changed")); return true; } catch (e) { return false; } };
+const save = () => {
+  let ok = false;
+  try {
+    const text = JSON.stringify(entries);
+    localStorage.setItem(KEY, text);
+    ok = localStorage.getItem(KEY) === text;
+    if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {});  // 브라우저가 공간 정리할 때 지우지 않게 부탁한다
+  } catch (e) {}
+  const warn = document.getElementById("my-save-warn");  // 저장이 안 됐는데 화면에는 담긴 것처럼 보이던 것(11/1)
+  if (warn) warn.hidden = ok;
+  if (ok) document.dispatchEvent(new Event("my-changed"));
+  return ok;
+};
 const $ = s => document.querySelector(s);
 // 회원 링크로 한 번 들어온 휴대폰: 홈페이지 어디서나 머리 아이콘·책 창 '내 달력에 담기'가 보인다(layout의 is-member)
 const store = (k, v) => { try { v === undefined ? localStorage.removeItem(k) : localStorage.setItem(k, v); } catch (e) {} };
@@ -753,6 +766,10 @@ const cover = e => imgOf(e) ? `<img src="${esc(imgOf(e))}" alt="" loading="lazy"
 const short = t => t.replace(/\s*[#\d·,]+$/, "").slice(0, 6);
 const now = new Date();
 let cur = new Date(now.getFullYear(), now.getMonth(), 1);
+{  // 이번 달에 담은 책이 없으면 책을 담은 가장 최근 달로 연다(달이 바뀌면 지난달 기록이 사라진 것처럼 보였다, 11/1)
+  const pre = TODAY.slice(0, 7), past = entries.map(e => e.date).filter(d => d <= TODAY).sort();
+  if (past.length && !past.some(d => d.startsWith(pre))) { const d = past[past.length - 1]; cur = new Date(+d.slice(0, 4), +d.slice(5, 7) - 1, 1); }
+}
 
 function render() {
   const y = cur.getFullYear(), m = cur.getMonth(), pre = `${y}-${String(m + 1).padStart(2, "0")}`;
