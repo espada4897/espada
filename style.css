@@ -1715,9 +1715,9 @@ html:not(.is-member) .my-link, html:not(.is-member) .my-add { display: none; }
 .my-del { border: 0; background: none; color: var(--muted); font-size: var(--fs-sm); text-decoration: underline; cursor: pointer; }
 .my-res { display: grid; gap: 2px; max-height: 34vh; overflow-y: auto; }
 .my-res-done { color: var(--muted); font-size: var(--fs-sm); white-space: nowrap; }
-.my-res .btn { min-height: 0; padding: 5px 12px; font-size: var(--fs-sm); }
 .my-res button { width: 100%; display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; gap: 10px; align-items: center; text-align: left; padding: 6px; border: 0; border-radius: var(--r-sm); background: none; color: var(--ink); font: inherit; font-size: var(--fs-md); cursor: pointer; }
 .my-res button:hover { background: var(--accent-soft); }
+.my-res button.on { background: var(--accent-soft); box-shadow: inset 0 0 0 2px var(--accent); }
 .my-res .my-spine, .my-list .my-spine { font-size: 5px; padding: 2px; }
 .my-tabs { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--line); }
 .my-tabs button { min-height: 44px; margin-bottom: -1px; border: 0; border-bottom: 3px solid transparent; background: none; color: var(--muted); font: inherit; font-size: var(--fs-md); cursor: pointer; }

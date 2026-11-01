@@ -42,7 +42,7 @@ html { scroll-behavior: smooth; }
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&display=swap">
-<link rel="stylesheet" href="style.css?v=c3290756">
+<link rel="stylesheet" href="style.css?v=51126306">
 <script>try { if (localStorage.getItem("mychaekmisa-on")) document.documentElement.classList.add("is-member"); } catch (e) {}</script>
 </head>
 <body>
@@ -813,7 +813,8 @@ function openDay(key, want) {
       + (has ? `<p>내 달력에 담겨 있습니다 ✓</p>` : future ? `<p>예정된 모임입니다. 다녀와서 담아 주세요.</p>`
         : `<button type="button" class="btn primary small" data-add="${esc(b.t)}">${isMeet ? "모임에서 함께 읽었어요 · 담기" : "이날 다 읽었어요 · 담기"}</button>`) + `</div>`;
   });
-  h += `<input type="search" class="book-search" id="my-q" placeholder="책미사에서 함께 읽은 책 찾기" aria-label="책 찾기"><ul class="my-res" id="my-res"></ul></div>`
+  h += `<div class="my-own-row"><input type="search" class="book-search" id="my-q" placeholder="함께 읽은 책 찾기" aria-label="책 찾기"><button type="button" class="btn primary small" id="my-club-add">담기</button></div>`  // 담기는 하나만: 목록에서 고르고 누른다(11/1)
+    + `<p class="my-msg" id="my-club-msg" aria-live="polite" hidden></p><ul class="my-res" id="my-res"></ul></div>`
     + `<div class="my-panel my-own" id="my-tab-own" role="tabpanel"${sheetTab === "own" ? "" : " hidden"}>`
     + `<div class="my-own-row"><input class="book-search" id="my-own-t" placeholder="책 이름" aria-label="책 이름"><button type="button" class="btn primary small" id="my-own-add">담기</button></div>`  // 담기는 책 이름 바로 옆: 화면을 내리지 않아도 보이게(11/1)
     + `<div class="my-own-row"><button type="button" class="btn ghost small" id="my-find">표지 찾기</button><label class="btn ghost small my-file">표지 찍기<input type="file" id="my-own-p" accept="image/*" capture="environment"></label></div>`
@@ -833,14 +834,26 @@ function openDay(key, want) {
     document.querySelectorAll("#my-tabs [data-tab]").forEach(x => x.setAttribute("aria-selected", x === t));
     $("#my-tab-club").hidden = sheetTab !== "club"; $("#my-tab-own").hidden = sheetTab !== "own";
   });
+  let picked = "";
   const list = q => {
     const k = q.replace(/\s/g, "");
     const r = BOOKS.filter(b => k ? (b.t + b.a).replace(/\s/g, "").includes(k) : b.d.some(d => d <= TODAY)).slice(0, k ? 30 : 10);  // 찾기 전에는 지난 모임 책만
-    $("#my-res").innerHTML = r.map(b => `<li><button type="button" data-add="${esc(b.t)}"><span class="my-cv">${cover({ t: b.t })}</span><span>${esc(b.t)}<small>${esc([b.a, b.s, b.d[0] && b.d[0].slice(0, 7).replace("-", ".")].filter(Boolean).join(" · "))}</small></span>${es.some(e => e.t === b.t) ? `<span class="my-res-done">담김 ✓</span>` : `<span class="btn primary small">담기</span>`}</button></li>`).join("")
+    picked = k && r.length === 1 ? r[0].t : r.some(b => b.t === picked) ? picked : "";  // 찾아서 한 권만 남으면 바로 골라 둔다
+    $("#my-res").innerHTML = r.map(b => `<li><button type="button" data-sel="${esc(b.t)}"${b.t === picked ? ' class="on"' : ""}><span class="my-cv">${cover({ t: b.t })}</span><span>${esc(b.t)}<small>${esc([b.a, b.s, b.d[0] && b.d[0].slice(0, 7).replace("-", ".")].filter(Boolean).join(" · "))}</small></span>${es.some(e => e.t === b.t) ? `<span class="my-res-done">담김 ✓</span>` : ""}</button></li>`).join("")
       || `<li class="my-empty">찾는 책이 없습니다. 위 '밖에서 읽은 책' 탭에서 담아 주세요.</li>`;
   };
   list("");
   $("#my-q").addEventListener("input", e => list(e.target.value));
+  $("#my-res").addEventListener("click", e => {
+    const b = e.target.closest("[data-sel]"); if (!b) return;
+    picked = b.dataset.sel; $("#my-club-msg").hidden = true;
+    document.querySelectorAll("#my-res [data-sel]").forEach(x => x.classList.toggle("on", x === b));
+  });
+  $("#my-club-add").addEventListener("click", () => {
+    if (!picked) { $("#my-club-msg").textContent = "아래 목록에서 책을 고른 뒤 담기를 눌러 주세요."; $("#my-club-msg").hidden = false; return; }
+    if (!entries.some(x => x.date === key && x.t === picked)) entries.push({ date: key, t: picked });
+    done();
+  });
   let photo = "";
   const shrink = src => new Promise(res => { const im = new Image(); im.crossOrigin = "anonymous"; im.onload = () => {
     try { const c = document.createElement("canvas"), s = Math.min(1, 360 / im.height); c.width = im.width * s; c.height = im.height * s;
