@@ -1717,7 +1717,13 @@ html:not(.is-member) .my-link, html:not(.is-member) .my-add { display: none; }
 .my-res button { width: 100%; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 10px; align-items: center; text-align: left; padding: 6px; border: 0; border-radius: var(--r-sm); background: none; color: var(--ink); font: inherit; font-size: var(--fs-md); cursor: pointer; }
 .my-res button:hover { background: var(--accent-soft); }
 .my-res .my-spine, .my-list .my-spine { font-size: 5px; padding: 2px; }
-.my-own { display: grid; gap: 8px; justify-items: start; border-top: 1px solid var(--line); padding-top: 12px; }
+#my-sheet { height: 88vh; }  /* 탭을 바꿔도 창이 움직이지 않게, 키보드가 올라와도 입력칸·담기가 위쪽에 남게 */
+.my-tabs { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--line); }
+.my-tabs button { min-height: 44px; margin-bottom: -1px; border: 0; border-bottom: 3px solid transparent; background: none; color: var(--muted); font: inherit; font-size: var(--fs-md); cursor: pointer; }
+.my-tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); font-weight: 700; }
+.my-panel { display: grid; gap: 12px; min-width: 0; }
+.my-panel[hidden] { display: none; }
+.my-own { justify-items: start; gap: 8px; }
 .my-own-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; width: 100%; }
 .my-own-row .book-search { flex: 1 1 160px; min-width: 0; }
 .my-found { display: flex; gap: 8px; overflow-x: auto; max-width: 100%; }

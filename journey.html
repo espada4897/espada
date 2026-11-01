@@ -42,7 +42,7 @@ html { scroll-behavior: smooth; }
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&display=swap">
-<link rel="stylesheet" href="style.css?v=53fde2c2">
+<link rel="stylesheet" href="style.css?v=9da02181">
 <script>try { if (localStorage.getItem("mychaekmisa-on")) document.documentElement.classList.add("is-member"); } catch (e) {}</script>
 </head>
 <body>
@@ -795,37 +795,49 @@ function render() {
     : `<li class="my-empty">아직 이달에 담은 책이 없습니다. 다 읽은 날을 눌러 담아 보세요. 책미사 모임에 다녀온 날은 그날을 누르면 한 번에 담깁니다.</li>`;
 }
 
+let sheetTab = "club";
 function openDay(key, want) {
   const [, m, d] = key.split("-").map(Number);
   const es = entries.filter(e => e.date === key), ms = (meets[key] || []).slice();
   const w = want && byTitle[want];
   if (w && !ms.includes(w)) ms.unshift(w);
+  if (!$("#my-sheet").open) sheetTab = "club";  // 새로 열면 책미사 책부터, 창 안에서 담거나 날짜를 바꾸면 보던 탭 그대로
+  const tabBtn = (id, label) => `<button type="button" role="tab" data-tab="${id}" aria-selected="${sheetTab === id}">${label}</button>`;
   let h = `<div class="my-sheet-head"><h3>${m}월 ${d}일</h3><button type="button" class="my-x" data-close aria-label="닫기">×</button></div>`
-    + `<label class="my-when">다 읽은 날 <input type="date" id="my-when" value="${key}" max="${TODAY}"></label>`;  // 큰 단추로 열어도 여기서 날짜를 바꾼다(10/29)
+    + `<label class="my-when">다 읽은 날 <input type="date" id="my-when" value="${key}" max="${TODAY}"></label>`  // 큰 단추로 열어도 여기서 날짜를 바꾼다(10/29)
+    + `<div class="my-tabs" id="my-tabs" role="tablist" aria-label="어떤 책을 담을까요">${tabBtn("club", "책미사 책")}${tabBtn("own", "밖에서 읽은 책")}</div>`
+    + `<div class="my-panel" id="my-tab-club" role="tabpanel"${sheetTab === "club" ? "" : " hidden"}>`;
   ms.forEach(b => {
     const has = es.some(e => e.t === b.t), future = key > TODAY, isMeet = b.d.includes(key);
     h += `<div class="my-card" style="--c:var(${SC[b.s] || "--accent"})"><small>${isMeet ? `이날 책미사 · ${esc(b.s || "모임")}` : "책미사에서 함께 읽은 책"}</small><p><b>《${esc(b.t)}》</b> ${esc(b.a)}</p>`
       + (has ? `<p>내 달력에 담겨 있습니다 ✓</p>` : future ? `<p>예정된 모임입니다. 다녀와서 담아 주세요.</p>`
         : `<button type="button" class="btn primary small" data-add="${esc(b.t)}">${isMeet ? "모임에서 함께 읽었어요 · 담기" : "이날 다 읽었어요 · 담기"}</button>`) + `</div>`;
   });
+  h += `<input type="search" class="book-search" id="my-q" placeholder="책미사에서 함께 읽은 책 찾기" aria-label="책 찾기"><ul class="my-res" id="my-res"></ul></div>`
+    + `<div class="my-panel my-own" id="my-tab-own" role="tabpanel"${sheetTab === "own" ? "" : " hidden"}>`
+    + `<div class="my-own-row"><input class="book-search" id="my-own-t" placeholder="책 이름" aria-label="책 이름"><button type="button" class="btn primary small" id="my-own-add">담기</button></div>`  // 담기는 책 이름 바로 옆: 화면을 내리지 않아도 보이게(11/1)
+    + `<div class="my-own-row"><button type="button" class="btn ghost small" id="my-find">표지 찾기</button><label class="btn ghost small my-file">표지 찍기<input type="file" id="my-own-p" accept="image/*" capture="environment"></label></div>`
+    + `<ul class="my-found" id="my-found"></ul><p class="my-msg" id="my-own-msg">표지를 고르거나 찍지 않으면 책등 색으로 담깁니다.</p></div>`;
   if (es.length) {
     h += `<p class="my-label">이날 다 읽은 책</p><ul class="my-list">` + es.map(e => {
       const b = byTitle[e.t];
       return `<li><span class="my-cv">${cover(e)}</span><span><b>${esc(e.t)}</b><small>${b ? esc([b.a, b.s].filter(Boolean).join(" · ")) : "혼자 읽은 책"}</small></span><button type="button" class="my-del" data-del="${entries.indexOf(e)}">빼기</button></li>`;
     }).join("") + `</ul>`;
   }
-  h += `<p class="my-label">책 담기</p><input type="search" class="book-search" id="my-q" placeholder="책미사에서 함께 읽은 책 찾기" aria-label="책 찾기"><ul class="my-res" id="my-res"></ul>`
-    + `<div class="my-own"><p class="my-label">책미사 밖에서 읽은 책</p><div class="my-own-row"><input class="book-search" id="my-own-t" placeholder="책 이름" aria-label="책 이름">`
-    + `<button type="button" class="btn ghost small" id="my-find">표지 찾기</button><label class="btn ghost small my-file">표지 찍기<input type="file" id="my-own-p" accept="image/*" capture="environment"></label></div>`
-    + `<ul class="my-found" id="my-found"></ul><p class="my-msg" id="my-own-msg">표지를 고르거나 찍지 않으면 책등 색으로 담깁니다.</p><button type="button" class="btn primary small" id="my-own-add">담기</button></div>`;
   $("#my-sheet-body").innerHTML = h;
   $("#my-sheet-body").dataset.day = key;
   $("#my-when").addEventListener("change", e => { if (/^\d{4}-\d\d-\d\d$/.test(e.target.value)) openDay(e.target.value); });
+  $("#my-tabs").addEventListener("click", e => {
+    const t = e.target.closest("[data-tab]"); if (!t) return;
+    sheetTab = t.dataset.tab;
+    document.querySelectorAll("#my-tabs [data-tab]").forEach(x => x.setAttribute("aria-selected", x === t));
+    $("#my-tab-club").hidden = sheetTab !== "club"; $("#my-tab-own").hidden = sheetTab !== "own";
+  });
   const list = q => {
     const k = q.replace(/\s/g, "");
     const r = BOOKS.filter(b => k ? (b.t + b.a).replace(/\s/g, "").includes(k) : b.d.some(d => d <= TODAY)).slice(0, k ? 30 : 10);  // 찾기 전에는 지난 모임 책만
     $("#my-res").innerHTML = r.map(b => `<li><button type="button" data-add="${esc(b.t)}"><span class="my-cv">${cover({ t: b.t })}</span><span>${esc(b.t)}<small>${esc([b.a, b.s, b.d[0] && b.d[0].slice(0, 7).replace("-", ".")].filter(Boolean).join(" · "))}</small></span></button></li>`).join("")
-      || `<li class="my-empty">찾는 책이 없습니다. 아래 '책미사 밖에서 읽은 책'으로 담아 주세요.</li>`;
+      || `<li class="my-empty">찾는 책이 없습니다. 위 '밖에서 읽은 책' 탭에서 담아 주세요.</li>`;
   };
   list("");
   $("#my-q").addEventListener("input", e => list(e.target.value));
