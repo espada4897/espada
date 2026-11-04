@@ -846,6 +846,8 @@ img.qb-cov { padding: 0; }
 .qg-find::placeholder { color: #8d9399; }
 .qg-qsel { max-width: 220px; }
 .qg-fit { cursor: pointer; margin-left: auto; }
+.qg-play { cursor: pointer; }
+.qg-play[aria-pressed="true"] { border-color: #7cc8d3; color: #7cc8d3; }
 .qg-cv { display: block; width: 100%; height: 680px; touch-action: none; cursor: grab; }
 .qg-cv.over { cursor: pointer; }
 .qg-wait { position: absolute; inset: 0 0 44px; display: grid; place-items: center; color: #8d9399; font-size: var(--fs-md); }
