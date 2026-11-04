@@ -846,7 +846,9 @@ img.qb-cov { padding: 0; }
 .qg-find::placeholder { color: #8d9399; }
 .qg-qsel { max-width: 220px; }
 .qg-fit { cursor: pointer; margin-left: auto; }
-.qg-play { cursor: pointer; }
+.qg-play, .qg-save { cursor: pointer; }
+.qg-save { border-color: #7cc8d3 !important; color: #7cc8d3 !important; }
+.qg-save:disabled { opacity: .6; cursor: wait; }
 .qg-play[aria-pressed="true"] { border-color: #7cc8d3; color: #7cc8d3; }
 .qg-cv { display: block; width: 100%; height: 680px; touch-action: none; cursor: grab; }
 .qg-cv.over { cursor: pointer; }
