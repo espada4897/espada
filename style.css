@@ -830,27 +830,29 @@ img.qb-cov { padding: 0; }
 }
 @media (max-width: 560px) { .qstart ul { gap: 10px; } .qstart b { font-size: var(--fs-sm); } .qcover .book-cover-art b { font-size: var(--fs-sm); } }
 
-/* 생각의 지도 '목록 / 그래프' (그래프는 처음 누를 때 d3를 불러와 그림 — build_site.py QGRAPH_JS) */
+/* 생각의 지도 '목록 / 그래프' (그래프는 처음 누를 때 d3를 불러와 그림 — build_site.py QGRAPH_JS). 그래프 판만 어두운 밤하늘 */
 .qview { display: flex; gap: 4px; margin-top: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 3px; width: max-content; }
 .qview button { font: inherit; font-size: var(--fs-md); border: 0; background: none; color: var(--muted); padding: 5px 18px; border-radius: 999px; cursor: pointer; }
 .qview button[aria-pressed="true"] { background: var(--accent); color: var(--spine-fg); font-weight: 600; }
-.qview button:focus-visible, .qg-bar button:focus-visible, .qg-node:focus-visible { outline: 2px solid var(--lamp); outline-offset: 2px; }
+.qview button:focus-visible, .qg-tools :focus-visible, .qg-panel button:focus-visible { outline: 2px solid #7cc8d3; outline-offset: 2px; }
 .qgraph { margin-top: 28px; display: grid; gap: 14px; }
-#qv-list[hidden], .qgraph[hidden], .qg-svg[hidden] { display: none; }
-.qg-lead { margin: 0; color: var(--muted); font-size: var(--fs-md); max-width: 62ch; }
-.qg-bar { display: flex; flex-wrap: wrap; gap: 6px; }
-.qg-bar button { font: inherit; font-size: var(--fs-sm); border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 5px 12px; cursor: pointer; }
-.qg-bar button small { color: var(--muted); font-size: var(--fs-xs); margin-left: 4px; font-variant-numeric: tabular-nums; }
-.qg-bar button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--spine-fg); }
-.qg-bar button[aria-pressed="true"] small { color: var(--accent-soft); }
+#qv-list[hidden], .qgraph[hidden], .qg-hint[hidden] { display: none; }
+.qg-lead { margin: 0; color: var(--muted); font-size: var(--fs-md); max-width: 64ch; }
 .qg-stage { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 16px; align-items: start; }
-.qg-canvas { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); overflow: hidden; }
-.qg-svg { display: block; width: 100%; height: 640px; touch-action: manipulation; }
-.qg-wait { display: grid; place-items: center; height: 640px; color: var(--muted); font-size: var(--fs-md); }
-.qg-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; padding: 10px 14px; border-top: 1px solid var(--line); font-size: var(--fs-xs); color: var(--muted); }
+.qg-board { background: #1b1e21; border-radius: var(--r-card); overflow: hidden; position: relative; box-shadow: var(--sh-2); }
+.qg-tools { position: absolute; top: 10px; left: 10px; right: 10px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; z-index: 2; pointer-events: none; }
+.qg-tools > * { pointer-events: auto; font: inherit; font-size: var(--fs-sm); background: #23272b; color: #dcdcd6; border: 1px solid #33383d; border-radius: var(--r-sm); padding: 5px 10px; }
+.qg-find { width: 170px; }
+.qg-find::placeholder { color: #8d9399; }
+.qg-qsel { max-width: 220px; }
+.qg-fit { cursor: pointer; margin-left: auto; }
+.qg-cv { display: block; width: 100%; height: 680px; touch-action: none; cursor: grab; }
+.qg-cv.over { cursor: pointer; }
+.qg-wait { position: absolute; inset: 0 0 44px; display: grid; place-items: center; color: #8d9399; font-size: var(--fs-md); }
+.qg-hint { position: absolute; right: 12px; bottom: 52px; font-size: var(--fs-xs); color: #8d9399; pointer-events: none; }
+.qg-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; padding: 10px 14px; border-top: 1px solid #33383d; font-size: var(--fs-xs); color: #8d9399; }
 .qg-legend span { display: inline-flex; align-items: center; gap: 6px; }
-.qg-legend i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
-.qg-legend i.big { width: 14px; height: 14px; border: 2px solid var(--accent); background: var(--surface); }
+.qg-legend i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
 .qg-panel { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); padding: 18px; display: grid; gap: 10px; min-width: 0; }
 .qg-panel h2 { font-family: var(--font-display); font-weight: 800; font-size: var(--step-1); line-height: 1.45; margin: 0; word-break: keep-all; }
 .qg-kicker { margin: 0; font-size: var(--fs-xs); color: var(--muted); }
@@ -865,25 +867,7 @@ img.qb-cov { padding: 0; }
 .qg-chip { display: inline-block; font-size: var(--fs-xs); color: #fff; padding: 1px 9px; border-radius: 999px; font-weight: 600; margin-right: 6px; }
 .qg-link { font: inherit; font-size: var(--fs-sm); border: 0; background: none; color: var(--accent); padding: 0; cursor: pointer; justify-self: start; text-align: left; }
 .qg-go { font-size: var(--fs-sm); font-weight: 600; color: var(--accent); border-top: 1px solid var(--line); padding-top: 10px; }
-.qg-note { margin: 0; font-size: var(--fs-xs); color: var(--muted); }
-.qg-svg text { font-family: var(--font-body); }
-.qg-edge { stroke-width: 1; stroke-opacity: .28; }
-.qg-edge.main { stroke-width: 1.6; stroke-opacity: .5; }
-.qg-edge.hot { stroke-opacity: .95; stroke-width: 2.2; }
-.qg-edge.dim { stroke-opacity: .05; }
-.qg-node { cursor: pointer; }
-.qg-node.dim { opacity: .18; }
-.qg-q circle { fill: var(--surface); stroke: var(--accent); stroke-width: 2.5; }
-.qg-q.cur circle { fill: var(--accent); }
-.qg-q .num { font-family: var(--font-display); font-weight: 800; font-size: 15px; fill: var(--accent); text-anchor: middle; }
-.qg-q.cur .num { fill: var(--spine-fg); }
-.qg-q .lab { font-size: 13px; font-weight: 700; fill: var(--ink); text-anchor: middle; paint-order: stroke; stroke: var(--surface); stroke-width: 4px; }
-.qg-b .dot { stroke: var(--surface); stroke-width: 1.5; }
-.qg-b .hit { fill: transparent; }
-.qg-b text { font-size: 11px; fill: var(--ink); paint-order: stroke; stroke: var(--surface); stroke-width: 3.5px; pointer-events: none; opacity: 0; }
-.qg-b.show text, .qg-b.sel text { opacity: 1; }
-.qg-b.sel .dot { stroke: var(--ink); stroke-width: 2.5; }
-@media (max-width: 860px) { .qg-stage { grid-template-columns: minmax(0, 1fr); } .qg-svg, .qg-wait { height: 520px; } }
+@media (max-width: 860px) { .qg-stage { grid-template-columns: minmax(0, 1fr); } .qg-cv { height: 560px; } .qg-find { width: 130px; } }
 
 /* 질문의 서재 (pages/03a_질문의 서재): 질문 하나에 한 줄, 누르면 그날 이야기·다르게 읽은 곳·이어지는 책 */
 .ql-today { margin-top: 32px; background: var(--accent); color: #fbf8f1; border-radius: var(--r-card); padding: 26px clamp(20px, 4vw, 36px); display: grid; gap: 12px; box-shadow: var(--sh-1); }
