@@ -205,11 +205,11 @@ function init(){
   document.getElementById("qg-save").onclick=savePoster;
   const ysel=document.getElementById("qg-year"),play=document.getElementById("qg-play");
   ysel.innerHTML=`<option value="">연도별 별자리</option>`+YEARS.map(y=>`<option value="${y}">${y}년 (${B.filter(b=>b.ys.includes(y)).length}권)</option>`).join("");
-  ysel.onchange=()=>{stopPlay();mineOff();focusQ=null;sel=null;match=null;qsel.value="";setYear(ysel.value||null);ysel.value?showYear():showAll()};
+  ysel.onchange=()=>{stopPlay();focusQ=null;sel=null;match=null;qsel.value="";setYear(ysel.value||null);myB?mineOn():ysel.value?showYear():showAll()};
   play.onclick=()=>{if(playT){stopPlay();return}
-    mineOff();play.textContent="■ 멈춤";play.setAttribute("aria-pressed","true");focusQ=null;sel=null;match=null;qsel.value="";fitTo(N);
+    play.textContent="■ 멈춤";play.setAttribute("aria-pressed","true");focusQ=null;sel=null;match=null;qsel.value="";fitTo(N);
     let i=yr?Math.max(0,YEARS.indexOf(yr)+1)%YEARS.length:0;
-    const step=()=>{setYear(YEARS[i]);ysel.value=YEARS[i];showYear();i++;if(i>=YEARS.length){playT=setTimeout(stopPlay,1800);return}playT=setTimeout(step,1800)};step()};
+    const step=()=>{setYear(YEARS[i]);ysel.value=YEARS[i];myB?mineOn():showYear();i++;if(i>=YEARS.length){playT=setTimeout(stopPlay,1800);return}playT=setTimeout(step,1800)};step()};
   findI.addEventListener("input",()=>{
     const s=findI.value.trim().replace(/\s+/g,"");
     if(!s){match=null;draw();return}
@@ -222,14 +222,14 @@ function init(){
   const whoS=document.getElementById("qg-who"),PP=Object.entries(D.pp||{});
   whoS.innerHTML=`<option value="">누구의 별자리</option>`+PP.map(([n,v])=>`<option value="${esc(n)}">${esc(n)}${v.length?` (${v.length})`:""}</option>`).join("");
   whoS.hidden=!PP.length;
-  whoS.onchange=()=>{const v=whoS.value;stopPlay();setYear(null);ysel.value="";focusQ=null;sel=null;match=null;qsel.value="";findI.value="";
-    if(!v){mineOff();showAll();draw();fitTo(N);return}
+  whoS.onchange=()=>{const v=whoS.value;stopPlay();focusQ=null;sel=null;match=null;qsel.value="";findI.value="";
+    if(!v){mineOff();yr?showYear():showAll();draw();fitTo(N);return}
     clearInterval(myT);myT=null;whoSel=v;mineOn();whoS.value=v;fitTo(N)};
   document.getElementById("qg-mine").onclick=()=>{
     if(myB&&whoSel){whoSel="";whoS.value="";mineOn();fitTo(N);return}
     if(myB&&(focusQ||sel||match)){focusQ=null;sel=null;match=null;qsel.value="";findI.value="";myList.length?showMine():showPick();draw();fitTo(N);return}
-    if(myB){mineOff();showAll();draw();fitTo(N);return}
-    stopPlay();setYear(null);ysel.value="";focusQ=null;sel=null;match=null;qsel.value="";findI.value="";mineOn();fitTo(N)};
+    if(myB){mineOff();yr?showYear():showAll();draw();fitTo(N);return}
+    stopPlay();focusQ=null;sel=null;match=null;qsel.value="";findI.value="";mineOn();fitTo(N)};
   fitTo(N,0);showAll();draw();
   const hy=location.hash.match(/^#y(\d{4})$/);if(hy&&YEARS.includes(hy[1])){ysel.value=hy[1];setYear(hy[1]);showYear()}
   if(location.hash==="#mine")mineOn();
@@ -267,11 +267,11 @@ function poster(yy,me){
   /* 머리 */
   c.textAlign="center";c.textBaseline="alphabetic";
   if(me){const who=whoSel||nick(),q=top.src.q,ttl=ON.length?`'${q}'${josa(q,"을","를")} 묻는 사람`:"아직 켜진 별이 없습니다";
-    c.fillStyle=GLOW;c.font=`700 26px ${SANS}`;c.fillText(who?`${who}님의 책미사 별자리`:"나의 책미사 별자리",CX,96);
+    c.fillStyle=GLOW;c.font=`700 26px ${SANS}`;c.fillText(`${who?who+"님의":"나의"} 책미사 ${yy?yy+"년 ":""}별자리`,CX,96);
     let fz=64;c.font=`800 ${fz}px ${SERIF}`;while(fz>40&&c.measureText(ttl).width>980){fz-=2;c.font=`800 ${fz}px ${SERIF}`}
     c.fillStyle=INK;c.fillText(ttl,CX,176);
-    c.fillStyle=MUTED;c.font=`400 25px ${SANS}`;
-    c.fillText(ON.length?`함께 읽은 책 ${mine.size}권${OA.length?` · 밖에서 읽은 책 ${OA.length}권`:""} · 질문 ${Q.length}개 가운데 ${PQ.filter(p=>p.cnt).length}개에 별을 켰습니다`:"함께한 모임의 책이 여기에 별로 켜집니다",CX,222);
+    c.fillStyle=MUTED;const sub=ON.length?`${yy?yy+"년에 ":""}함께 읽은 책 ${mine.size}권${OA.length?` · 밖에서 읽은 책 ${OA.length}권`:""} · 질문 ${Q.length}개 가운데 ${PQ.filter(p=>p.cnt).length}개에 별을 켰습니다`:"함께한 모임의 책이 여기에 별로 켜집니다";
+    let sz=25;c.font=`400 ${sz}px ${SANS}`;while(sz>18&&c.measureText(sub).width>1000){sz--;c.font=`400 ${sz}px ${SANS}`}c.fillText(sub,CX,222);
   }else{
     c.fillStyle=GLOW;c.font=`700 26px ${SANS}`;c.fillText(yy?`책미사 ${yy}`:"책미사",CX,96);
     c.fillStyle=INK;c.font=`800 64px ${SERIF}`;c.fillText(yy?`${yy}년에 켜진 별 ${ON.length}개`:`책미사의 별자리`,CX,176);
@@ -330,6 +330,7 @@ function myBooks(){
     const qs=(e.qs||[]).filter(q=>qBy[q]),o=own.get(k);
     if(!o)own.set(k,{t:e.t,k,d,qs});else if(qs.length&&!o.qs.length)o.qs=qs});
   myOwn=[...own.values()].sort((a,b)=>a.d.localeCompare(b.d));
+  if(yr){myOwn=myOwn.filter(o=>o.d.startsWith(yr));for(const b of [...got.keys()])if(!(b.ys||[]).includes(yr))got.delete(b)}
   return [...got].sort((a,b)=>a[1].localeCompare(b[1])).map(([b,d])=>(b.md=d,b));
 }
 const ownA=()=>myOwn.filter(o=>o.qs.length);
@@ -357,8 +358,11 @@ function ownNodes(add){
 }
 function mineOn(){myList=myBooks();ownNodes(true);
   mySeq=[...myList.map(b=>[b,b.md||""]),...myO.map(o=>[o,o.d||""])].sort((a,b)=>a[1].localeCompare(b[1])).map(x=>x[0]);
-  myShown=Infinity;mineLit();myList.length?showMine():whoSel?showNone():showPick()}
-function showNone(){panel.innerHTML=`<p class="qg-kicker">${esc(whoSel)}님의 별자리</p><h2>참석 기록을 모으는 중이에요</h2>
+  myShown=Infinity;mineLit();myList.length||ownA().length?showMine():whoSel||yr?showNone():showPick()}
+function showNone(){const who=whoSel||nick();
+  panel.innerHTML=yr?`<p class="qg-kicker">${who?esc(who)+"님의 ":"나의 "}${yr}년 별자리</p><h2>${yr}년에는 켜진 별이 없어요</h2>
+  <p class="qg-sent">다른 해를 고르거나 '연도별 별자리'를 비우면 전체가 보입니다.</p>`
+  :`<p class="qg-kicker">${esc(who)}님의 별자리</p><h2>참석 기록을 모으는 중이에요</h2>
   <p class="qg-sent">기록이 들어오면 함께한 모임의 책이 여기 별로 켜집니다.</p>`;wire()}
 function mineOff(){clearInterval(myT);myT=null;myB=null;myQ=new Set();whoSel="";const ws=document.getElementById("qg-who");if(ws)ws.value="";if(myO.length)ownNodes(false);const m=document.getElementById("qg-mine");if(m)m.setAttribute("aria-pressed","false")}
 function mineLit(){const ls=mySeq.slice(0,myShown);myB=new Set(ls);myQ=new Set(ls.flatMap(b=>b.qs.map(x=>qBy[x])));
@@ -396,7 +400,7 @@ function showMine(){
   const own=myOwn.slice().reverse().slice(0,40).map(o=>`<li><span class="qg-ot">${esc(o.t)}</span>`
     +(o.qs.length?`<span class="qg-ns">${o.qs.map(esc).join(" / ")}</span>`:`<select class="qg-osel" data-own="${esc(o.k)}" aria-label="${esc(o.t)}에 질문 붙이기">${opts}</select>`)+`</li>`).join("");
   const unq=myOwn.filter(o=>!o.qs.length).length;
-  panel.innerHTML=`<p class="qg-kicker">${nm.who?esc(nm.who)+"님의 ":""}내 별자리</p><h2>'${esc(nm.q)}'${josa(nm.q,"을","를")} 묻는 사람</h2>
+  panel.innerHTML=`<p class="qg-kicker">${nm.who?esc(nm.who)+"님의 ":""}${yr?yr+"년 ":"내 "}별자리</p><h2>'${esc(nm.q)}'${josa(nm.q,"을","를")} 묻는 사람</h2>
     <p class="qg-sent">켠 별 ${all.length}개 가운데 ${nm.n}개가 이 질문에 이어져 있습니다.${nm.q2?` 그다음은 '${esc(nm.q2)}'(${nm.n2}개)입니다.`:""}</p>
     <p class="qg-facts"><span>책미사 책 <b>${myList.length}권</b></span>${myOwn.length?`<span>밖에서 읽은 책 <b>${myOwn.length}권</b></span>`:""}<span>질문 <b>${kq}/${Q.length}</b></span></p>
     <p class="qg-sec">질문마다 켠 별</p><ul class="qg-bars">${bars}</ul>
@@ -417,7 +421,7 @@ async function savePoster(){
   const b=document.getElementById("qg-save"),old=b.textContent;b.disabled=true;b.textContent="그리는 중…";
   try{
     await Promise.all(['800 64px "Nanum Myeongjo"','700 26px "Nanum Myeongjo"','500 22px Pretendard','700 26px Pretendard','400 22px Pretendard'].map(f=>document.fonts.load(f,"책미사가")));
-    const cvs=myB?poster(null,true):poster(yr),name=myB?`책미사_별자리_${whoSel||nick()||"나"}.png`:`책미사_별자리_${yr||"전체"}.png`;
+    const cvs=myB?poster(yr,true):poster(yr),name=myB?`책미사_별자리_${whoSel||nick()||"나"}${yr?"_"+yr:""}.png`:`책미사_별자리_${yr||"전체"}.png`;
     const blob=await new Promise(r=>cvs.toBlob(r,"image/png"));
     const file=new File([blob],name,{type:"image/png"});
     if(matchMedia("(pointer: coarse)").matches&&navigator.canShare&&navigator.canShare({files:[file]})){
