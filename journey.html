@@ -42,7 +42,7 @@ html { scroll-behavior: smooth; }
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&display=swap">
-<link rel="stylesheet" href="style.css?v=f76d8c6e">
+<link rel="stylesheet" href="style.css?v=88ea6b58">
 <script>try { if (localStorage.getItem("mychaekmisa-on")) document.documentElement.classList.add("is-member"); } catch (e) {}</script>
 </head>
 <body>
@@ -629,8 +629,10 @@ function draw() {
     let url = "";
     try { url = cv.toDataURL("image/png"); } catch (e) { $("save-msg").textContent = "이 화면에서는 그림을 만들 수 없어요. 휴대폰 브라우저(크롬·사파리)로 열어 주세요."; return; }
     pic.src = url;
-    $("save-msg").textContent = "만약 이미지가 자동으로 저장되지 않는다면 아래 이미지를 길게 눌러서 직접 저장하거나, '화면 전체보기'를 누른 뒤 화면을 캡처해 주세요.";
-    try { const a = document.createElement("a"); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove(); } catch (e) {}
+    const phone = matchMedia("(pointer: coarse)").matches;  // 휴대폰은 자동 다운로드를 하지 않는다(셀룰러 다운로드 경고, 11/5)
+    $("save-msg").textContent = phone ? "아래 이미지를 길게 눌러 저장하세요. '화면 전체보기'로 크게 볼 수도 있어요."
+      : "만약 이미지가 자동으로 저장되지 않는다면 아래 이미지를 직접 저장하거나, '화면 전체보기'를 누른 뒤 화면을 캡처해 주세요.";
+    if (!phone) try { const a = document.createElement("a"); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove(); } catch (e) {}
   }
   if ($("save")) {
     // 화면 전체보기는 브라우저 전체 화면 대신 페이지 안의 검은 판(휴대폰에서 빠져나올 길이 없던 문제, 10/29)

@@ -2215,3 +2215,10 @@ footer { color: var(--muted); font-size: .82rem; border-top: 1px solid var(--lin
 #rv-svg .mark circle { fill: var(--ink); }
 #rv-svg .mark text { font-size: 12px; fill: var(--ink); font-weight: 600; }
 @media (prefers-reduced-motion: reduce) { #rv-svg .flow { animation: none; } .rv-tip, #rv-svg .layer { transition: none; } }
+
+/* 생각의 지도 이미지 저장(휴대폰): 그림을 띄워 길게 눌러 저장 */
+.qg-shot { position: fixed; inset: 0; z-index: 1000; background: rgba(10,12,14,.9); display: grid; place-items: center; padding: 16px; }
+.qg-shot-in { display: grid; gap: 10px; justify-items: center; max-width: 100%; }
+.qg-shot img { max-width: min(100%, 540px); max-height: 74vh; width: auto; height: auto; border-radius: 6px; box-shadow: 0 8px 30px rgba(0,0,0,.5); -webkit-touch-callout: default; user-select: auto; }
+.qg-shot p { margin: 0; color: #dcdcd6; font-size: var(--fs-sm); }
+.qg-shot-bt { display: flex; gap: 8px; }

@@ -36,7 +36,7 @@ html { scroll-behavior: smooth; }
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&display=swap">
-<link rel="stylesheet" href="style.css?v=f76d8c6e">
+<link rel="stylesheet" href="style.css?v=88ea6b58">
 <script>try { if (localStorage.getItem("mychaekmisa-on")) document.documentElement.classList.add("is-member"); } catch (e) {}</script>
 </head>
 <body>
@@ -424,13 +424,26 @@ async function savePoster(){
     const cvs=myB?poster(yr,true):poster(yr),name=myB?`책미사_별자리_${whoSel||nick()||"나"}${yr?"_"+yr:""}.png`:`책미사_별자리_${yr||"전체"}.png`;
     const blob=await new Promise(r=>cvs.toBlob(r,"image/png"));
     const file=new File([blob],name,{type:"image/png"});
-    if(matchMedia("(pointer: coarse)").matches&&navigator.canShare&&navigator.canShare({files:[file]})){
-      await navigator.share({files:[file],title:name}).catch(()=>{});
-    }else{
+    if(matchMedia("(pointer: coarse)").matches){shot(blob,file,name);return}  /* 휴대폰: 다운로드(셀룰러 경고 등) 대신 그림을 띄워 길게 눌러 저장·공유(11/5) */
+    {
       const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();
       setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},2000);
     }
   }finally{b.disabled=false;b.textContent=old}
+}
+function shot(blob,file,name){
+  const url=URL.createObjectURL(blob),can=!!(navigator.canShare&&navigator.canShare({files:[file]}));
+  const box=document.createElement("div");box.className="qg-shot";box.setAttribute("role","dialog");box.setAttribute("aria-label","별자리 이미지");
+  box.innerHTML=`<div class="qg-shot-in"><img src="${url}" alt="${esc(name)}"><p>이미지를 <b>길게 눌러</b> 저장하세요</p>
+    <div class="qg-shot-bt">${can?`<button type="button" class="btn primary small" data-share>공유·저장</button>`:""}<button type="button" class="btn small" data-close>닫기</button></div></div>`;
+  let gone=false;
+  const close=()=>{if(gone)return;gone=true;box.remove();URL.revokeObjectURL(url);removeEventListener("popstate",close)};
+  box.addEventListener("click",e=>{
+    if(e.target.closest("[data-share]")){navigator.share({files:[file],title:name}).catch(()=>{});return}
+    if(e.target===box||e.target.closest("[data-close]")){if(history.state&&history.state.qgShot)history.back();else close()}});
+  try{history.pushState({qgShot:1},"")}catch(e){}
+  addEventListener("popstate",close);  /* 휴대폰 뒤로 가기로도 닫힌다 */
+  document.body.appendChild(box);
 }
 function lit(n){
   const f=hover||sel;
