@@ -2130,3 +2130,43 @@ footer { color: var(--muted); font-size: .82rem; border-top: 1px solid var(--lin
 .rv-replies blockquote { margin: 0; padding: 14px 18px; background: var(--surface); border-radius: var(--r-card); border: 1px solid var(--line); display: grid; gap: 6px; max-width: 46em; }
 .rv-replies blockquote p { margin: 0; line-height: 1.8; }
 .rv-replies cite { font-style: normal; font-size: var(--fs-sm); color: var(--muted); }
+
+/* 책미사 이야기 '책미사의 강': 석 달마다 모임 횟수를 모임별 물줄기로 쌓은 강(d3는 보일 때 불러옴) */
+.story-rv { padding-block: 40px 0; display: grid; gap: 14px; scroll-margin-top: 130px; --s-off: #b9802a; --s-etc: #9aa0a4; }
+.story-rv h2 { font-family: var(--font-display); font-size: var(--step-2); margin: 0 0 6px; }
+.story-rv > div > p { color: var(--muted); margin: 0; max-width: 62ch; }
+.rv-stats { display: flex; flex-wrap: wrap; gap: 10px 36px; margin: 0; padding: 0; list-style: none; }
+.rv-stats li { display: grid; }
+.rv-stats b { font-family: var(--font-display); font-weight: 800; font-size: 1.7rem; line-height: 1.2; color: var(--accent); font-variant-numeric: tabular-nums; }
+.rv-stats span { font-size: 13px; color: var(--muted); }
+.rv-box { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); padding: 16px 0 8px; position: relative; }
+.rv-scroll { overflow-x: auto; }
+#rv-svg { display: block; width: 100%; min-width: 720px; height: auto; }
+.rv-legend { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 16px 6px; }
+.rv-legend button { font: inherit; font-size: 13px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 999px; padding: 3px 12px 3px 8px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+.rv-legend button i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.rv-legend button[aria-pressed="true"] { border-color: var(--ink); }
+.rv-legend small { color: var(--muted); font-variant-numeric: tabular-nums; }
+.rv-tip { position: absolute; pointer-events: none; background: var(--ink); color: var(--bg); font-size: 12px; line-height: 1.5; padding: 8px 10px; border-radius: 8px; max-width: 240px; opacity: 0; transition: opacity .15s; }
+.rv-detail { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); padding: 18px; display: grid; gap: 10px; }
+.rv-detail h3 { margin: 0; font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; }
+.rv-detail p { margin: 0; color: var(--muted); font-size: 14px; }
+.rv-books { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.rv-books li { font-size: 13px; border-left: 4px solid var(--c); background: var(--bg); padding: 3px 9px; border-radius: 3px; word-break: keep-all; }
+.rv-books small { color: var(--muted); margin-left: 6px; font-variant-numeric: tabular-nums; }
+.rv-note { font-size: 12px; color: var(--muted); margin: 0; }
+#rv-svg text { font-family: var(--font-body); }
+#rv-svg .era rect { opacity: .55; }
+#rv-svg .era text { font-size: 12px; font-weight: 700; fill: var(--ink); }
+#rv-svg .era .sub { font-size: 11px; font-weight: 400; fill: var(--muted); }
+#rv-svg .axis text { font-size: 12px; fill: var(--muted); font-variant-numeric: tabular-nums; }
+#rv-svg .axis line { stroke: var(--line); }
+#rv-svg .layer { transition: opacity .25s; }
+#rv-svg .layer.dim { opacity: .12; }
+#rv-svg .flow { animation: rv-reveal 1.8s cubic-bezier(.65,0,.35,1) both; }
+@keyframes rv-reveal { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+#rv-svg .cursor { stroke: var(--ink); stroke-width: 1; stroke-dasharray: 3 3; }
+#rv-svg .qsel { fill: var(--ink); opacity: .06; }
+#rv-svg .mark circle { fill: var(--ink); }
+#rv-svg .mark text { font-size: 12px; fill: var(--ink); font-weight: 600; }
+@media (prefers-reduced-motion: reduce) { #rv-svg .flow { animation: none; } .rv-tip, #rv-svg .layer { transition: none; } }
