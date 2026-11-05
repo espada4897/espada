@@ -238,48 +238,62 @@ function init(){
   document.fonts&&document.fonts.ready.then(draw);
 }
 /* 이미지 저장: 별자리 카드(1080×1350)를 따로 그려 PNG로. 연도를 골랐으면 그해 켜진 별, 아니면 전체 별자리 */
-function poster(yy){
+function poster(yy,me){
+  /* yy: 연도 별자리 · me: 내 별자리(누구의 별자리) · 둘 다 없으면 전체. 내 별자리도 연도 카드와 같은 그림(11/5 에스파다: 연도 카드처럼) */
   const W=1080,H=1350,CX=540,CY=700,R=320,SERIF='"Nanum Myeongjo",serif',SANS='Pretendard,"Malgun Gothic",sans-serif',MUTED="#8d9399";
   const cv2=document.createElement("canvas");cv2.width=W;cv2.height=H;const c=cv2.getContext("2d");
   const hs=s=>{let h=0;for(const ch of s)h=(h*31+ch.charCodeAt(0))|0;return Math.abs(h)};
+  const mine=me?new Set(myList):null,OA=me?ownA():[];
+  const nOn=me?mine.size+OA.length:0,sp=!!yy||(me&&nOn<=60);  /* sp: 켜진 별을 띄워 크게(책 이름까지). 많으면 전체 별자리처럼 */
   const PQ=Q.map((q,i)=>{const a=-Math.PI/2+i*2*Math.PI/Q.length;const x=CX+Math.cos(a)*R,y=CY+Math.sin(a)*R;return{src:q,kind:"q",a,x,y,fx:x,fy:y}});
   const pq=Object.fromEntries(PQ.map(p=>[p.src.q,p]));
-  const PB=B.map(b=>{const ps=b.qs.map(x=>pq[x]),h=hs(b.id),on=yy?(b.ys||[]).includes(yy):true;
-    return{src:b,kind:"b",on,x:CX+(d3.mean(ps,p=>p.x)-CX)*.8+(h%40-20),y:CY+(d3.mean(ps,p=>p.y)-CY)*.8+((h>>6)%40-20),r:yy?(on?6+b.qs.length*1.2:2.2):3+b.qs.length*.9}});
+  const srcs=[...B.map(b=>({b,on:me?mine.has(b):yy?(b.ys||[]).includes(yy):true})),...OA.map(o=>({b:{id:"o:"+o.k,t:o.t,qs:o.qs,m:"",own:1},on:true}))];
+  const PB=srcs.map(({b,on})=>{const ps=b.qs.map(x=>pq[x]),h=hs(b.id);
+    return{src:b,kind:"b",on,x:CX+(d3.mean(ps,p=>p.x)-CX)*.8+(h%40-20),y:CY+(d3.mean(ps,p=>p.y)-CY)*.8+((h>>6)%40-20),r:sp?(on?6+b.qs.length*1.2:2.2):(me&&!on?2.2:3+b.qs.length*.9)}});
   const PL=[];PB.forEach(b=>b.src.qs.forEach(x=>PL.push({source:b,target:pq[x]})));
   const s2=d3.forceSimulation([...PQ,...PB])
-    .force("link",d3.forceLink(PL).distance(l=>yy?(l.source.on?120:70):80).strength(.25))
-    .force("charge",d3.forceManyBody().strength(n=>n.kind==="q"?-300:(yy?(n.on?-160:-12):-26)))
-    .force("collide",d3.forceCollide(n=>n.kind==="q"?60:(yy?(n.on?42:4):n.r+3)))
+    .force("link",d3.forceLink(PL).distance(l=>sp?(l.source.on?120:70):80).strength(.25))
+    .force("charge",d3.forceManyBody().strength(n=>n.kind==="q"?-300:(sp?(n.on?-160:-12):-26)))
+    .force("collide",d3.forceCollide(n=>n.kind==="q"?60:(sp?(n.on?42:4):n.r+3)))
     .force("cx",d3.forceX(CX).strength(.02)).force("cy",d3.forceY(CY).strength(.02)).stop();
   for(let i=0;i<500;i++)s2.tick();
   PB.forEach(b=>{b.x=Math.max(90,Math.min(W-90,b.x));b.y=Math.max(320,Math.min(1090,b.y))});
-  const ON=PB.filter(b=>b.on);
-  PQ.forEach(p=>{p.cnt=ON.filter(b=>b.src.qs.includes(p.src.q)).length;p.r=yy?10+p.cnt*2.2:8+Math.sqrt(p.cnt)*2.2});
+  const ON=PB.filter(b=>b.on),bc=b=>b.src.own?OWNC:col(b.src.m);
+  PQ.forEach(p=>{p.cnt=ON.filter(b=>b.src.qs.includes(p.src.q)).length;p.r=sp?10+p.cnt*2.2:8+Math.sqrt(p.cnt)*2.2});
+  const top=[...PQ].sort((a,b)=>b.cnt-a.cnt||a.src.n-b.src.n)[0];
   /* 하늘 */
   const g=c.createRadialGradient(CX,CY,60,CX,CY,900);g.addColorStop(0,"#252a2f");g.addColorStop(1,"#121417");c.fillStyle=g;c.fillRect(0,0,W,H);
   const rr=d3.randomLcg(0.7);for(let i=0;i<260;i++){c.globalAlpha=.15+rr()*.35;c.fillStyle="#fff";c.beginPath();c.arc(rr()*W,rr()*H,rr()*1.1+.2,0,7);c.fill()}c.globalAlpha=1;
   /* 머리 */
   c.textAlign="center";c.textBaseline="alphabetic";
-  c.fillStyle=GLOW;c.font=`700 26px ${SANS}`;c.fillText(yy?`책미사 ${yy}`:"책미사",CX,96);
-  c.fillStyle=INK;c.font=`800 64px ${SERIF}`;c.fillText(yy?`${yy}년에 켜진 별 ${ON.length}개`:`책미사의 별자리`,CX,176);
-  c.fillStyle=MUTED;c.font=`400 25px ${SANS}`;c.fillText(yy?`함께 읽은 책 ${B.length}권 가운데, ${yy}년에 함께 읽은 책`:`함께 읽은 책 ${B.length}권을 질문 ${Q.length}개로 이었습니다`,CX,222);
+  if(me){const who=whoSel||nick(),q=top.src.q,ttl=ON.length?`'${q}'${josa(q,"을","를")} 묻는 사람`:"아직 켜진 별이 없습니다";
+    c.fillStyle=GLOW;c.font=`700 26px ${SANS}`;c.fillText(who?`${who}님의 책미사 별자리`:"나의 책미사 별자리",CX,96);
+    let fz=64;c.font=`800 ${fz}px ${SERIF}`;while(fz>40&&c.measureText(ttl).width>980){fz-=2;c.font=`800 ${fz}px ${SERIF}`}
+    c.fillStyle=INK;c.fillText(ttl,CX,176);
+    c.fillStyle=MUTED;c.font=`400 25px ${SANS}`;
+    c.fillText(ON.length?`함께 읽은 책 ${mine.size}권${OA.length?` · 밖에서 읽은 책 ${OA.length}권`:""} · 질문 ${Q.length}개 가운데 ${PQ.filter(p=>p.cnt).length}개에 별을 켰습니다`:"함께한 모임의 책이 여기에 별로 켜집니다",CX,222);
+  }else{
+    c.fillStyle=GLOW;c.font=`700 26px ${SANS}`;c.fillText(yy?`책미사 ${yy}`:"책미사",CX,96);
+    c.fillStyle=INK;c.font=`800 64px ${SERIF}`;c.fillText(yy?`${yy}년에 켜진 별 ${ON.length}개`:`책미사의 별자리`,CX,176);
+    c.fillStyle=MUTED;c.font=`400 25px ${SANS}`;c.fillText(yy?`함께 읽은 책 ${B.length}권 가운데, ${yy}년에 함께 읽은 책`:`함께 읽은 책 ${B.length}권을 질문 ${Q.length}개로 이었습니다`,CX,222);
+  }
   /* 선·별 */
-  for(const l of PL){if(yy&&!l.source.on){c.strokeStyle="rgba(220,220,214,.05)";c.lineWidth=1}else{c.strokeStyle=yy?"rgba(124,200,211,.45)":"rgba(124,200,211,.16)";c.lineWidth=yy?1.6:1}
+  const dim=!!yy||!!me;
+  for(const l of PL){if(dim&&!l.source.on){c.strokeStyle="rgba(220,220,214,.05)";c.lineWidth=1}else{c.strokeStyle=sp?"rgba(124,200,211,.45)":me?"rgba(124,200,211,.22)":"rgba(124,200,211,.16)";c.lineWidth=sp?1.6:1}
     c.beginPath();c.moveTo(l.source.x,l.source.y);c.lineTo(l.target.x,l.target.y);c.stroke()}
   for(const b of PB)if(!b.on){c.fillStyle="rgba(200,200,195,.28)";c.beginPath();c.arc(b.x,b.y,b.r,0,7);c.fill()}
   const boxes=[];
   for(const p of PQ){const lit=p.cnt>0;c.shadowColor=GLOW;c.shadowBlur=lit?30:0;c.fillStyle=lit?INK:"#5b6066";c.beginPath();c.arc(p.x,p.y,p.r,0,7);c.fill();c.shadowBlur=0;
     const ty=Math.sin(p.a)>-.2?p.y+p.r+30:p.y-p.r-42;p.ty=ty;
     c.font=`700 26px ${SERIF}`;const w=c.measureText(p.src.q).width;boxes.push({x:p.x-w/2-4,y:ty-26,w:w+8,h:58},{x:p.x-p.r-4,y:p.y-p.r-4,w:2*p.r+8,h:2*p.r+8})}
-  for(const b of ON){c.shadowColor=col(b.src.m);c.shadowBlur=yy?24:10;c.fillStyle=col(b.src.m);c.beginPath();c.arc(b.x,b.y,b.r,0,7);c.fill();c.shadowBlur=0}
+  for(const b of ON){c.shadowColor=bc(b);c.shadowBlur=sp?24:10;c.fillStyle=bc(b);c.beginPath();c.arc(b.x,b.y,b.r,0,7);c.fill();c.shadowBlur=0}
   /* 질문 이름은 별 위에 테두리를 둘러 마지막에 */
   c.textAlign="center";c.lineJoin="round";
   for(const p of PQ){const lit=p.cnt>0;c.lineWidth=7;c.strokeStyle="rgba(18,20,23,.9)";
     c.font=`700 26px ${SERIF}`;c.strokeText(p.src.q,p.x,p.ty);c.fillStyle=lit?INK:MUTED;c.fillText(p.src.q,p.x,p.ty);
-    c.font=`500 20px ${SANS}`;c.lineWidth=5;c.strokeText(`${p.cnt}권`,p.x,p.ty+26);c.fillStyle=MUTED;c.fillText(`${p.cnt}권`,p.x,p.ty+26)}
-  /* 책 이름: 연도 별자리일 때, 겹치지 않는 쪽으로 */
-  if(yy&&ON.length<=40){
+    const ct=lit||!me?`${p.cnt}권`:"아직";c.font=`500 20px ${SANS}`;c.lineWidth=5;c.strokeText(ct,p.x,p.ty+26);c.fillStyle=MUTED;c.fillText(ct,p.x,p.ty+26)}
+  /* 책 이름: 켜진 별이 적을 때, 겹치지 않는 쪽으로 */
+  if(sp&&ON.length<=40){
     c.font=`500 19px ${SANS}`;c.textAlign="left";
     ON.forEach(b=>boxes.push({x:b.x-b.r-2,y:b.y-b.r-2,w:2*b.r+4,h:2*b.r+4}));
     const hit=a=>boxes.some(o=>a.x<o.x+o.w&&a.x+a.w>o.x&&a.y<o.y+o.h&&a.y+a.h>o.y)||a.x<20||a.x+a.w>W-20||a.y<250||a.y+a.h>1120;
@@ -289,65 +303,19 @@ function poster(yy){
           .map(([x,y])=>({x,y,w,h})).find(p=>!hit(p));
         if(ok){boxes.push(ok);c.lineWidth=5;c.strokeStyle="rgba(18,20,23,.85)";c.strokeText(t,ok.x,ok.y+h-4);c.fillStyle="#e4e2da";c.fillText(t,ok.x,ok.y+h-4);return}}});
   }
-  /* 아래: 모임별 별 수, 가장 밝은 질문 */
+  /* 아래: 모임별 별 수(밖의 책은 흰 별), 가장 밝은 질문 또는 다음에 켤 별 */
   const ORD=["문학산책","지정독서","경제독서","수요독서","한책읽기","오프모임","지원독서"];
-  const cnt=ORD.map(m=>[m,ON.filter(b=>b.src.m===m).length]).filter(x=>x[1]);
+  const cnt=ORD.map(m=>[m,ON.filter(b=>b.src.m===m).length,col(m)]).filter(x=>x[1]);
+  if(OA.length)cnt.push(["밖에서 읽은 책",OA.length,OWNC]);
   let fs=22;c.font=`500 ${fs}px ${SANS}`;const parts=cnt.map(([m,n])=>`${m} ${n}`);
   while(fs>15&&d3.sum(parts,p=>c.measureText(p).width+40)>980){fs--;c.font=`500 ${fs}px ${SANS}`}
   const ws=parts.map(p=>c.measureText(p).width+40);
-  let x=CX-d3.sum(ws)/2;cnt.forEach(([m],i)=>{c.fillStyle=col(m);c.beginPath();c.arc(x+10,1169,7,0,7);c.fill();c.fillStyle=INK;c.textAlign="left";c.fillText(parts[i],x+24,1176);x+=ws[i]});
-  const top=[...PQ].sort((a,b)=>b.cnt-a.cnt)[0];
+  let x=CX-d3.sum(ws)/2;cnt.forEach(([m,n,cc],i)=>{c.fillStyle=cc;c.beginPath();c.arc(x+10,1169,7,0,7);c.fill();c.fillStyle=INK;c.textAlign="left";c.fillText(parts[i],x+24,1176);x+=ws[i]});
   c.textAlign="center";c.fillStyle=MUTED;c.font=`400 22px ${SANS}`;
-  c.fillText(yy?`가장 밝은 질문은 '${top.src.q}' — ${yy}년 ${top.cnt}권이 이 질문으로 이어졌습니다`:`가장 많은 책이 모인 질문은 '${top.src.q}' — ${top.cnt}권`,CX,1226);
+  if(me){const nx=ON.length?nextStars()[0]:null;
+    c.fillText(nx?`다음에 켤 별 — ${nx.t}${nx.d?` · ${+nx.d.slice(5,7)}/${+nx.d.slice(8)} ${nx.m}`:""}`:ON.length?`가장 밝은 질문은 '${top.src.q}' — ${top.cnt}권이 이 질문으로 이어졌습니다`:"",CX,1226)}
+  else c.fillText(yy?`가장 밝은 질문은 '${top.src.q}' — ${yy}년 ${top.cnt}권이 이 질문으로 이어졌습니다`:`가장 많은 책이 모인 질문은 '${top.src.q}' — ${top.cnt}권`,CX,1226);
   c.fillStyle=MUTED;c.font=`500 22px ${SANS}`;c.fillText("책미사 · 책으로 미래를 여는 사람들",CX,H-48);
-  return cv2;
-}
-/* 내 별자리 카드(1080×1350): 하늘의 별 자리는 누구나 같고, 내가 담은 책만 켜진다 */
-function myPoster(){
-  const W=1080,H=1350,CX=540,CY=720,R=320,SERIF='"Nanum Myeongjo",serif',SANS='Pretendard,"Malgun Gothic",sans-serif',MUTED="#8d9399";
-  const cv2=document.createElement("canvas");cv2.width=W;cv2.height=H;const c=cv2.getContext("2d");
-  const hs=s=>{let h=0;for(const ch of s)h=(h*31+ch.charCodeAt(0))|0;return Math.abs(h)};
-  const PQ=Q.map((q,i)=>{const a=-Math.PI/2+i*2*Math.PI/Q.length;const x=CX+Math.cos(a)*R,y=CY+Math.sin(a)*R;return{src:q,kind:"q",a,x,y,fx:x,fy:y}});
-  const pq=Object.fromEntries(PQ.map(p=>[p.src.q,p]));
-  const PB=B.map(b=>{const ps=b.qs.map(x=>pq[x]),h=hs(b.id);return{src:b,kind:"b",x:CX+(d3.mean(ps,p=>p.x)-CX)*.8+(h%40-20),y:CY+(d3.mean(ps,p=>p.y)-CY)*.8+((h>>6)%40-20)}});
-  const PL=[];PB.forEach(n=>n.src.qs.forEach(x=>PL.push({source:n,target:pq[x]})));
-  const s2=d3.forceSimulation([...PQ,...PB]).force("link",d3.forceLink(PL).distance(85).strength(.25))
-    .force("charge",d3.forceManyBody().strength(n=>n.kind==="q"?-300:-30)).force("collide",d3.forceCollide(n=>n.kind==="q"?58:9))
-    .force("cx",d3.forceX(CX).strength(.02)).force("cy",d3.forceY(CY).strength(.02)).stop();
-  for(let i=0;i<500;i++)s2.tick();
-  PB.forEach(n=>{n.x=Math.max(90,Math.min(W-90,n.x));n.y=Math.max(350,Math.min(1080,n.y))});
-  const OA=ownA(),PO=OA.map(o=>{const ps=o.qs.map(x=>pq[x]),h=hs(o.k);return{src:{t:o.t,qs:o.qs,m:""},kind:"o",x:CX+(d3.mean(ps,p=>p.x)-CX)*.72+(h%50-25),y:CY+(d3.mean(ps,p=>p.y)-CY)*.72+((h>>6)%50-25)}});
-  PO.forEach(n=>{n.x=Math.max(90,Math.min(W-90,n.x));n.y=Math.max(350,Math.min(1080,n.y))});
-  PO.forEach(n=>n.src.qs.forEach(x=>PL.push({source:n,target:pq[x]})));
-  const mineS=new Set(myList),lit=[...PB.filter(n=>mineS.has(n.src)),...PO],on=new Set(lit),allL=[...myList,...OA];
-  const cnt=Object.fromEntries(Q.map(q=>[q.q,allL.filter(b=>b.qs.includes(q.q)).length]));
-  const g=c.createRadialGradient(CX,CY,60,CX,CY,900);g.addColorStop(0,"#252a2f");g.addColorStop(1,"#121417");c.fillStyle=g;c.fillRect(0,0,W,H);
-  const rr=d3.randomLcg(0.7);for(let i=0;i<260;i++){c.globalAlpha=.15+rr()*.35;c.fillStyle="#fff";c.beginPath();c.arc(rr()*W,rr()*H,rr()*1.1+.2,0,7);c.fill()}c.globalAlpha=1;
-  const nm=myName();c.textAlign="center";c.textBaseline="alphabetic";
-  c.fillStyle=GLOW;c.font=`700 26px ${SANS}`;c.fillText(nm.who?`${nm.who}님의 책미사 별자리`:"나의 책미사 별자리",CX,92);
-  if(allL.length){const q=nm.q;c.fillStyle=INK;c.font=`800 ${q.length>9?52:60}px ${SERIF}`;c.fillText(`'${q}'${josa(q,"을","를")} 묻는 사람`,CX,172);
-    c.fillStyle=MUTED;c.font=`400 25px ${SANS}`;c.fillText(`함께 읽은 책 ${myList.length}권${OA.length?` · 밖에서 읽은 책 ${OA.length}권`:""} · 질문 ${Q.length}개 가운데 ${Object.values(cnt).filter(Boolean).length}개에 별`,CX,222);
-  }else{c.fillStyle=INK;c.font=`800 56px ${SERIF}`;c.fillText("아직 켜진 별이 없습니다",CX,172);
-    c.fillStyle=MUTED;c.font=`400 25px ${SANS}`;c.fillText("나의 독서 여정에 읽은 책을 담으면 여기에 별이 켜집니다",CX,222)}
-  for(const l of PL){const m=on.has(l.source);c.strokeStyle=m?"rgba(124,200,211,.5)":"rgba(220,220,214,.045)";c.lineWidth=m?1.8:1;c.beginPath();c.moveTo(l.source.x,l.source.y);c.lineTo(l.target.x,l.target.y);c.stroke()}
-  for(const n of PB)if(!on.has(n)){c.fillStyle="rgba(200,200,195,.26)";c.beginPath();c.arc(n.x,n.y,2.2,0,7);c.fill()}
-  const boxes=[];
-  for(const p of PQ){const k=cnt[p.src.q]||0,r=10+Math.sqrt(k)*6;p.r=r;c.shadowColor=GLOW;c.shadowBlur=k?30:0;c.fillStyle=k?INK:"#4f545a";c.beginPath();c.arc(p.x,p.y,r,0,7);c.fill();c.shadowBlur=0;
-    p.ty=Math.sin(p.a)>-.2?p.y+r+30:p.y-r-42;c.font=`700 25px ${SERIF}`;const w=c.measureText(p.src.q).width;boxes.push({x:p.x-w/2-8,y:p.ty-26,w:w+16,h:58},{x:p.x-r-4,y:p.y-r-4,w:2*r+8,h:2*r+8})}
-  for(const n of lit){const r=6+n.src.qs.length*1.4,cc=n.kind==="o"?OWNC:col(n.src.m);n.r=r;c.shadowColor=cc;c.shadowBlur=22;c.fillStyle=cc;c.beginPath();c.arc(n.x,n.y,r,0,7);c.fill();c.shadowBlur=0}
-  c.textAlign="center";c.lineJoin="round";
-  for(const p of PQ){const k=cnt[p.src.q]||0;c.lineWidth=7;c.strokeStyle="rgba(18,20,23,.9)";
-    c.font=`700 25px ${SERIF}`;c.strokeText(p.src.q,p.x,p.ty);c.fillStyle=k?INK:"#6d7378";c.fillText(p.src.q,p.x,p.ty);
-    c.font=`500 20px ${SANS}`;c.lineWidth=5;c.strokeText(k?`${k}권`:"아직",p.x,p.ty+26);c.fillStyle=MUTED;c.fillText(k?`${k}권`:"아직",p.x,p.ty+26)}
-  if(lit.length<=40){c.font=`500 19px ${SANS}`;c.textAlign="left";lit.forEach(n=>boxes.push({x:n.x-n.r-2,y:n.y-n.r-2,w:2*n.r+4,h:2*n.r+4}));
-    const hit=a=>boxes.some(o=>a.x<o.x+o.w&&a.x+a.w>o.x&&a.y<o.y+o.h&&a.y+a.h>o.y)||a.x<20||a.x+a.w>W-20||a.y<250||a.y+a.h>1120;
-    [...lit].sort((a,b)=>a.y-b.y).forEach(n=>{for(const cut of [99,12,9]){const t=n.src.t.length>cut?n.src.t.slice(0,cut-1)+"…":n.src.t,w=c.measureText(t).width,h=22,gp=n.r+8;
-      const ok=[[n.x-w/2,n.y-gp-h],[n.x-w/2,n.y+gp],[n.x+gp,n.y-h/2],[n.x-gp-w,n.y-h/2],[n.x+gp*.6,n.y-gp-h],[n.x-gp*.6-w,n.y-gp-h],[n.x+gp*.6,n.y+gp],[n.x-gp*.6-w,n.y+gp]].map(([x,y])=>({x,y,w,h})).find(p=>!hit(p));
-      if(ok){boxes.push(ok);c.lineWidth=5;c.strokeStyle="rgba(18,20,23,.85)";c.strokeText(t,ok.x,ok.y+h-4);c.fillStyle="#e4e2da";c.fillText(t,ok.x,ok.y+h-4);return}}})}
-  c.textAlign="center";const nx=nextStars()[0];
-  if(nx){c.fillStyle=GLOW;c.font=`700 22px ${SANS}`;c.fillText("다음에 켤 별",CX,1176);
-    c.fillStyle=INK;c.font=`700 30px ${SERIF}`;c.fillText(nx.t+(nx.d?`  ·  ${+nx.d.slice(5,7)}/${+nx.d.slice(8)} ${nx.m}`:""),CX,1220)}
-  c.fillStyle=MUTED;c.font=`500 22px ${SANS}`;c.fillText("책미사 · 책으로 미래를 여는 사람들",CX,H-46);
   return cv2;
 }
 function readEntries(){let es=[];try{es=JSON.parse(localStorage.getItem("mychaekmisa-v1")||"[]")}catch(e){}return Array.isArray(es)?es:[]}
@@ -449,7 +417,7 @@ async function savePoster(){
   const b=document.getElementById("qg-save"),old=b.textContent;b.disabled=true;b.textContent="그리는 중…";
   try{
     await Promise.all(['800 64px "Nanum Myeongjo"','700 26px "Nanum Myeongjo"','500 22px Pretendard','700 26px Pretendard','400 22px Pretendard'].map(f=>document.fonts.load(f,"책미사가")));
-    const cvs=myB?myPoster():poster(yr),name=myB?"책미사_내별자리.png":`책미사_별자리_${yr||"전체"}.png`;
+    const cvs=myB?poster(null,true):poster(yr),name=myB?`책미사_별자리_${whoSel||nick()||"나"}.png`:`책미사_별자리_${yr||"전체"}.png`;
     const blob=await new Promise(r=>cvs.toBlob(r,"image/png"));
     const file=new File([blob],name,{type:"image/png"});
     if(matchMedia("(pointer: coarse)").matches&&navigator.canShare&&navigator.canShare({files:[file]})){
