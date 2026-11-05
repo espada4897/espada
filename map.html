@@ -36,7 +36,7 @@ html { scroll-behavior: smooth; }
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&display=swap">
-<link rel="stylesheet" href="style.css?v=d7ba4f95">
+<link rel="stylesheet" href="style.css?v=7c73a23e">
 <script>try { if (localStorage.getItem("mychaekmisa-on")) document.documentElement.classList.add("is-member"); } catch (e) {}</script>
 </head>
 <body>
@@ -56,7 +56,7 @@ html { scroll-behavior: smooth; }
     </div>
     <a class="btn primary small top-cta" href="join.html#pick">이달의 책 신청</a>
   </div>
-<nav class="subnav" aria-label="서재"><div class="wrap"><a href="books.html">함께 읽은 책</a><a href="map.html" aria-current="page">생각의 지도</a><a href="questions.html">질문의 서재</a><a href="quotes.html">책속의 한줄</a></div></nav>
+<nav class="subnav" aria-label="서재"><div class="wrap"><a href="books.html">함께 읽은 책</a><a href="map.html" aria-current="page">생각의 지도</a><a href="compass.html">나침반</a><a href="questions.html">질문의 서재</a><a href="quotes.html">책속의 한줄</a></div></nav>
 </header>
 <div class="nextbar" hidden><div class="wrap"><a class="nb-item" href="join.html?pick=2026-11-07#pick" data-at="2026-11-07T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">11/7(토) 21:00 · 지정독서 《가호》</span><span class="nb-go">신청하기 →</span></a><a class="nb-item" href="join.html?pick=2026-11-14#pick" data-at="2026-11-14T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">11/14(토) 21:00 · 지정독서 《다시, 책으로》</span><span class="nb-go">신청하기 →</span></a><a class="nb-item" href="join.html?pick=2026-11-21#pick" data-at="2026-11-21T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">11/21(토) 21:00 · 문학산책 《빨강의 자서전》</span><span class="nb-go">신청하기 →</span></a><a class="nb-item" href="join.html?pick=2026-11-28#pick" data-at="2026-11-28T21:00:00+09:00" hidden><span class="nb-label">다음 모임</span><b class="nb-d"></b><span class="nb-what">11/28(토) 21:00 · 지정독서 《남에게 보여주려고 인생을 낭비하지 마라》</span><span class="nb-go">신청하기 →</span></a></div></div>
 
@@ -64,11 +64,7 @@ html { scroll-behavior: smooth; }
   <section class="page" id="map">
     <div class="wrap">
       <header class="qintro"><h1>생각의 지도</h1><p>함께 읽은 책 167권을 장르 대신, 그 책이 던지는 질문으로 다시 꽂아 보았습니다. 마음이 가는 질문에서 시작해 보세요.</p></header>
-      <section class="sky" id="sky" aria-labelledby="sky-h">
-        <div class="sky-head"><p class="sky-eye">다음 책 고르기 나침반</p><h2 id="sky-h">책미사는 <em>비어 가는 하늘</em>에 다음 별을 놓습니다</h2><p>큰 별은 여덟 질문, 작은 별은 함께 읽은 책입니다. 금빛은 올해 읽은 책, 주황 점선은 올해 덜 연 질문입니다. 다음 모임 책이 어디로 날아가는지 띄워 보세요.</p></div>
-        <div class="sky-stage"><canvas id="sky-cv" aria-label="여덟 질문과 함께 읽은 책의 별자리. 다음 모임 책이 비어 있는 질문 쪽으로 날아와 박힙니다."></canvas><div class="sky-cap" aria-live="polite"><div class="d" id="sky-capd"></div><div class="t" id="sky-capt"></div><div class="s" id="sky-caps"></div></div><div class="sky-tip" id="sky-tip" hidden></div></div>
-        <div class="sky-row"><div><div class="sky-ctl"><button id="sky-play" class="sky-btn" type="button">▶ 다음 별 띄우기</button><button id="sky-reset" class="sky-btn ghost" type="button">처음 하늘로</button></div><div class="sky-legend"><span><i class="g"></i>올해 읽은 책</span><span><i class="p"></i>지난 책</span><span><i class="e"></i>올해 덜 연 질문</span><span><i class="w"></i>다가올 모임 책</span></div></div><div class="sky-rose"><h3>균형 나침반</h3><p>점선은 7년 평균, 금빛은 올해. 별이 박힐 때마다 모양이 바뀝니다.</p><canvas id="sky-rose" width="220" height="220" aria-label="여덟 질문의 균형"></canvas></div></div>
-      </section>
+      <p class="cmp-hint"><a href="compass.html">책미사는 지금 어느 쪽으로 가고 있을까요? <b>나침반 →</b></a></p>
       <div class="qview" role="group" aria-label="보기 방식"><button type="button" data-v="list" aria-pressed="true">목록</button><button type="button" data-v="graph" aria-pressed="false">그래프</button></div>
       <div id="qv-list">
       <ol class="qtoc"><li><a href="#m1"><span class="qno">01</span><span class="qtoc-q">한 번뿐인 삶, 무엇으로 채울 것인가</span><small>27권</small></a></li><li><a href="#m2"><span class="qno">02</span><span class="qtoc-q">나는 왜 이런 사람이 되었을까</span><small>18권</small></a></li><li><a href="#m3"><span class="qno">03</span><span class="qtoc-q">기계는 사람을 어디까지 대신할까</span><small>18권</small></a></li><li><a href="#m4"><span class="qno">04</span><span class="qtoc-q">얼마면 충분한가</span><small>29권</small></a></li><li><a href="#m5"><span class="qno">05</span><span class="qtoc-q">무엇이 공정한가</span><small>25권</small></a></li><li><a href="#m6"><span class="qno">06</span><span class="qtoc-q">곁에 있는 사람을 우리는 얼마나 아는가</span><small>18권</small></a></li><li><a href="#m7"><span class="qno">07</span><span class="qtoc-q">어떻게 하면 더 잘 생각할 수 있을까</span><small>15권</small></a></li><li><a href="#m8"><span class="qno">08</span><span class="qtoc-q">세계는 어떻게 움직이는가</span><small>19권</small></a></li></ol>
@@ -587,237 +583,7 @@ function pickB(b,zoomTo=true){
 }
 if(location.hash==="#graph"||location.hash==="#mine"||location.hash.startsWith("#who-")||/^#y\d{4}$/.test(location.hash)){setView("graph",false);const tv=document.querySelector(".qview");if(tv)setTimeout(()=>tv.scrollIntoView({block:"start"}),60)}
 })();
-</script>      <script>(() => {
-  const G = JSON.parse(document.getElementById('qg-data').textContent);
-  const Q = G.q.map(x => x.q), NQ = Q.length, qi = n => Q.indexOf(n);
-  const thisYear = String(new Date().getFullYear());
-  let YEARS = [thisYear];
-  if (G.b.filter(b => b.ys.includes(thisYear)).length < 8) YEARS = [String(+thisYear - 1), thisYear];
-  const inYear = b => b.ys.some(y => YEARS.includes(y));
-  const D = { b: G.b.map(b => [b.t, b.qs.map(qi).filter(i => i >= 0), b.ys, b.m, b.d, inYear(b)]), u: (G.u || []).map(u => [u.d, u.m, u.t, u.qs.map(qi).filter(i => i >= 0), 0]) };
-  const yearBooks = G.b.filter(inYear), lastD = yearBooks.map(b => b.d).filter(d => d && YEARS.includes(d.slice(0, 4))).sort().pop() || '';
-  const yearLabel = YEARS.length > 1 ? `${YEARS[0]}~${YEARS[1]}` : `${YEARS[0]}년 1월 ~ ${lastD ? +lastD.slice(5, 7) + '월' : ''}`;
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const sky = document.getElementById('sky-cv'), ctx = sky.getContext('2d');
-  const rose = document.getElementById('sky-rose'), rctx = rose.getContext('2d');
-  const tip = document.getElementById('sky-tip');
-  const capD = document.getElementById('sky-capd'), capT = document.getElementById('sky-capt'), capS = document.getElementById('sky-caps');
-  const playBtn = document.getElementById('sky-play'), resetBtn = document.getElementById('sky-reset');
-
-  // 씨앗 난수: 그릴 때마다 같은 하늘
-  let seed = 7; const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
-
-  // 질문별 꼬리표 수: 7년 전체, 올해
-  const allTags = Array(NQ).fill(0), baseYear = Array(NQ).fill(0);
-  D.b.forEach(b => b[1].forEach(q => { allTags[q]++; if (b[5]) baseYear[q]++; }));
-  const allSum = allTags.reduce((a, b) => a + b, 0);
-  let yearTags = baseYear.slice();
-  const lift = (q, yt) => { const ys = yt.reduce((a, b) => a + b, 0) || 1; return (yt[q] / ys) / (allTags[q] / allSum); };
-  const thin0 = Q.map((_, q) => lift(q, baseYear) < 0.8);
-
-  // 배치
-  let W = 0, H = 0, CX = 0, CY = 0, R = 0, dpr = 1;
-  const qa = Q.map((_, i) => -Math.PI / 2 + i * 2 * Math.PI / NQ);
-  const qpos = () => Q.map((_, i) => ({ x: CX + Math.cos(qa[i]) * R, y: CY + Math.sin(qa[i]) * R }));
-  let QP = [];
-  const stars = D.b.map((b, i) => ({ t: b[0], qs: b[1], cur: b[5], m: b[3], jx: rnd() - .5, jy: rnd() - .5, tw: rnd() * 6.28 }));
-  const dust = Array.from({ length: 220 }, () => ({ x: rnd(), y: rnd(), r: rnd() * 1.1 + .2, tw: rnd() * 6.28 }));
-
-  function target(qs, jx, jy, spread) {
-    let x = 0, y = 0;
-    if (qs.length === 1) { const p = QP[qs[0]]; x = p.x + (CX - p.x) * .22; y = p.y + (CY - p.y) * .22; }
-    else { const a = QP[qs[0]], b = QP[qs[1]]; x = a.x * .6 + b.x * .4; y = a.y * .6 + b.y * .4; x += (CX - x) * .18; y += (CY - y) * .18; }
-    return { x: x + jx * spread, y: y + jy * spread };
-  }
-  function layout() {
-    const w = sky.parentElement.clientWidth; W = w; H = Math.round(Math.min(w * (w < 520 ? 1.22 : 1.02), 760));
-    dpr = Math.min(devicePixelRatio || 1, 2);
-    sky.width = W * dpr; sky.height = H * dpr; sky.style.height = H + 'px';
-    CX = W / 2; CY = H / 2 + (W < 520 ? 44 : 30); R = Math.min(W, H) * (W < 520 ? .31 : .34);
-    QP = qpos();
-    const spread = R * .42;
-    stars.forEach(s => Object.assign(s, target(s.qs, s.jx, s.jy, spread)));
-    // 겹침 풀기
-    for (let k = 0; k < 40; k++) for (let i = 0; i < stars.length; i++) for (let j = i + 1; j < stars.length; j++) {
-      const a = stars[i], b = stars[j], dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy) || .01, m = W < 520 ? 7 : 9;
-      if (d < m) { const p = (m - d) / 2 / d; a.x -= dx * p; a.y -= dy * p; b.x += dx * p; b.y += dy * p; }
-    }
-    comets.forEach(c => { const t = target(c.qs, c.jx, c.jy, spread * .5); c.tx = t.x; c.ty = t.y; });
-  }
-
-  // 혜성(다가올 모임 책)
-  const comets = D.u.map(u => ({ d: u[0], m: u[1], t: u[2], qs: u[3], tmp: u[4], jx: rnd() - .5, jy: rnd() - .5, state: 'wait', p: 0, trail: [], land: 0 }));
-  const aura = Q.map((_, q) => ({ v: baseYear[q], to: baseYear[q], flash: 0 }));
-  const links = []; // 혜성이 그은 선
-  let ended = false;
-
-  function setCap(d, t, s) { capD.textContent = d; capT.textContent = t; capS.textContent = s || ''; }
-  function initCap() {
-    const thinNames = Q.filter((_, q) => thin0[q]).map(n => `'${n}'`).join(' · ');
-    setCap(`${yearLabel} · ${yearBooks.length}권`, YEARS.length > 1 ? '요즘 책미사의 하늘' : '올해 책미사의 하늘', thinNames ? `어둡게 빈 곳: ${thinNames}` : '여덟 질문이 고르게 밝습니다');
-    if (!comets.length) { playBtn.hidden = true; resetBtn.hidden = true; }
-  }
-
-  // 그리기
-  let tnow = 0;
-  let seen = true;
-  if ('IntersectionObserver' in window) new IntersectionObserver(es => { seen = es[0].isIntersecting; }).observe(sky);
-  function draw(ts) {
-    tnow = ts / 1000;
-    if (!seen) { requestAnimationFrame(draw); return; }
-    if (sky.parentElement.clientWidth && sky.parentElement.clientWidth !== W) layout();
-    if (!W) { requestAnimationFrame(draw); return; }
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    ctx.clearRect(0, 0, W, H);
-    // 먼지별
-    dust.forEach(s => { ctx.globalAlpha = .25 + .2 * Math.sin(tnow * .8 + s.tw); ctx.fillStyle = '#9fb0d8'; ctx.beginPath(); ctx.arc(s.x * W, s.y * H, s.r, 0, 7); ctx.fill(); });
-    ctx.globalAlpha = 1;
-    // 질문 오라
-    aura.forEach((a, q) => { a.v += (a.to - a.v) * .06; a.flash *= .95; });
-    Q.forEach((name, q) => {
-      const p = QP[q], lf = lift(q, aura.map(a => a.v)), thin = lf < 0.8;
-      const rad = R * (.16 + Math.min(lf, 2.2) * .13) + a(q).flash * 30;
-      const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, rad);
-      const al = thin ? .05 : Math.min(.32, .08 + lf * .12);
-      g.addColorStop(0, `rgba(242,196,109,${al + a(q).flash * .4})`); g.addColorStop(1, 'rgba(242,196,109,0)');
-      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(p.x, p.y, rad, 0, 7); ctx.fill();
-      if (thin) { // 빈 하늘 고리
-        ctx.save(); ctx.strokeStyle = 'rgba(255,138,91,.75)'; ctx.setLineDash([3, 5]); ctx.lineDashOffset = -tnow * 8; ctx.lineWidth = 1.3;
-        ctx.beginPath(); ctx.arc(p.x, p.y, R * .2 + Math.sin(tnow * 2) * 2, 0, 7); ctx.stroke(); ctx.restore();
-      }
-    });
-    // 선: 올해 책이 그은 질문 사이 선(희미), 혜성이 그은 선(밝게)
-    links.forEach(l => {
-      l.k = Math.min(1, l.k + .02);
-      const a = QP[l.a], b = QP[l.b];
-      ctx.strokeStyle = `rgba(255,255,255,${.55 * l.k})`; ctx.lineWidth = 1.4;
-      ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(a.x + (b.x - a.x) * l.k, a.y + (b.y - a.y) * l.k); ctx.stroke();
-    });
-    // 책 별
-    stars.forEach(s => {
-      const tw = .75 + .25 * Math.sin(tnow * 1.6 + s.tw);
-      if (s.cur) { ctx.fillStyle = `rgba(242,196,109,${.95 * tw})`; ctx.shadowColor = '#f2c46d'; ctx.shadowBlur = 8; ctx.beginPath(); ctx.arc(s.x, s.y, W < 520 ? 2.6 : 3.2, 0, 7); ctx.fill(); ctx.shadowBlur = 0; }
-      else { ctx.fillStyle = `rgba(110,124,160,${.55 * tw})`; ctx.beginPath(); ctx.arc(s.x, s.y, W < 520 ? 1.5 : 1.9, 0, 7); ctx.fill(); }
-    });
-    // 혜성
-    comets.forEach(c => {
-      if (c.state === 'fly') {
-        c.p = Math.min(1, c.p + (reduce ? 1 : 1 / 130));
-        const e = 1 - Math.pow(1 - c.p, 3);
-        const sx = W + 40, sy = -40, cx1 = W * .85, cy1 = H * .55;
-        const x = (1 - e) ** 2 * sx + 2 * (1 - e) * e * cx1 + e * e * c.tx, y = (1 - e) ** 2 * sy + 2 * (1 - e) * e * cy1 + e * e * c.ty;
-        c.x = x; c.y = y; c.trail.push({ x, y }); if (c.trail.length > 34) c.trail.shift();
-        if (c.p >= 1) land(c);
-      }
-      if (c.trail.length > 1 && c.state !== 'wait') {
-        for (let i = 1; i < c.trail.length; i++) {
-          const k = i / c.trail.length * (c.state === 'done' ? Math.max(0, 1 - c.land * .03) : 1);
-          ctx.strokeStyle = `rgba(255,255,255,${k * .7})`; ctx.lineWidth = k * 3;
-          ctx.beginPath(); ctx.moveTo(c.trail[i - 1].x, c.trail[i - 1].y); ctx.lineTo(c.trail[i].x, c.trail[i].y); ctx.stroke();
-        }
-      }
-      if (c.state === 'fly' || c.state === 'done') {
-        if (c.state === 'done') c.land++;
-        const ring = c.state === 'done' ? Math.min(60, c.land * 1.6) : 0;
-        if (ring && ring < 60) { ctx.strokeStyle = `rgba(255,255,255,${1 - ring / 60})`; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(c.x, c.y, ring, 0, 7); ctx.stroke(); }
-        ctx.fillStyle = '#fff'; ctx.shadowColor = '#fff'; ctx.shadowBlur = 16; ctx.beginPath(); ctx.arc(c.x, c.y, W < 520 ? 3.6 : 4.4, 0, 7); ctx.fill(); ctx.shadowBlur = 0;
-        if (c.state === 'done') { ctx.font = `500 ${W < 520 ? 11 : 12}px ${getComputedStyle(document.body).fontFamily}`; ctx.fillStyle = 'rgba(255,255,255,.85)'; ctx.textAlign = 'center'; ctx.fillText(short(c.t), c.x, c.y - 10); }
-      }
-    });
-    // 질문 이름·큰 별
-    Q.forEach((name, q) => {
-      const p = QP[q], lf = lift(q, aura.map(a => a.v)), thin = lf < 0.8;
-      ctx.fillStyle = thin ? '#ffb393' : '#fff4d6'; ctx.shadowColor = thin ? '#ff8a5b' : '#f2c46d'; ctx.shadowBlur = 14;
-      ctx.beginPath(); ctx.arc(p.x, p.y, W < 520 ? 5 : 6.5, 0, 7); ctx.fill(); ctx.shadowBlur = 0;
-      const fs = W < 520 ? 12 : 14, top = Math.sin(qa[q]) < -.9;
-      ctx.textAlign = 'center';
-      ctx.font = `700 ${fs}px "Nanum Myeongjo", serif`;
-      const lines = W < 520 ? wrap(name) : [name];
-      const sub = `${Math.round(aura[q].v)}권 · ${lf.toFixed(1)}배`;
-      const lh = fs + 3, blockH = lines.length * lh + 14;
-      const y0 = top ? p.y - 14 - blockH + fs : p.y + 14 + fs;
-      const wmax = Math.max(...lines.map(l => ctx.measureText(l).width));
-      const lx = Math.max(wmax / 2 + 6, Math.min(W - wmax / 2 - 6, p.x));
-      ctx.fillStyle = thin ? '#ffb393' : '#efe9da';
-      lines.forEach((ln, i) => ctx.fillText(ln, lx, y0 + i * lh));
-      ctx.font = `500 ${W < 520 ? 10.5 : 11.5}px Pretendard, "Malgun Gothic", sans-serif`; ctx.fillStyle = thin ? '#ff9f7a' : '#9aa3bb';
-      ctx.fillText(sub, lx, y0 + lines.length * lh);
-    });
-    drawRose();
-    requestAnimationFrame(draw);
-  }
-  const a = q => aura[q];
-  const short = t => t.length > 12 ? t.slice(0, 11) + '…' : t;
-  const wrap = n => { const w = n.split(' '); if (w.length < 3) return [n]; const h = Math.ceil(w.length / 2); return [w.slice(0, h).join(' '), w.slice(h).join(' ')]; };
-
-  // 나침반
-  function drawRose() {
-    const s = 220, c = s / 2, r = 78; rctx.setTransform(1, 0, 0, 1, 0, 0); rctx.clearRect(0, 0, s, s);
-    const ang = qa;
-    rctx.strokeStyle = '#273049'; rctx.lineWidth = 1;
-    for (let i = 0; i < NQ; i++) { rctx.beginPath(); rctx.moveTo(c, c); rctx.lineTo(c + Math.cos(ang[i]) * r, c + Math.sin(ang[i]) * r); rctx.stroke(); }
-    const maxShare = .3;
-    const poly = (vals, stroke, fill, dash) => {
-      rctx.beginPath(); vals.forEach((v, i) => { const rr = Math.min(1, v / maxShare) * r; const x = c + Math.cos(ang[i]) * rr, y = c + Math.sin(ang[i]) * rr; i ? rctx.lineTo(x, y) : rctx.moveTo(x, y); }); rctx.closePath();
-      rctx.setLineDash(dash || []); if (fill) { rctx.fillStyle = fill; rctx.fill(); } rctx.strokeStyle = stroke; rctx.lineWidth = 1.5; rctx.stroke(); rctx.setLineDash([]);
-    };
-    poly(allTags.map(v => v / allSum), '#8f96ab', null, [3, 3]);
-    const yv = aura.map(a => a.v), ys = yv.reduce((a, b) => a + b, 0);
-    poly(yv.map(v => v / ys), '#f2c46d', 'rgba(242,196,109,.22)');
-    rctx.font = '600 10px Pretendard, "Malgun Gothic", sans-serif'; rctx.textAlign = 'center'; rctx.textBaseline = 'middle';
-    Q.forEach((n, i) => { const thin = lift(i, yv) < 0.8; rctx.fillStyle = thin ? '#ff9f7a' : '#c9c6bd'; rctx.fillText(n.split(' ')[0], c + Math.cos(ang[i]) * (r + 18), c + Math.sin(ang[i]) * (r + 14)); });
-  }
-
-  // 혜성 띄우기
-  let queue = [];
-  function land(c) {
-    c.state = 'done'; c.x = c.tx; c.y = c.ty;
-    c.qs.forEach(q => { aura[q].to += 1; aura[q].flash = 1; });
-    if (c.qs.length > 1) links.push({ a: c.qs[0], b: c.qs[1], k: reduce ? 1 : 0 });
-    const names = c.qs.map(q => `'${Q[q]}'`).join('과 ');
-    setCap(`${+c.d.slice(5, 7)}월 ${+c.d.slice(8)}일 · ${c.m}`, `《${c.t}》`, `${names}${c.qs.length > 1 ? ' 사이' : ''}에 별이 켜집니다`);
-    setTimeout(next, reduce ? 300 : 1900);
-  }
-  function next() {
-    const c = queue.shift();
-    if (!c) return finish();
-    c.state = 'fly'; c.p = 0; c.trail = [];
-    setCap(`${+c.d.slice(5, 7)}월 ${+c.d.slice(8)}일 · ${c.m}`, `《${c.t}》`, '날아오는 중…');
-  }
-  function finish() {
-    ended = true;
-    const left = Q.filter((_, q) => lift(q, aura.map(a => a.to)) < 0.8);
-    setCap(`${monthsOf()} 모임이 지나면`, left.length ? `'${left.join("' · '")}'은 아직 비어 있습니다` : '여덟 질문이 고르게 밝아졌습니다', left.length ? '다음 책이 놓일 자리입니다' : '');
-    playBtn.disabled = false; playBtn.textContent = '▶ 다시 띄우기';
-  }
-  function reset() {
-    queue = []; ended = false; links.length = 0;
-    comets.forEach(c => { c.state = 'wait'; c.trail = []; c.land = 0; });
-    aura.forEach((a, q) => { a.v = a.to = baseYear[q]; a.flash = 0; });
-    initCap(); playBtn.disabled = false; playBtn.textContent = `▶ ${monthsOf()}의 별 띄우기`;
-  }
-  function monthsOf() { const ms = [...new Set(comets.map(c => +c.d.slice(5, 7)))]; return ms.length > 1 ? `${ms[0]}~${ms[ms.length - 1]}월` : `${ms[0] || ''}월`; }
-  playBtn.addEventListener('click', () => { reset(); playBtn.disabled = true; queue = comets.slice(); next(); });
-  resetBtn.addEventListener('click', reset);
-
-  // 별 이름 보기
-  function pick(ev) {
-    const r = sky.getBoundingClientRect(), x = ev.clientX - r.left, y = ev.clientY - r.top;
-    let best = null, bd = 14;
-    stars.forEach(s => { const d = Math.hypot(s.x - x, s.y - y); if (d < bd) { bd = d; best = s; } });
-    comets.forEach(c => { if (c.state === 'done') { const d = Math.hypot(c.x - x, c.y - y); if (d < bd + 4) { bd = d; best = { t: c.t, m: c.m, qs: c.qs, up: c.d }; } } });
-    if (!best) { tip.hidden = true; return; }
-    tip.hidden = false; tip.style.left = Math.max(80, Math.min(r.width - 80, x)) + 'px'; tip.style.top = y + 'px';
-    tip.textContent = `${best.t} · ${best.qs.map(q => Q[q]).join(' / ')}${best.up ? ' · 예정' : ''}`;
-  }
-  sky.addEventListener('pointermove', pick); sky.addEventListener('pointerdown', pick);
-  sky.addEventListener('pointerleave', () => tip.hidden = true);
-
-  layout(); initCap(); if (comets.length) playBtn.textContent = `▶ ${monthsOf()}의 별 띄우기`;
-  let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(layout, 120); });
-  requestAnimationFrame(draw);
-})();
-</script>
+</script>      <script>if (location.hash === "#sky") location.replace("compass.html");</script>
     </div>
   </section>
 </main>

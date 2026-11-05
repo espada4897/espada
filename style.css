@@ -2294,3 +2294,9 @@ footer { color: var(--muted); font-size: .82rem; border-top: 1px solid var(--lin
 .skb-now b { color: #ffb393; font-weight: 600; }
 .skb-go { justify-self: start; margin-top: 6px; background: #f2c46d; color: #060914; font-weight: 700; border-radius: 999px; padding: 10px 20px; text-decoration: none; }
 .skb-go:focus-visible { outline: 2px solid #ff8a5b; outline-offset: 3px; }
+
+/* 생각의 지도 첫머리 → 서재 › 나침반(2026-11-06 따로 뺌) */
+.cmp-hint { margin: 0 0 18px; }
+.cmp-hint a { display: inline-flex; flex-wrap: wrap; gap: 4px 8px; align-items: center; padding: 9px 16px; border: 1px dashed var(--accent); border-radius: 999px; color: var(--ink); text-decoration: none; font-size: 14.5px; }
+.cmp-hint a:hover { background: var(--surface); }
+.cmp-hint b { color: var(--accent); }
