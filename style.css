@@ -842,9 +842,13 @@ img.qb-cov { padding: 0; }
 .qg-board { background: #1b1e21; border-radius: var(--r-card); overflow: hidden; position: relative; box-shadow: var(--sh-2); }
 .qg-tools { position: absolute; top: 10px; left: 10px; right: 10px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; z-index: 2; pointer-events: none; }
 .qg-tools > * { pointer-events: auto; font: inherit; font-size: var(--fs-sm); background: #23272b; color: #dcdcd6; border: 1px solid #33383d; border-radius: var(--r-sm); padding: 5px 10px; }
-.qg-find { width: 170px; }
-.qg-find::placeholder { color: #8d9399; }
-.qg-qsel { max-width: 220px; }
+/* 책·저자 찾기, 질문 고르기: 그래프 박스 밖 위(박스 안 단추가 두 줄이 되지 않게, 11/5) */
+.qg-search { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+.qg-search > * { font: inherit; font-size: var(--fs-sm); background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 7px 12px; }
+.qg-search :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.qg-find { width: 220px; }
+.qg-find::placeholder { color: var(--muted); }
+.qg-qsel { max-width: 260px; }
 .qg-fit { cursor: pointer; margin-left: auto; }
 .qg-play, .qg-save { cursor: pointer; }
 .qg-save { border-color: #7cc8d3 !important; color: #7cc8d3 !important; }
@@ -916,7 +920,7 @@ img.qb-cov { padding: 0; }
 .qg-chip { display: inline-block; font-size: var(--fs-xs); color: #fff; padding: 1px 9px; border-radius: 999px; font-weight: 600; margin-right: 6px; }
 .qg-link { font: inherit; font-size: var(--fs-sm); border: 0; background: none; color: var(--accent); padding: 0; cursor: pointer; justify-self: start; text-align: left; }
 .qg-go { font-size: var(--fs-sm); font-weight: 600; color: var(--accent); border-top: 1px solid var(--line); padding-top: 10px; }
-@media (max-width: 860px) { .qg-stage { grid-template-columns: minmax(0, 1fr); } .qg-cv { height: 560px; } .qg-find { width: 130px; } }
+@media (max-width: 860px) { .qg-stage { grid-template-columns: minmax(0, 1fr); } .qg-cv { height: 560px; } .qg-find { flex: 1 1 140px; width: auto; } .qg-qsel { flex: 1 1 140px; max-width: none; } }
 
 /* 질문의 서재 (pages/03a_질문의 서재): 질문 하나에 한 줄, 누르면 그날 이야기·다르게 읽은 곳·이어지는 책 */
 .ql-today { margin-top: 32px; background: var(--accent); color: #fbf8f1; border-radius: var(--r-card); padding: 26px clamp(20px, 4vw, 36px); display: grid; gap: 12px; box-shadow: var(--sh-1); }
