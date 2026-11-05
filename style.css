@@ -834,18 +834,18 @@ img.qb-cov { padding: 0; }
 .qview { display: flex; gap: 4px; margin-top: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 3px; width: max-content; }
 .qview button { font: inherit; font-size: var(--fs-md); border: 0; background: none; color: var(--muted); padding: 5px 18px; border-radius: 999px; cursor: pointer; }
 .qview button[aria-pressed="true"] { background: var(--accent); color: var(--spine-fg); font-weight: 600; }
-.qview button:focus-visible, .qg-tools :focus-visible, .qg-panel button:focus-visible { outline: 2px solid #7cc8d3; outline-offset: 2px; }
+.qview button:focus-visible, .qgraph .qg-tools :focus-visible, .qg-panel button:focus-visible { outline: 2px solid #7cc8d3; outline-offset: 2px; }
 .qgraph { margin-top: 28px; display: grid; gap: 14px; }
 #qv-list[hidden], .qgraph[hidden], .qg-hint[hidden] { display: none; }
 .qg-lead { margin: 0; color: var(--muted); font-size: var(--fs-md); max-width: 64ch; }
 .qg-stage { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 16px; align-items: start; }
 .qg-board { background: #1b1e21; border-radius: var(--r-card); overflow: hidden; position: relative; box-shadow: var(--sh-2); }
-.qg-tools { position: absolute; top: 10px; left: 10px; right: 10px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; z-index: 2; pointer-events: none; }
-.qg-tools > * { pointer-events: auto; font: inherit; font-size: var(--fs-sm); background: #23272b; color: #dcdcd6; border: 1px solid #33383d; border-radius: var(--r-sm); padding: 5px 10px; }
-/* 책·저자 찾기, 질문 고르기: 그래프 박스 밖 위(박스 안 단추가 두 줄이 되지 않게, 11/5) */
-.qg-search { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
-.qg-search > * { font: inherit; font-size: var(--fs-sm); background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 7px 12px; }
-.qg-search :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.qgraph .qg-tools { position: absolute; top: 10px; left: 10px; right: 10px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; z-index: 2; pointer-events: none; }
+.qgraph .qg-tools > * { pointer-events: auto; font: inherit; font-size: var(--fs-sm); background: #23272b; color: #dcdcd6; border: 1px solid #33383d; border-radius: var(--r-sm); padding: 5px 10px; }
+/* (.qgraph 아래로 묶음: 책속의 한줄의 .qg-tools·.qg-search와 이름이 겹쳐 한줄 검색이 그래프 박스처럼 떠 버렸음, 11/6) 책·저자 찾기, 질문 고르기: 그래프 박스 밖 위(박스 안 단추가 두 줄이 되지 않게, 11/5) */
+.qgraph .qg-search { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+.qgraph .qg-search > * { font: inherit; font-size: var(--fs-sm); background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 7px 12px; }
+.qgraph .qg-search :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .qg-find { width: 220px; }
 .qg-find::placeholder { color: var(--muted); }
 .qg-qsel { max-width: 260px; }
@@ -855,20 +855,20 @@ img.qb-cov { padding: 0; }
 .qg-save:disabled { opacity: .6; cursor: wait; }
 .qg-play[aria-pressed="true"] { border-color: #7cc8d3; color: #7cc8d3; }
 /* 박스 안 단추 다섯 개(내 별자리·누구의·연도별·해마다·이미지 저장)는 같은 크기·같은 줄(11/5 에스파다) */
-.qg-tools > * { box-sizing: border-box; height: 34px; line-height: 1; font-weight: 600; }
-.qg-tools > button { display: inline-flex; align-items: center; justify-content: center; }
-.qg-mine, .qg-tools .qg-whosel, .qg-year, .qg-play, .qg-save { width: 116px; max-width: none; padding: 0 10px; text-align: center; text-align-last: center; }
-.qg-tools select { padding: 0 6px; }
+.qgraph .qg-tools > * { box-sizing: border-box; height: 34px; line-height: 1; font-weight: 600; }
+.qgraph .qg-tools > button { display: inline-flex; align-items: center; justify-content: center; }
+.qg-mine, .qgraph .qg-tools .qg-whosel, .qg-year, .qg-play, .qg-save { width: 116px; max-width: none; padding: 0 10px; text-align: center; text-align-last: center; }
+.qgraph .qg-tools select { padding: 0 6px; }
 /* 휴대폰: 여섯 단추를 한 줄로. 글자를 조금 줄이고 콤보박스는 고른 글자 폭만큼(JS fitSel), 화살표는 작게 */
 @media (max-width: 600px) {
-  .qg-tools { left: 8px; right: 8px; top: 8px; gap: 4px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
-  .qg-tools::-webkit-scrollbar { display: none; }
-  .qg-tools > * { height: 32px; font-size: 11.5px; flex: 0 0 auto; }
-  .qg-tools .qg-fit { width: 32px; padding: 0; }
-  .qg-tools > [hidden] { display: none; }
-  .qg-mine, .qg-tools .qg-whosel, .qg-year, .qg-play, .qg-save, .qg-fit { width: auto; padding: 0 8px; }
+  .qgraph .qg-tools { left: 8px; right: 8px; top: 8px; gap: 4px; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .qgraph .qg-tools::-webkit-scrollbar { display: none; }
+  .qgraph .qg-tools > * { height: 32px; font-size: 11.5px; flex: 0 0 auto; }
+  .qgraph .qg-tools .qg-fit { width: 32px; padding: 0; }
+  .qgraph .qg-tools > [hidden] { display: none; }
+  .qg-mine, .qgraph .qg-tools .qg-whosel, .qg-year, .qg-play, .qg-save, .qg-fit { width: auto; padding: 0 8px; }
   .qg-fit { margin-left: auto; }
-  .qg-tools select.qg-whosel, .qg-tools select.qg-year { -webkit-appearance: none; appearance: none; padding: 0 14px 0 6px; text-align: left; text-align-last: left;
+  .qgraph .qg-tools select.qg-whosel, .qgraph .qg-tools select.qg-year { -webkit-appearance: none; appearance: none; padding: 0 14px 0 6px; text-align: left; text-align-last: left;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='7' height='4'%3E%3Cpath d='M0 0l3.5 4 3.5-4z' fill='%23dcdcd6'/%3E%3C/svg%3E");
     background-repeat: no-repeat; background-position: right 5px center; }
 }
