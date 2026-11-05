@@ -2244,3 +2244,9 @@ footer { color: var(--muted); font-size: .82rem; border-top: 1px solid var(--lin
 .qg-shot img { max-width: min(100%, 540px); max-height: 74vh; width: auto; height: auto; border-radius: 6px; box-shadow: 0 8px 30px rgba(0,0,0,.5); -webkit-touch-callout: default; user-select: auto; }
 .qg-shot-msg { margin: 0; min-height: 1.4em; color: #dcdcd6; font-size: var(--fs-sm); text-align: center; }
 .qg-shot-bt { display: flex; gap: 8px; }
+/* 생각의 지도 '책미사 YYYY 별자리 진단서' 내려받기 칸(목록 맨 위·그래프 아래) */
+.qdx { margin: 0 0 24px; }
+.qgraph .qdx { margin: 18px 0 0; }
+.qdx .qdx-name { display: block; margin-top: 2px; font: 700 var(--fs-md)/1.45 var(--font-display); color: var(--accent); }
+@media (max-width: 600px) { .qbundle.qdx { grid-template-columns: 84px minmax(0, 1fr); gap: 14px; padding: 14px; } .qdx .qb-cov { display: block; } }
+.qdx .qb-acts .btn { white-space: nowrap; }
