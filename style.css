@@ -854,8 +854,13 @@ img.qb-cov { padding: 0; }
 .qg-save { border-color: #7cc8d3 !important; color: #7cc8d3 !important; }
 .qg-save:disabled { opacity: .6; cursor: wait; }
 .qg-play[aria-pressed="true"] { border-color: #7cc8d3; color: #7cc8d3; }
+/* 박스 안 단추 다섯 개(내 별자리·누구의·연도별·해마다·이미지 저장)는 같은 크기·같은 줄(11/5 에스파다) */
+.qg-tools > * { box-sizing: border-box; height: 34px; line-height: 1; font-weight: 600; }
+.qg-tools > button { display: inline-flex; align-items: center; justify-content: center; }
+.qg-mine, .qg-tools .qg-whosel, .qg-year, .qg-play, .qg-save { width: 116px; max-width: none; padding: 0 10px; text-align: center; text-align-last: center; }
+.qg-tools select { padding: 0 6px; }
 /* 내 별자리: 켜면 꽉 찬 별빛 단추, 패널엔 질문 막대·다음에 켤 별 */
-.qg-mine { cursor: pointer; font-weight: 700 !important; }
+.qg-mine { cursor: pointer; }
 .qg-whosel { cursor: pointer; max-width: 150px; }
 .qg-whosel[hidden] { display: none; }
 .qg-mine[aria-pressed="true"] { background: #7cc8d3 !important; border-color: #7cc8d3 !important; color: #17191c !important; }
