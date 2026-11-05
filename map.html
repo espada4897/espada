@@ -36,7 +36,7 @@ html { scroll-behavior: smooth; }
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700;800&display=swap">
-<link rel="stylesheet" href="style.css?v=dddeaaf8">
+<link rel="stylesheet" href="style.css?v=b2f0350b">
 <script>try { if (localStorage.getItem("mychaekmisa-on")) document.documentElement.classList.add("is-member"); } catch (e) {}</script>
 </head>
 <body>
@@ -204,10 +204,15 @@ function init(){
   cv.addEventListener("pointerleave",()=>{hover=null;draw()});
   document.getElementById("qg-fit").onclick=()=>{stopPlay();mineOff();setYear(null);focusQ=null;sel=null;match=null;qsel.value="";findI.value="";showAll();draw();fitTo(N)};
   document.getElementById("qg-save").onclick=savePoster;
-  if(matchMedia("(pointer: coarse)").matches)document.getElementById("qg-save").textContent="미리보기";  /* 휴대폰은 바로 저장되지 않고 그림을 띄우므로(11/5 에스파다) */
+  if(matchMedia("(pointer: coarse)").matches)document.getElementById("qg-save").textContent="미리보기";
+  else if(PH)document.getElementById("qg-save").textContent="저장";  /* 휴대폰은 바로 저장되지 않고 그림을 띄우므로(11/5 에스파다) */
   const ysel=document.getElementById("qg-year"),play=document.getElementById("qg-play");
-  ysel.innerHTML=`<option value="">연도별 별자리</option>`+YEARS.map(y=>`<option value="${y}">${y}년 (${B.filter(b=>b.ys.includes(y)).length}권)</option>`).join("");
-  ysel.onchange=()=>{stopPlay();focusQ=null;sel=null;match=null;qsel.value="";setYear(ysel.value||null);myB?mineOn():ysel.value?showYear():showAll()};
+  /* 휴대폰: 단추가 한 줄에 들도록 짧은 이름(연도·누구·전체), 콤보박스는 고른 글자 폭에 맞춤(11/5 에스파다) */
+  ysel.innerHTML=PH?`<option value="">연도</option><option value="play">▶ 해마다</option>`+YEARS.map(y=>`<option value="${y}">${y}</option>`).join("")
+    :`<option value="">연도별 별자리</option>`+YEARS.map(y=>`<option value="${y}">${y}년 (${B.filter(b=>b.ys.includes(y)).length}권)</option>`).join("");
+  if(PH){const ft=document.getElementById("qg-fit");ft.innerHTML=`<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>`;ft.setAttribute("aria-label","전체 보기");ft.title="전체 보기"}
+  if(PH)play.hidden=true;  /* 휴대폰: '▶ 해마다'는 연도 콤보박스 안으로(단추 한 줄, 11/5) */
+  ysel.onchange=()=>{if(ysel.value==="play"){ysel.value=yr||"";if(!playT)play.click();return}stopPlay();focusQ=null;sel=null;match=null;qsel.value="";setYear(ysel.value||null);myB?mineOn():ysel.value?showYear():showAll()};
   play.onclick=()=>{if(playT){stopPlay();return}
     play.textContent="■ 멈춤";play.setAttribute("aria-pressed","true");focusQ=null;sel=null;match=null;qsel.value="";fitTo(N);
     let i=yr?Math.max(0,YEARS.indexOf(yr)+1)%YEARS.length:0;
@@ -222,7 +227,7 @@ function init(){
   });
   qsel.onchange=()=>{const q=qBy[qsel.value];q?pickQ(q):document.getElementById("qg-fit").click()};
   const whoS=document.getElementById("qg-who"),PP=Object.entries(D.pp||{});
-  whoS.innerHTML=`<option value="">누구의 별자리</option>`+PP.map(([n,v])=>`<option value="${esc(n)}">${esc(n)}${v.length?` (${v.length})`:""}</option>`).join("");
+  whoS.innerHTML=`<option value="">${PH?"누구":"누구의 별자리"}</option>`+PP.map(([n,v])=>`<option value="${esc(n)}">${esc(n)}${v.length&&!PH?` (${v.length})`:""}</option>`).join("");
   whoS.hidden=!PP.length;
   whoS.onchange=()=>{const v=whoS.value;stopPlay();focusQ=null;sel=null;match=null;qsel.value="";findI.value="";
     if(!v){mineOff();yr?showYear():showAll();draw();fitTo(N);return}
@@ -469,7 +474,13 @@ function lit(n){
 }
 function setYear(y){yr=y;yrQ=new Set(y?B.filter(b=>b.ys.includes(y)).flatMap(b=>b.qs.map(x=>qBy[x])):[]);draw()}
 function stopPlay(){clearTimeout(playT);playT=null;const p=document.getElementById("qg-play");if(p){p.textContent="▶ 해마다";p.setAttribute("aria-pressed","false")}}
-function draw(){
+const PH=matchMedia("(max-width: 600px)").matches;
+function fitSel(){if(!PH)return;for(const s of document.querySelectorAll(".qg-tools select")){const o=s.options[s.selectedIndex],t=o?o.text:"";if(s._t===t)continue;s._t=t;
+  const m=fitSel.m||(fitSel.m=document.body.appendChild(Object.assign(document.createElement("span"),{style:"position:absolute;visibility:hidden;white-space:pre;left:-999px"}))),cs=getComputedStyle(s);
+  m.style.font=cs.font;m.style.fontSize=cs.fontSize;m.style.fontWeight=cs.fontWeight;m.style.fontFamily=cs.fontFamily;m.textContent=t;
+  s.style.width=Math.ceil(m.getBoundingClientRect().width)+22+"px"}}
+if(document.fonts)document.fonts.ready.then(()=>{document.querySelectorAll(".qg-tools select").forEach(s=>s._t=null);fitSel()});
+function draw(){fitSel();
   if(!ctx)return;
   ctx.setTransform(dpr,0,0,dpr,0,0);
   const g=ctx.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.max(W,H)*.7);
