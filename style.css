@@ -623,6 +623,8 @@ a.nb-book:hover { transform: translateY(-4px); }
 .bd-media img { display: block; width: 100%; height: auto; }
 .bd-media .bd-cover { width: 70%; margin: 32px auto; aspect-ratio: 2 / 3; height: auto; border-radius: 3px 6px 6px 3px; box-shadow: 0 6px 20px rgb(0 0 0 / .35); }
 .bd-body { padding: 32px 28px; display: grid; gap: 8px; align-content: start; }
+/* 오른쪽 위 × 단추(40px)가 첫 줄 글자를 덮지 않게(11/6 책속의 한줄 창에서 문장 끝이 가려짐). 휴대폰은 아래 680px 규칙이 다시 정함 */
+.bd-body { padding-right: 64px; }
 .bd-series { font-size: var(--fs-sm); font-weight: 600; color: var(--muted); display: flex; align-items: center; gap: 8px; }
 .bd-series::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--c, var(--accent)); }
 .bd-body h2 { font-size: var(--step-2); }
