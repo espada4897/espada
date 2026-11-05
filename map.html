@@ -266,7 +266,7 @@ function poster(yy,me){
   const rr=d3.randomLcg(0.7);for(let i=0;i<260;i++){c.globalAlpha=.15+rr()*.35;c.fillStyle="#fff";c.beginPath();c.arc(rr()*W,rr()*H,rr()*1.1+.2,0,7);c.fill()}c.globalAlpha=1;
   /* 머리 */
   c.textAlign="center";c.textBaseline="alphabetic";
-  if(me){const who=whoSel||nick(),q=top.src.q,ttl=ON.length?`'${q}'${josa(q,"을","를")} 묻는 사람`:"아직 켜진 별이 없습니다";
+  if(me){const who=whoSel||nick(),ttl=ON.length?nameOf(myName()):"아직 켜진 별이 없습니다";
     c.fillStyle=GLOW;c.font=`700 26px ${SANS}`;c.fillText(`${who?who+"님의":"나의"} 책미사 ${yy?yy+"년 ":""}별자리`,CX,96);
     let fz=64;c.font=`800 ${fz}px ${SERIF}`;while(fz>40&&c.measureText(ttl).width>980){fz-=2;c.font=`800 ${fz}px ${SERIF}`}
     c.fillStyle=INK;c.fillText(ttl,CX,176);
@@ -335,8 +335,15 @@ function myBooks(){
 }
 const ownA=()=>myOwn.filter(o=>o.qs.length);
 function qRank(list){return Q.map(q=>({q,n:list.filter(b=>b.qs.includes(q.q)).length})).sort((a,b)=>b.n-a.n||a.q.n-b.q.n)}
-function myName(){const r=qRank([...myList,...ownA()]);
-  return{who:whoSel||nick(),q:r[0].n?r[0].q.q:"",n:r[0].n,q2:r[1].n?r[1].q.q:"",n2:r[1].n}}
+/* 별자리 이름: 가장 많이 읽은 질문이 아니라 '책미사 전체보다 유난히 많이 읽은 질문'(11/5 에스파다 정함).
+   질문마다 (내 책에서 그 질문 비율) ÷ (책미사 전체에서 그 질문 비율). 가장 큰 쪽이 이름. 고루 읽었으면(가장 큰 값이 1.15 미만, 20권 이상) '모든 질문을 고루 묻는 사람' */
+function myName(){const all=[...myList,...ownA()],who=whoSel||nick();
+  const tot=all.reduce((s,b)=>s+b.qs.length,0),T=Q.reduce((s,q)=>s+q.cnt,0)||1;
+  const r=Q.map(q=>{const n=all.filter(b=>b.qs.includes(q.q)).length;return{q,n,x:tot&&q.cnt?(n/tot)/(q.cnt/T):0}})
+    .filter(v=>v.n).sort((a,b)=>b.x-a.x||b.n-a.n||a.q.n-b.q.n);
+  const even=!!r.length&&r[0].x<1.15&&all.length>=20;
+  return{who,even,q:r[0]?r[0].q.q:"",n:r[0]?r[0].n:0,x:r[0]?r[0].x:0,q2:r[1]?r[1].q.q:"",n2:r[1]?r[1].n:0}}
+const nameOf=nm=>nm.even?"모든 질문을 고루 묻는 사람":`'${nm.q}'${josa(nm.q,"을","를")} 묻는 사람`;
 function nextStars(){
   if(!myList.length&&!ownA().length)return[];
   const nm=myName(),have=new Set(myList.map(b=>bkey(b.t))),score=qs=>qs.reduce((s,q)=>s+(q===nm.q?2:q===nm.q2?1:0),0);
@@ -400,8 +407,9 @@ function showMine(){
   const own=myOwn.slice().reverse().slice(0,40).map(o=>`<li><span class="qg-ot">${esc(o.t)}</span>`
     +(o.qs.length?`<span class="qg-ns">${o.qs.map(esc).join(" / ")}</span>`:`<select class="qg-osel" data-own="${esc(o.k)}" aria-label="${esc(o.t)}에 질문 붙이기">${opts}</select>`)+`</li>`).join("");
   const unq=myOwn.filter(o=>!o.qs.length).length;
-  panel.innerHTML=`<p class="qg-kicker">${nm.who?esc(nm.who)+"님의 ":""}${yr?yr+"년 ":"내 "}별자리</p><h2>'${esc(nm.q)}'${josa(nm.q,"을","를")} 묻는 사람</h2>
-    <p class="qg-sent">켠 별 ${all.length}개 가운데 ${nm.n}개가 이 질문에 이어져 있습니다.${nm.q2?` 그다음은 '${esc(nm.q2)}'(${nm.n2}개)입니다.`:""}</p>
+  panel.innerHTML=`<p class="qg-kicker">${nm.who?esc(nm.who)+"님의 ":""}${yr?yr+"년 ":"내 "}별자리</p><h2>${esc(nameOf(nm))}</h2>
+    <p class="qg-sent">${nm.even?`여덟 질문을 책미사 전체와 거의 같은 비율로 읽었습니다.`
+      :`책미사 전체와 견주어 이 질문의 책을 ${nm.x.toFixed(1)}배 더 읽었습니다(${nm.n}권).${nm.q2?` 그다음은 '${esc(nm.q2)}'입니다.`:""}`}</p>
     <p class="qg-facts"><span>책미사 책 <b>${myList.length}권</b></span>${myOwn.length?`<span>밖에서 읽은 책 <b>${myOwn.length}권</b></span>`:""}<span>질문 <b>${kq}/${Q.length}</b></span></p>
     <p class="qg-sec">질문마다 켠 별</p><ul class="qg-bars">${bars}</ul>
     ${nx.length?`<p class="qg-sec">다음에 켤 별</p><ul class="qg-next">${nx.map(item).join("")}</ul>`:""}
