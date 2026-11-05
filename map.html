@@ -432,19 +432,16 @@ async function savePoster(){
   }finally{b.disabled=false;b.textContent=old}
 }
 function shot(blob,file,name){
-  /* 휴대폰: 그림을 띄우고 '이미지 저장' 단추로 받는다. 단추를 누른 그 순간에 내려받아야 '파일을 다운로드하려고 합니다' 경고가 안 뜬다(11/5).
-     길게 눌러 저장은 blob 주소면 '저장 실패'가 나서 그림은 data 주소로 */
+  /* 휴대폰: 그림을 띄우고 길게 눌러 저장(다운로드는 브라우저가 매번 확인 창을 띄워서 뺌, 11/5 에스파다).
+     blob 주소면 길게 눌러 저장이 '저장 실패'라 그림은 data 주소로 */
   const url=URL.createObjectURL(blob),can=!!(navigator.canShare&&navigator.canShare({files:[file]}));
   const box=document.createElement("div");box.className="qg-shot";box.setAttribute("role","dialog");box.setAttribute("aria-label","별자리 이미지");
-  box.innerHTML=`<div class="qg-shot-in"><img alt="${esc(name)}"><div class="qg-shot-bt"><button type="button" class="btn primary small" data-save>이미지 저장</button>`
-    +`${can?`<button type="button" class="btn small" data-share>공유</button>`:""}<button type="button" class="btn small" data-close>닫기</button></div>`
-    +`<p class="qg-shot-msg" aria-live="polite"></p></div>`;
+  box.innerHTML=`<div class="qg-shot-in"><img alt="${esc(name)}"><p class="qg-shot-msg">이미지를 <b>길게 눌러</b> 저장하세요</p>`
+    +`<div class="qg-shot-bt">${can?`<button type="button" class="btn small" data-share>공유</button>`:""}<button type="button" class="btn small" data-close>닫기</button></div></div>`;
   const fr=new FileReader();fr.onload=()=>{box.querySelector("img").src=fr.result};fr.readAsDataURL(blob);
   let gone=false;
   const close=()=>{if(gone)return;gone=true;box.remove();URL.revokeObjectURL(url);removeEventListener("popstate",close)};
   box.addEventListener("click",e=>{
-    if(e.target.closest("[data-save]")){const a=document.createElement("a");a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();
-      box.querySelector(".qg-shot-msg").textContent="저장했어요. 갤러리나 '다운로드' 폴더에서 볼 수 있어요.";return}
     if(e.target.closest("[data-share]")){navigator.share({files:[file],title:name}).catch(()=>{});return}
     if(e.target===box||e.target.closest("[data-close]")){if(history.state&&history.state.qgShot)history.back();else close()}});
   try{history.pushState({qgShot:1},"")}catch(e){}
