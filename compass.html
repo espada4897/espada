@@ -81,6 +81,9 @@ html { scroll-behavior: smooth; }
   const yearBooks = G.b.filter(inYear), lastD = yearBooks.map(b => b.d).filter(d => d && YEARS.includes(d.slice(0, 4))).sort().pop() || '';
   const yearLabel = YEARS.length > 1 ? `${YEARS[0]}~${YEARS[1]}` : `${YEARS[0]}년 1월 ~ ${lastD ? +lastD.slice(5, 7) + '월' : ''}`;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // 누른 수 세기(GoatCounter 이벤트, 2026-11-06): 11/10 나침반 공지 효과를 12/20에 숫자로 보려고. 개인정보 없음, 통계가 꺼져 있으면 조용히 넘어감.
+  const once = {};
+  const tally = (path, title) => { if (once[path]) return; once[path] = 1; try { if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path, title, event: true }); } catch (e) {} };
   const sky = document.getElementById('sky-cv'), ctx = sky.getContext('2d');
   const rose = document.getElementById('sky-rose'), rctx = rose.getContext('2d');
   const tip = document.getElementById('sky-tip');
@@ -265,6 +268,7 @@ html { scroll-behavior: smooth; }
     }
   }
   function endHistory() {
+    tally('compass-hist-end', '나침반: 지나온 항로 끝까지 봄');
     HIS = null; reset();
     setCap('그리고 올해', '올해 책미사의 하늘', '금빛은 올해 읽은 책, 주황 점선은 올해 덜 읽은 질문입니다');
     playBtn.disabled = true; histBtn.disabled = false;
@@ -357,9 +361,10 @@ html { scroll-behavior: smooth; }
   }
   function monthsOf() { const ms = [...new Set(comets.map(c => +c.d.slice(5, 7)))]; return ms.length > 1 ? `${ms[0]}~${ms[ms.length - 1]}월` : `${ms[0] || ''}월`; }
   const histBtn = document.getElementById('sky-hist'), rosePara = rose.parentElement.querySelector('p');
-  playBtn.addEventListener('click', () => { HIS = null; reset(); playBtn.disabled = true; queue = comets.slice(); next(); });
+  playBtn.addEventListener('click', () => { tally('compass-next', '나침반: 다음 별만 누름'); HIS = null; reset(); playBtn.disabled = true; queue = comets.slice(); next(); });
   resetBtn.addEventListener('click', () => { HIS = null; reset(); histBtn.disabled = false; });
   histBtn.addEventListener('click', () => {
+    tally('compass-hist', '나침반: 지나온 항로부터 누름');
     HIS = null; reset(); queue = []; tip.hidden = true;
     HIS = { n: 0, next: performance.now() + (reduce ? 0 : 600), born: [], lit: [], end: 0 };
     setCap('지나온 항로', '아직 아무것도 없는 하늘', '함께 읽은 책 한 권이 별 하나입니다');
