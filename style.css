@@ -2276,6 +2276,7 @@ footer { color: var(--muted); font-size: .82rem; border-top: 1px solid var(--lin
 .sky-btn:disabled { opacity: .45; cursor: default; }
 .sky-legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12.5px; color: var(--sk-mute); margin-top: 10px; }
 .sky-legend i { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+.sky-basis { font-size: 12px; line-height: 1.6; color: var(--sk-mute); margin: 10px 0 0; max-width: 46em; }
 .sky-legend .g { background: var(--sk-gold); } .sky-legend .p { background: #56607e; } .sky-legend .w { background: #fff; }
 .sky-legend .e { box-shadow: inset 0 0 0 1.5px var(--sk-ember); }
 .sky-rose { border: 1px solid var(--sk-line); border-radius: 12px; padding: 12px; }
