@@ -176,7 +176,7 @@ UID:20261205-53dda78a1b@chaekmisa
 DTSTAMP:20261105T120000Z
 DTSTART:20261205T120000Z
 DTEND:20261205T143000Z
-SUMMARY:책미사 지정독서 《달과 6펜스》
+SUMMARY:책미사 문학산책 《달과 6펜스》
 LOCATION:줌
 DESCRIPTION:나는 무엇을 원하는가?\n줌 링크는 모임 시간에 
  톡방에 올라옵니다.\n관심 가는 책 한 권만 골라도 되고\
@@ -185,7 +185,7 @@ DESCRIPTION:나는 무엇을 원하는가?\n줌 링크는 모임 시간에
 URL:https://chaekmisa.com/
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:책미사 지정독서 30분 전
+DESCRIPTION:책미사 문학산책 30분 전
 TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
@@ -212,7 +212,7 @@ UID:20261219-1924e858c3@chaekmisa
 DTSTAMP:20261119T120000Z
 DTSTART:20261219T120000Z
 DTEND:20261219T143000Z
-SUMMARY:책미사 지정독서 《브레이크넥》
+SUMMARY:책미사 경제독서 《브레이크넥》
 LOCATION:줌
 DESCRIPTION:미래는 누가 만드는가?\n줌 링크는 모임 시간에 
  톡방에 올라옵니다.\n관심 가는 책 한 권만 골라도 되고\
@@ -221,7 +221,7 @@ DESCRIPTION:미래는 누가 만드는가?\n줌 링크는 모임 시간에
 URL:https://chaekmisa.com/
 BEGIN:VALARM
 ACTION:DISPLAY
-DESCRIPTION:책미사 지정독서 30분 전
+DESCRIPTION:책미사 경제독서 30분 전
 TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
