@@ -2283,6 +2283,26 @@ footer { color: var(--muted); font-size: .82rem; border-top: 1px solid var(--lin
 .sky-rose h3 { font: 800 15px var(--font-display); margin: 0 0 2px; color: var(--sk-ink); }
 .sky-rose p { font-size: 12px; color: var(--sk-mute); margin: 0 0 6px; }
 #sky-rose { display: block; width: 100%; height: auto; max-width: 220px; margin: 0 auto; }
+/* 나침반 '이 하늘의 책'(2026-11-11): 하늘을 글자로 — 질문별 책 목록, 책 페이지로 */
+.sky-list { border-top: 1px solid var(--sk-line); padding-top: 12px; }
+.sky-list > summary { cursor: pointer; font: 700 15px var(--font-body); color: var(--sk-ink); padding: 6px 0; }
+.sky-list > summary:focus-visible, .sl-q > summary:focus-visible, .sl-q a:focus-visible { outline: 2px solid var(--sk-ember); outline-offset: 3px; border-radius: 4px; }
+.sl-help { font-size: 12.5px; line-height: 1.6; color: var(--sk-mute); margin: 6px 0 12px; max-width: 60ch; }
+.sl-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); gap: 10px; align-items: start; }
+.sl-q { border: 1px solid var(--sk-line); border-radius: 10px; padding: 10px 12px; }
+.sl-q > summary { cursor: pointer; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; }
+.sl-name { font: 800 15px var(--font-display); color: var(--sk-ink); }
+.sl-thin { font-size: 11.5px; font-weight: 600; color: var(--sk-ember); box-shadow: inset 0 0 0 1px var(--sk-ember); border-radius: 999px; padding: 1px 8px; }
+.sl-n { font-size: 12px; color: var(--sk-mute); width: 100%; }
+.sl-q ul { list-style: none; margin: 10px 0 2px; padding: 0; display: grid; gap: 2px; max-height: 320px; overflow-y: auto; }
+.sl-q li { display: flex; justify-content: space-between; gap: 10px; font-size: 13.5px; padding: 4px 0 4px 16px; position: relative; }
+.sl-q li::before { content: ""; position: absolute; left: 2px; top: 11px; width: 6px; height: 6px; border-radius: 50%; background: #56607e; }
+.sl-q li.sl-y::before { background: var(--sk-gold); }
+.sl-q li.sl-soon::before { background: #fff; }
+.sl-q li a { color: var(--sk-ink); text-decoration: none; }
+.sl-q li a:hover { color: var(--sk-gold); text-decoration: underline; }
+.sl-q li span { flex: none; font-size: 12px; color: var(--sk-mute); }
+.sl-q li.sl-soon span { color: #fff; }
 
 /* 모임 소개 맨 아래 '책 고르는 법' → 생각의 지도 빈 하늘(2026-11-06) */
 .skb { margin: 40px 0 8px; border-radius: 16px; color: #e9e4d6; overflow: hidden;
