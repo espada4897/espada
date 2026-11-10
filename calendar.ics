@@ -171,4 +171,76 @@ DESCRIPTION:책미사 지정독서 30분 전
 TRIGGER:-PT30M
 END:VALARM
 END:VEVENT
+BEGIN:VEVENT
+UID:20261205-53dda78a1b@chaekmisa
+DTSTAMP:20261105T120000Z
+DTSTART:20261205T120000Z
+DTEND:20261205T143000Z
+SUMMARY:책미사 지정독서 《달과 6펜스》
+LOCATION:줌
+DESCRIPTION:나는 무엇을 원하는가?\n줌 링크는 모임 시간에 
+ 톡방에 올라옵니다.\n관심 가는 책 한 권만 골라도 되고\
+ , 처음이라면 청강으로 함께할 수 있습니다.\nhttps://chaekm
+ isa.com/
+URL:https://chaekmisa.com/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:책미사 지정독서 30분 전
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20261212-c35b52e06b@chaekmisa
+DTSTAMP:20261112T120000Z
+DTSTART:20261212T120000Z
+DTEND:20261212T143000Z
+SUMMARY:책미사 지정독서 《러브 머신》
+LOCATION:줌
+DESCRIPTION:관계란 무엇인가?\n줌 링크는 모임 시간에 톡방
+ 에 올라옵니다.\n관심 가는 책 한 권만 골라도 되고\, 처
+ 음이라면 청강으로 함께할 수 있습니다.\nhttps://chaekmisa.c
+ om/
+URL:https://chaekmisa.com/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:책미사 지정독서 30분 전
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20261219-1924e858c3@chaekmisa
+DTSTAMP:20261119T120000Z
+DTSTART:20261219T120000Z
+DTEND:20261219T143000Z
+SUMMARY:책미사 지정독서 《브레이크넥》
+LOCATION:줌
+DESCRIPTION:미래는 누가 만드는가?\n줌 링크는 모임 시간에 
+ 톡방에 올라옵니다.\n관심 가는 책 한 권만 골라도 되고\
+ , 처음이라면 청강으로 함께할 수 있습니다.\nhttps://chaekm
+ isa.com/
+URL:https://chaekmisa.com/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:책미사 지정독서 30분 전
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:20261226-6d84465381@chaekmisa
+DTSTAMP:20261126T120000Z
+DTSTART:20261226T120000Z
+DTEND:20261226T143000Z
+SUMMARY:책미사 지정독서 《드디어 만나는 천문학 수업》
+LOCATION:줌
+DESCRIPTION:우리는 어디에 있는가?\n줌 링크는 모임 시간에 
+ 톡방에 올라옵니다.\n관심 가는 책 한 권만 골라도 되고\
+ , 처음이라면 청강으로 함께할 수 있습니다.\nhttps://chaekm
+ isa.com/
+URL:https://chaekmisa.com/
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:책미사 지정독서 30분 전
+TRIGGER:-PT30M
+END:VALARM
+END:VEVENT
 END:VCALENDAR
