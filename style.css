@@ -2333,5 +2333,6 @@ footer { color: var(--muted); font-size: .82rem; border-top: 1px solid var(--lin
 .cmp-hint b { color: var(--accent); }
 /* 한 해 기록집(2026-11-12): 함께 읽은 책 맨 위 칸 + 실린 책 창의 한 줄 */
 .yb-card { margin: 0 0 28px; }
+.yb-wip { display: inline-block; vertical-align: 3px; margin-left: 6px; padding: 2px 9px; border: 1px solid #9a3b2f; border-radius: 99px; color: #9a3b2f; font-size: 12px; font-weight: 700; letter-spacing: 0; }
 .yb-line { margin: 18px 0 0; font-size: var(--fs-sm); }
 .yb-line a { color: var(--accent); font-weight: 600; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
