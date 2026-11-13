@@ -1002,7 +1002,7 @@ img.qb-cov { padding: 0; }
 .ql-quotes { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
 .ql-quotes li { position: relative; padding-left: 1.3em; font-size: var(--fs-md); line-height: 1.8; }
 .ql-quotes li::before { content: "“"; position: absolute; left: 0; top: -.15em; font-family: var(--font-display); font-size: 1.5rem; line-height: 1; color: var(--lamp); }
-/* '그날 밤 대화' 말풍선(11/14 시범: build_site.py TALK_PILOT의 책만) */
+/* '그날 밤 대화' 말풍선(질문의 서재 그날 이야기, 11/14) */
 .ql-talk-sec { background: linear-gradient(180deg, var(--bg), var(--surface) 85%); }
 .ql-talk-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
 .ql-talk-head .qlabel { margin: 0; }
