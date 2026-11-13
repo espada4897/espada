@@ -1002,6 +1002,29 @@ img.qb-cov { padding: 0; }
 .ql-quotes { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
 .ql-quotes li { position: relative; padding-left: 1.3em; font-size: var(--fs-md); line-height: 1.8; }
 .ql-quotes li::before { content: "“"; position: absolute; left: 0; top: -.15em; font-family: var(--font-display); font-size: 1.5rem; line-height: 1; color: var(--lamp); }
+/* '그날 밤 대화' 말풍선(11/14 시범: build_site.py TALK_PILOT의 책만) */
+.ql-talk-sec { background: linear-gradient(180deg, var(--bg), var(--surface) 85%); }
+.ql-talk-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.ql-talk-head .qlabel { margin: 0; }
+.ql-talk-head small { font-size: var(--fs-xs); color: var(--muted); }
+.ql-bubbles { margin: 4px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.ql-bubbles li { display: flex; align-items: flex-end; gap: 8px; max-width: 88%; }
+.ql-bubbles li.r { align-self: flex-end; flex-direction: row-reverse; }
+.ql-bubbles .av { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--seat, #d9d3c8); box-shadow: inset 0 0 0 3px var(--surface); outline: 1px solid var(--line); }
+.ql-bubbles li:nth-child(4n+1) { --seat: #cdbfae; }
+.ql-bubbles li:nth-child(4n+2) { --seat: #a9c3c6; }
+.ql-bubbles li:nth-child(4n+3) { --seat: #d8c49b; }
+.ql-bubbles li:nth-child(4n+4) { --seat: #bdb3c9; }
+.ql-bubbles p { margin: 0; min-width: 0; padding: 10px 14px; font-size: var(--fs-md); line-height: 1.7; background: var(--surface); border: 1px solid var(--line); border-radius: 16px 16px 16px 4px; box-shadow: 0 2px 6px rgb(27 31 34 / .05); }
+.ql-bubbles li.r p { background: var(--accent-soft); border-color: transparent; border-radius: 16px 16px 4px 16px; }
+@media (max-width: 520px) { .ql-bubbles li { max-width: 100%; } }
+@media (prefers-reduced-motion: no-preference) {
+  .ql.open .ql-bubbles li { animation: ql-rise .35s ease both; }
+  .ql.open .ql-bubbles li:nth-child(2) { animation-delay: .07s; }
+  .ql.open .ql-bubbles li:nth-child(3) { animation-delay: .14s; }
+  .ql.open .ql-bubbles li:nth-child(4) { animation-delay: .21s; }
+  @keyframes ql-rise { from { transform: translateY(5px); opacity: .55; } to { transform: none; opacity: 1; } }
+}
 .ql-vs { display: grid; gap: 12px; }
 .ql-vs.two { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 0 16px; align-items: start; }
 .ql-vs > div { min-width: 0; display: grid; gap: 2px; }
