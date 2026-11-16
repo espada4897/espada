@@ -2359,3 +2359,31 @@ footer { color: var(--muted); font-size: .82rem; border-top: 1px solid var(--lin
 /* 한 해 기록집(2026-11-12): 함께 읽은 책 맨 위 칸 + 실린 책 창의 한 줄 */
 .yb-card { margin: 0 0 28px; }
 .yb-wip { display: inline-block; vertical-align: 3px; margin-left: 6px; padding: 2px 9px; border: 1px solid #9a3b2f; border-radius: 99px; color: #9a3b2f; font-size: 12px; font-weight: 700; letter-spacing: 0; }
+
+/* 질문 페이지 q…html (질문 사전, 2026-11-16): 질문 → 그날 밤 대화 → 별자리 → 다음 모임 */
+.qpage .bp-back { margin-bottom: 16px; }
+.qpage .bp-back a { color: var(--muted); text-decoration: none; font-size: var(--fs-md); }
+.qpage .bp-back a:hover { color: var(--accent); }
+.qp-kicker { margin: 0 0 8px; color: var(--muted); font-size: var(--fs-md); }
+.qp-kicker a { color: inherit; }
+.qp-q { margin: 0 0 24px; font-family: "Nanum Myeongjo", serif; font-size: clamp(24px, 5vw, 34px); line-height: 1.45; word-break: keep-all; }
+.qp-panel { margin-bottom: 32px; }
+.qp-sky, .qp-rel { margin: 0 0 32px; padding-block: 0; }
+.qp-about { margin: 8px 0 0; color: var(--muted); font-size: var(--fs-sm, 14px); line-height: 1.8; }
+.qp-sky h2, .qp-rel h2 { font-size: var(--fs-lg, 19px); margin: 0 0 6px; }
+.qp-sub { margin: 0 0 12px; color: var(--muted); font-size: var(--fs-sm, 14px); }
+.qp-svg { display: block; width: 100%; height: auto; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-card); }
+.qp-svg .qs-l { stroke: var(--line); stroke-width: 1.5; }
+.qp-svg .qs-l.d { stroke-dasharray: 3 4; }
+.qp-svg .qs-c { fill: var(--accent); }
+.qp-svg .qs-t { fill: var(--surface); stroke: var(--accent); stroke-width: 2; }
+.qp-svg .qs-b { fill: #d8c49b; }
+.qp-svg a:hover .qs-b { fill: var(--accent); }
+.qp-svg text { fill: var(--ink, currentColor); font-size: 15px; }
+.qp-svg .qs-cl { font-weight: 700; font-size: 16px; }
+.qp-svg .qs-tl { fill: var(--accent); font-weight: 700; font-size: 14px; }
+.qp-svg .qs-bl { fill: var(--muted); }
+.qp-svg a:hover .qs-bl { fill: var(--accent); text-decoration: underline; }
+.qp-next { margin: 0 0 32px; padding: 20px; background: var(--accent-soft); border-radius: var(--r-card); }
+.qp-next-t { margin: 4px 0; font-size: var(--fs-lg, 19px); font-weight: 700; }
+.qp-next-s { margin: 0 0 12px; color: var(--muted); }
